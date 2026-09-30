@@ -1,0 +1,41 @@
+# environment and secrets
+.env
+.env.*
+!.env.example
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+dist/
+build/
+
+# node
+node_modules/
+studio/dist/
+
+# platformio
+firmware/.pio/
+firmware/.vscode/
+
+# kicad backups and outputs
+hardware/**/*-backups/
+hardware/**/*.kicad_prl
+hardware/**/fp-info-cache
+hardware/**/production/
+
+# local data from the compose stack
+server/deploy/data/
+
+# editors and os
+.DS_Store
+.idea/
+*.swp
+
+# rust
+core/target/
