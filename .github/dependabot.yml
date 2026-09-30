@@ -1,0 +1,58 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    labels: [dependencies]
+    commit-message:
+      prefix: chore
+    groups:
+      actions:
+        patterns: ["*"]
+
+  - package-ecosystem: pip
+    directories: [/server, /client]
+    schedule:
+      interval: weekly
+    labels: [dependencies]
+    commit-message:
+      prefix: chore
+    groups:
+      python-minor-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: npm
+    directory: /studio
+    schedule:
+      interval: weekly
+    labels: [dependencies, studio]
+    commit-message:
+      prefix: chore
+    groups:
+      studio-minor-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: cargo
+    directory: /core
+    schedule:
+      interval: weekly
+    labels: [dependencies, core]
+    commit-message:
+      prefix: chore
+
+  - package-ecosystem: docker
+    directory: /server
+    schedule:
+      interval: weekly
+    labels: [dependencies, server]
+    commit-message:
+      prefix: chore
+
+  - package-ecosystem: docker-compose
+    directory: /server/deploy
+    schedule:
+      interval: weekly
+    labels: [dependencies, server]
+    commit-message:
+      prefix: chore
