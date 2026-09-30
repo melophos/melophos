@@ -17,3 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 - Initial database schema for devices, instruments, practice sessions, note events, songs and recordings.
 - Hub simulator for developing the server and Studio without hardware.
 - Continuous integration for every component, markdown linting, secret scanning and publishing of each component folder to its own repository.
+
+### Changed
+
+- CI tests the server and client on Python 3.12 and 3.14. 3.12 is the minimum they support and 3.14 is what the server image runs.
