@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Added
 
+- melophos.com in every copyright line alongside isaacadjei.me.
 - Monorepo scaffold: firmware, hardware, core, server, studio, client, profiles and docs components, each self-contained with its own README and licence.
 - Discussion forms for Q&A and General alongside Ideas and Show and tell.
 - `assets/` folder for brand files, photos, diagrams, renders and screenshots, with a social preview card.

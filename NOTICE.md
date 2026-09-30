@@ -9,7 +9,7 @@ MELOPHOS mixes software and hardware designs, so it carries two licences. This f
 
 Each published component repository carries the licence file for its own folder, so a copy of `melophos/hardware` is covered by CERN-OHL-S-2.0 and every other component repository by AGPL-3.0-or-later.
 
-Copyright (c) 2026 Isaac Adjei <https://isaacadjei.me>
+Copyright (c) 2026 Isaac Adjei <https://isaacadjei.me> & <https://melophos.com>
 
 ## What the two licences mean in practice
 
