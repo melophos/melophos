@@ -24,4 +24,4 @@
 | [repositories.md](repositories.md) | The monorepo and the published component repositories |
 | [decisions.md](decisions.md) | Architecture decision records |
 | [inventory.md](inventory.md) | Parts on hand for the prototype and parts still to buy |
-| [brand/](brand/) | Logo files, colours and usage |
+| [assets/brand](../assets/brand/) | Logo files, colours and usage, in the monorepo |
