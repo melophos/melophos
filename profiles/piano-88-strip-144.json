@@ -1,0 +1,9 @@
+{
+  "$schema": "./schema.json",
+  "id": "piano-88-strip-144",
+  "name": "88-key keyboard with a 144 LED/m strip",
+  "type": "keyboard",
+  "notes": { "lowest": 21, "highest": 108 },
+  "geometry": { "white_key_mm": 23.5 },
+  "leds": { "layout": "strip", "density_per_m": 144, "offset": 0, "reversed": false }
+}

@@ -1,0 +1,36 @@
+[project]
+name = "melophos-client"
+version = "0.1.0"
+description = "Python client for the MELOPHOS server and a hub simulator for development without hardware"
+readme = "README.md"
+license = "AGPL-3.0-or-later"
+requires-python = ">=3.12"
+dependencies = ["httpx>=0.28"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.4", "ruff>=0.14", "mypy>=1.18"]
+
+[project.scripts]
+melophos-sim = "melophos_client.simulator:main"
+
+[build-system]
+requires = ["setuptools>=80"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["melophos_client*"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.mypy]
+strict = true
+python_version = "3.12"
+packages = ["melophos_client"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
