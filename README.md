@@ -1,7 +1,7 @@
 <h1 align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/brand/melophos-wordmark-dark.svg">
-    <img src="docs/brand/melophos-wordmark-light.svg" alt="MELOPHOS" width="440">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/brand/melophos-wordmark-dark.svg">
+    <img src="assets/brand/melophos-wordmark-light.svg" alt="MELOPHOS" width="440">
   </picture>
 </h1>
 
@@ -58,6 +58,7 @@ This repository is the single source of truth. Every component folder is self-co
 | [`client/`](client/) | Python client and a hub simulator for development without hardware | `melophos/client` |
 | [`profiles/`](profiles/) | Instrument profiles and their JSON schema, shared by every component | `melophos/profiles` |
 | [`docs/`](docs/) | Architecture, protocol, roadmap and guides | `melophos/docs` |
+| [`assets/`](assets/) | Brand files, photos, diagrams, renders and screenshots | stays here |
 
 ## Quickstart
 

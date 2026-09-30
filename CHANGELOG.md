@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 ### Added
 
 - Monorepo scaffold: firmware, hardware, core, server, studio, client, profiles and docs components, each self-contained with its own README and licence.
+- `assets/` folder for brand files, photos, diagrams, renders and screenshots, with a social preview card.
 - Rust scoring engine that matches played notes with expected notes and scores hits, misses, wrong notes and timing.
 - Instrument profile schema with profiles for 61, 76 and 88 key keyboards and a six-string guitar in standard tuning.
 - Initial database schema for devices, instruments, practice sessions, note events, songs and recordings.
