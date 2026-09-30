@@ -1,0 +1,35 @@
+title: "[Question] "
+labels: ["question"]
+body:
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - Firmware (hub)
+        - Hardware (boards, bars, enclosures)
+        - Core (scoring engine)
+        - Server
+        - Studio
+        - Client or simulator
+        - Profiles
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Your question
+    validations:
+      required: true
+  - type: input
+    id: setup
+    attributes:
+      label: Hardware and versions
+      description: Hub or development board, instrument model, how it connects, firmware or commit.
+      placeholder: ESP32-S3-DevKitC-1, 88-key keyboard over USB-MIDI, firmware 0.1.0
+  - type: textarea
+    id: tried
+    attributes:
+      label: What you tried
+      description: Steps you already took, with any output or error messages.

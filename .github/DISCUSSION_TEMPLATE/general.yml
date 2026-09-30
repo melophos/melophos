@@ -1,0 +1,8 @@
+body:
+  - type: textarea
+    id: message
+    attributes:
+      label: What's on your mind
+      description: Introductions, practice stories, questions about the project's direction or anything else.
+    validations:
+      required: true
