@@ -1,0 +1,16 @@
+reference,quantity,part,value_or_package,purpose
+U1,1,ESP32-S3-WROOM-1-N16R8,module,Microcontroller with Wi-Fi and Bluetooth LE
+U2,1,74AHCT125,TSSOP-14,3.3 V to 5 V level shift for the LED data lines
+U3,1,TPS2553,SOT-23-6,Current-limited power switch for the USB host port
+U4,1,AP2112K-3.3,SOT-23-5,3.3 V regulator for the module
+U5,1,6N138,SOIC-8,Optocoupler for MIDI in
+U6,1,PCM1808,TSSOP-14,I2S audio ADC for instrument and line input
+J1,1,USB-C receptacle,16-pin,Power in and programming
+J2,1,USB-C receptacle,16-pin,USB host port for the instrument
+"J3,J4",2,3.5 mm TRS jack,PJ-320,MIDI in and MIDI out (type A)
+J5,1,6.35 mm TS jack,through-hole,Instrument input
+"J6,J7",2,JST-XH 3-pin,through-hole,LED outputs (keys and frets)
+F1,1,PTC fuse 4 A,1812,LED supply protection
+C1,1,1000 uF 10 V electrolytic,radial,LED supply bulk capacitance
+"R1,R2",2,330 ohm,0603,LED data line series resistors
+"SW1,SW2",2,Tactile switch,SMD,Boot and reset

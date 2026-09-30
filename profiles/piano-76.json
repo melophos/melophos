@@ -1,0 +1,9 @@
+{
+  "$schema": "./schema.json",
+  "id": "piano-76",
+  "name": "76-key keyboard (E1 to G7)",
+  "type": "keyboard",
+  "notes": { "lowest": 28, "highest": 103 },
+  "geometry": { "white_key_mm": 23.5 },
+  "leds": { "layout": "per-key", "offset": 0, "reversed": false }
+}
