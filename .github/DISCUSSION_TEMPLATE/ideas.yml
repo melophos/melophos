@@ -1,0 +1,14 @@
+title: "[Idea] "
+labels: ["idea"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What would make practising or building better?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Who it helps

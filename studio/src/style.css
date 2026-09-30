@@ -1,0 +1,52 @@
+:root {
+  --bg: #0e0e12;
+  --fg: #f2f2f5;
+  --white-key: #f7f7f7;
+  --black-key: #1b1b1f;
+  /* high-contrast amber reads well for most colour-vision types */
+  --pressed: #ffb000;
+  font-family: system-ui, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  padding: 1rem;
+}
+
+.keyboard {
+  display: flex;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+.key {
+  flex: none;
+  border: 1px solid #555;
+}
+
+.white {
+  width: 24px;
+  height: 140px;
+  background: var(--white-key);
+}
+
+.black {
+  width: 14px;
+  height: 90px;
+  margin: 0 -7px;
+  background: var(--black-key);
+  z-index: 1;
+}
+
+.pressed {
+  background: var(--pressed);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .key {
+    transition: background 60ms linear;
+  }
+}

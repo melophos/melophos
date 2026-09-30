@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/melophos/profiles/schema.json",
+  "title": "MELOPHOS instrument profile",
+  "description": "Describes an instrument's playable notes and how its lights are laid out, so every component maps notes to LEDs the same way.",
+  "type": "object",
+  "required": ["id", "name", "type", "leds"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "name": { "type": "string", "minLength": 1 },
+    "type": { "enum": ["keyboard", "fretboard"] },
+    "notes": {
+      "type": "object",
+      "required": ["lowest", "highest"],
+      "properties": {
+        "lowest": { "$ref": "#/$defs/midiNote" },
+        "highest": { "$ref": "#/$defs/midiNote" }
+      },
+      "additionalProperties": false
+    },
+    "geometry": {
+      "type": "object",
+      "properties": {
+        "white_key_mm": { "type": "number", "exclusiveMinimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "strings": {
+      "type": "array",
+      "description": "Open-string MIDI notes, lowest string first.",
+      "items": { "$ref": "#/$defs/midiNote" },
+      "minItems": 1
+    },
+    "frets": { "type": "integer", "minimum": 1, "maximum": 36 },
+    "leds": {
+      "type": "object",
+      "required": ["layout"],
+      "properties": {
+        "layout": { "enum": ["per-key", "strip", "grid"] },
+        "density_per_m": { "type": "number", "exclusiveMinimum": 0 },
+        "offset": { "type": "integer" },
+        "reversed": { "type": "boolean" },
+        "serpentine": { "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "type": { "const": "keyboard" } } },
+      "then": { "required": ["notes", "geometry"] }
+    },
+    {
+      "if": { "properties": { "type": { "const": "fretboard" } } },
+      "then": { "required": ["strings", "frets"] }
+    },
+    {
+      "if": { "properties": { "leds": { "properties": { "layout": { "const": "strip" } } } } },
+      "then": { "properties": { "leds": { "required": ["density_per_m"] } } }
+    }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "midiNote": { "type": "integer", "minimum": 0, "maximum": 127 }
+  }
+}

@@ -1,0 +1,27 @@
+# EditorConfig, applied by most editors automatically.
+# See https://editorconfig.org for documentation.
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# PEP 8
+[*.py]
+indent_size = 4
+
+# two trailing spaces are a hard line break in markdown
+[*.md]
+trim_trailing_whitespace = false
+
+[*.{c,h,cpp,hpp,ino}]
+indent_size = 4
+
+# make requires real tabs
+[Makefile]
+indent_style = tab

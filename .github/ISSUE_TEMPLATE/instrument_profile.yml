@@ -1,0 +1,36 @@
+name: Instrument support
+description: Ask for a keyboard, guitar or other instrument to be supported.
+labels: ["enhancement", "profiles"]
+body:
+  - type: input
+    id: instrument
+    attributes:
+      label: Instrument
+      placeholder: Maker and model, for example a 76-key keyboard or a seven-string guitar
+    validations:
+      required: true
+  - type: input
+    id: range
+    attributes:
+      label: Note range or tuning
+      placeholder: E1 to G7 for a keyboard, B1 E2 A2 D3 G3 B3 E4 for a guitar
+    validations:
+      required: true
+  - type: dropdown
+    id: connection
+    attributes:
+      label: How it connects
+      multiple: true
+      options:
+        - USB-MIDI
+        - Bluetooth MIDI
+        - 5-pin DIN or 3.5 mm MIDI
+        - Audio only (no MIDI)
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: Key width if you measured it, a link to the manual, photos of the ports.

@@ -1,0 +1,9 @@
+{
+  "$schema": "./schema.json",
+  "id": "guitar-6-standard",
+  "name": "Six-string guitar, standard tuning (E2 A2 D3 G3 B3 E4)",
+  "type": "fretboard",
+  "strings": [40, 45, 50, 55, 59, 64],
+  "frets": 22,
+  "leds": { "layout": "grid", "serpentine": true, "reversed": false }
+}

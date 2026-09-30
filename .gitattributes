@@ -1,0 +1,20 @@
+# Enforce LF line endings so Windows and Unix contributors never fight over CRLF.
+* text=auto eol=lf
+
+# Binary files, never converted
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
+*.mid   binary
+*.midi  binary
+*.wav   binary
+*.mp3   binary
+*.zip   binary
+
+# KiCad files are text but diffs are rarely useful to review line by line
+*.kicad_pcb   linguist-generated=false -diff
+*.kicad_sch   -diff
+*.kicad_pro   -diff

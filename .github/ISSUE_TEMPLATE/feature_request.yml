@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest something MELOPHOS should do.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What are you trying to do that MELOPHOS makes hard today?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: How you would like it to work.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked the [roadmap](https://github.com/melophos/melophos/blob/main/docs/roadmap.md) and existing issues.
+          required: true

@@ -1,0 +1,9 @@
+{
+  "$schema": "./schema.json",
+  "id": "piano-88",
+  "name": "88-key keyboard (A0 to C8)",
+  "type": "keyboard",
+  "notes": { "lowest": 21, "highest": 108 },
+  "geometry": { "white_key_mm": 23.5 },
+  "leds": { "layout": "per-key", "offset": 0, "reversed": false }
+}

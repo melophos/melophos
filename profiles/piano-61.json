@@ -1,0 +1,9 @@
+{
+  "$schema": "./schema.json",
+  "id": "piano-61",
+  "name": "61-key keyboard (C2 to C7)",
+  "type": "keyboard",
+  "notes": { "lowest": 36, "highest": 96 },
+  "geometry": { "white_key_mm": 23.5 },
+  "leds": { "layout": "per-key", "offset": 0, "reversed": false }
+}

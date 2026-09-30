@@ -1,0 +1,13 @@
+title: "[Build] "
+body:
+  - type: textarea
+    id: build
+    attributes:
+      label: Your build
+      description: Photos, the instrument, which boards you used and anything you changed.
+    validations:
+      required: true
+  - type: textarea
+    id: lessons
+    attributes:
+      label: What you learned

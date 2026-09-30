@@ -1,0 +1,21 @@
+[package]
+name = "melophos-core"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.80"
+description = "MELOPHOS scoring engine: aligns played notes with expected notes and scores accuracy and timing"
+license = "AGPL-3.0-or-later"
+repository = "https://github.com/melophos/melophos"
+readme = "README.md"
+keywords = ["music", "midi", "practice", "scoring"]
+categories = ["multimedia::audio"]
+
+[lib]
+path = "src/lib.rs"
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+
+[lints.clippy]
+pedantic = { level = "warn", priority = -1 }
