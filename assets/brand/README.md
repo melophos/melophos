@@ -9,6 +9,7 @@ The MELOPHOS mark is three piano keys seen from above with the middle key lit an
 | [`melophos-mark-transparent.svg`](melophos-mark-transparent.svg) | Mark without a tile, for light backgrounds |
 | [`melophos-wordmark-dark.svg`](melophos-wordmark-dark.svg) | Mark and name on dark backgrounds |
 | [`melophos-wordmark-light.svg`](melophos-wordmark-light.svg) | Mark and name on light backgrounds |
+| [`melophos-social-preview.png`](melophos-social-preview.png) | 1280 by 640 card shown when a repository link is shared |
 
 The name in the wordmarks is converted to outlines, so it renders the same everywhere without the font installed.
 
