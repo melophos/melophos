@@ -50,9 +50,14 @@ jobs:
       - run: pio test -e native
       - run: pio run -e esp32-s3 -e esp32-bringup
 
+  # 3.12 is the minimum in pyproject.toml and 3.14 is what the server image ships, so both are proved on every change
   server:
-    name: Server (Python)
+    name: Server (Python ${{ matrix.python }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.12", "3.14"]
     defaults:
       run:
         working-directory: server
@@ -62,7 +67,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python }}
       - run: pip install -e ".[dev]"
       - run: ruff check .
       - run: ruff format --check .
@@ -70,8 +75,12 @@ jobs:
       - run: pytest
 
   client:
-    name: Client (Python)
+    name: Client (Python ${{ matrix.python }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.12", "3.14"]
     defaults:
       run:
         working-directory: client
@@ -81,7 +90,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python }}
       - run: pip install -e ".[dev]"
       - run: ruff check .
       - run: ruff format --check .
