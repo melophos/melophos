@@ -17,7 +17,7 @@ The organisation's [`.github`](https://github.com/melophos/.github) repository h
 
 ## How publishing works
 
-On every push to `main` that touches a component folder, the [`split`](../.github/workflows/split.yml) workflow runs `git subtree split` for that folder and pushes the result to the matching repository's `main` branch. The split keeps each commit that touched the folder, with its original author and message, so each published repository has a real history rather than one snapshot commit.
+On every push to `main` that touches a component folder, the [`split`](../.github/workflows/split.yml) workflow runs `git subtree split` for that folder and pushes the result to the matching repository's `main` branch. The split keeps each commit that touched the folder, with its message and date, so each published repository has a real history rather than one snapshot commit. In the copies, each commit is credited to the project's automation account.
 
 > [!IMPORTANT]
 > The published repositories are read-only. Issues are turned off there and pull requests opened there are closed with a pointer back to the monorepo, because anything committed there would be overwritten by the next publish.
