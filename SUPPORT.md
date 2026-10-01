@@ -17,8 +17,8 @@
 
 ## Common issues
 
-**The keyboard is not detected over USB.** Not every keyboard sends MIDI over its USB port, some only take power through it. Check it on a computer first: on macOS open Audio MIDI Setup and choose Window, Show MIDI Studio; on Windows any MIDI monitor will list it. If nothing appears, connect through Bluetooth MIDI, the MIDI jacks or the audio input instead.
+**The keyboard is not detected over USB.** The hub reads the 3.5 mm MIDI jack today. USB-MIDI, Bluetooth MIDI and audio input are still to come, see [What exists today](docs/architecture.md#what-exists-today). Once USB-MIDI lands, bear in mind that not every keyboard sends MIDI over its USB port, some only take power through it. Check it on a computer first: on macOS open Audio MIDI Setup and choose Window, Show MIDI Studio; on Windows any MIDI monitor will list it. If nothing appears, connect through Bluetooth MIDI, the MIDI jacks or the audio input instead.
 
 **The lights drift out of line along the keyboard.** The profile's LED spacing does not match the bar or strip in use. See the alignment section of [docs/instruments.md](docs/instruments.md).
 
-**Studio cannot see any MIDI device.** WebMIDI needs a Chromium-based browser and a secure context (`https://` or `localhost`). Safari and Firefox are not supported for device access.
+**Studio cannot see any MIDI device.** WebMIDI needs a secure context (`https://` or `localhost`) and a browser that supports it: Chrome, Edge or Firefox 108 and later, which asks for permission first. Safari does not support WebMIDI. Web Bluetooth, which Studio uses for Bluetooth MIDI, works only in Chrome and Edge.
