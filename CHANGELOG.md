@@ -21,6 +21,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Changed
 
+- The published component repositories credit the project's automation account for each commit. Messages and dates are unchanged.
 - Tidied the contributor guide.
 - The README and `docs/architecture.md` use Mermaid diagrams. The architecture doc adds a practice session walkthrough and a table of what each component has built so far. The README explains the name.
 - CI tests the server and client on Python 3.12 and 3.14. 3.12 is the minimum they support and 3.14 is what the server image runs.
