@@ -26,10 +26,9 @@ Thanks for taking an interest in MELOPHOS. Contributions are welcome across ever
 4. Add an entry under `Unreleased` in [CHANGELOG.md](CHANGELOG.md) if the change is user-facing.
 5. Open a pull request with a clear title and a description of what changed and why. Link the issue it closes.
 
-## Style
+## Code style
 
 - **Comments** explain why, not what.
-- **UK English** in documentation and comments.
 - **Commit subjects** use the conventional style: `feat:`, `fix:`, `docs:`, `chore:`, imperative and under 72 characters.
 - **Python** is formatted and linted with Ruff. **TypeScript** is type-checked with `tsc`. **C++** follows the existing firmware layout, one module per responsibility.
 - **Hardware** changes include the KiCad sources, never only exported Gerbers.
