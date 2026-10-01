@@ -21,5 +21,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Changed
 
-- The contributor guide's Code style section now lists only the project's tooling and layout conventions.
+- Tidied the contributor guide.
 - CI tests the server and client on Python 3.12 and 3.14. 3.12 is the minimum they support and 3.14 is what the server image runs.
