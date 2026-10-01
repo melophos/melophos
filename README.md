@@ -7,8 +7,6 @@
 
 Song made visible. MELOPHOS is an open instrument learning platform: a small hub lights up the notes to play on a keyboard or guitar, captures every note played and turns practice into data you can see and share.
 
-The name is pronounced MEL-oh-fos, from the Greek *melos* (song) and *phos* (light).
-
 > [!NOTE]
 > MELOPHOS is in early development. The code in this repository is the working scaffold each component grows from. The first hardware revision is in design. See [docs/roadmap.md](docs/roadmap.md) for what is planned and in which order.
 
@@ -29,20 +27,33 @@ Accessibility is a design goal from the start rather than a feature added later,
 
 Planned for later versions: remote lessons where a teacher's playing lights up a student's instrument over WebRTC, a fingering coach using hand tracking and an optical sensor bar that turns an acoustic piano into a MIDI instrument.
 
+## The name
+
+MELOPHOS, pronounced MEL-oh-fos, joins two Greek words.
+
+| Part | Root | Meaning |
+| --- | --- | --- |
+| MELO- | *mélos* (μέλος) | song or melody, the root behind *melody* |
+| -PHOS | *phôs* (φῶς) | light, the root behind *photon* and *photograph* |
+
+Together they describe what the hub does: it turns the notes of a song into light you can follow, which is where the tagline comes from: **song made visible**. The sister project [PHAEMOS](https://github.com/phaemos) is named the same way.
+
 ## Architecture
 
-```text
-instrument --USB-MIDI / BLE-MIDI / MIDI jack / audio--> Hub (ESP32-S3) --> LED bars (keys, frets)
-                                                          |
-                                                          | MQTT: notes, sessions, status
-                                                          v
-Studio (browser) <--HTTPS / WebSocket--> Server (FastAPI) --> Postgres + TimescaleDB
-  WebMIDI, Web Bluetooth                   |                --> Redis queue --> worker (transcription)
-                                           |                --> MinIO (recordings, imported songs)
-                                           +--> integrations: Spotify, WLED, Home Assistant, webhooks
+```mermaid
+flowchart LR
+    INST["Keyboard or guitar"] -- "USB-MIDI, Bluetooth MIDI,<br/>MIDI jack or audio" --> HUB["Hub<br/>ESP32-S3"]
+    HUB --> LED["LED bars<br/>keys and frets"]
+    HUB -- "MQTT: notes, session, status" --> SRV["Server<br/>FastAPI"]
+    SRV --> DB[("Postgres and<br/>TimescaleDB")]
+    SRV --> Q["Redis queue"] --> WORKER["Import worker<br/>MIDI, audio, video"]
+    SRV --> MINIO[("MinIO<br/>recordings and songs")]
+    SRV --> INT["Spotify, WLED,<br/>Home Assistant, webhooks"]
+    STUDIO["Studio<br/>browser app"] <-- "HTTPS and WebSocket" --> SRV
+    STUDIO -. "WebMIDI and Web Bluetooth" .-> INST
 ```
 
-The full picture, with the reasoning behind each choice, is in [docs/architecture.md](docs/architecture.md) and [docs/decisions.md](docs/decisions.md).
+This is the design the scaffold grows into. The full picture, including which pieces exist today, is in [docs/architecture.md](docs/architecture.md). The reasoning behind each choice is in [docs/decisions.md](docs/decisions.md).
 
 ## Repository layout
 
