@@ -28,4 +28,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Fixed
 
+- Each publish run checks out the latest `main`, so a push event that arrives late can no longer publish stale history to the component repositories.
 - The pull request template's links and two support answers now match the project and current browser support.
