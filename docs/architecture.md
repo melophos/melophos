@@ -1,31 +1,63 @@
 # Architecture
 
+This page describes the design MELOPHOS is growing into. Each component in this repository is a working scaffold. [What exists today](#what-exists-today) shows how far each one has got.
+
 ## The pieces
 
-```text
-                 +-------------------------- instrument ---------------------------+
-                 | USB-MIDI | Bluetooth MIDI | 3.5 mm MIDI | audio (line or pickup)  |
-                 +-------------------------------+---------------------------------+
-                                                 v
-+---------------------------------- hub (ESP32-S3) ------------------------------------+
-|  inputs --> note bus (ring buffer) --> practice engine --> LED renderer --> LED bars   |
-|                                    \--> session recorder --> MQTT publisher           |
-+-------------------------------------------------+------------------------------------+
-                                                  | Wi-Fi, MQTT
-                                                  v
-+-------------------------------- server (Docker Compose) ------------------------------+
-|  Mosquitto --> ingest --> FastAPI --> Postgres + TimescaleDB (sessions, note events)   |
-|                              |  \--> Redis queue --> worker (MIDI, audio, video import)|
-|                              |  \--> MinIO (recordings, imported songs)                |
-|                              \--> integrations: Spotify, WLED, Home Assistant, webhook |
-+-------------------------------------------------+------------------------------------+
-                                                  | HTTPS, WebSocket
-                                                  v
-+----------------------------------- Studio (browser) ---------------------------------+
-|  WebMIDI and Web Bluetooth (direct to hub or instrument), practice view, library,      |
-|  progress, hub setup                                                                   |
-+---------------------------------------------------------------------------------------+
+```mermaid
+flowchart TB
+    INST["Instrument<br/>USB-MIDI, Bluetooth MIDI,<br/>3.5 mm MIDI or audio"]
+
+    subgraph HUB["Hub (ESP32-S3)"]
+        direction LR
+        INPUTS["Inputs"] --> BUS["Note bus<br/>ring buffer"]
+        BUS --> ENGINE["Practice engine"] --> RENDER["LED renderer"]
+        BUS --> REC["Session recorder"] --> PUB["MQTT publisher"]
+    end
+
+    INST --> INPUTS
+    RENDER --> BARS["LED bars<br/>keys and frets"]
+
+    subgraph SERVER["Server (Docker Compose)"]
+        direction LR
+        MQTT["Mosquitto"] --> API["FastAPI"]
+        API --> DB[("Postgres 17<br/>TimescaleDB")]
+        API --> REDIS["Redis queue"] --> WORKER["Import worker<br/>MIDI, audio, video"]
+        API --> MINIO[("MinIO")]
+        API --> INT["Spotify, WLED,<br/>Home Assistant, webhooks"]
+    end
+
+    PUB -- "Wi-Fi, MQTT" --> MQTT
+    API <-- "HTTPS, WebSocket" --> STUDIO["Studio (browser)<br/>practice view, library,<br/>progress, hub setup"]
+    INST -. "WebMIDI, Web Bluetooth" .-> STUDIO
 ```
+
+## A practice session
+
+```mermaid
+sequenceDiagram
+    participant I as Instrument
+    participant H as Hub
+    participant M as Mosquitto
+    participant S as Server
+    participant D as Postgres
+    participant B as Studio
+
+    I->>H: Note on and note off
+    H->>H: Light the next notes to play
+    H->>M: melophos/<device_id>/notes, a batch every 250 ms
+    M->>S: Note events
+    S->>D: Store in the note_events hypertable
+    Note over H: Two minutes without a note ends the session
+    H->>M: melophos/<device_id>/session
+    M->>S: Finished session
+    S->>D: Store the session and its summary
+    B->>S: GET /api/v1/sessions
+    S-->>B: Sessions with duration, notes played and notes per minute
+    H->>M: melophos/<device_id>/status on connect and every 60 s
+```
+
+The topics and payloads are defined in [protocol.md](protocol.md).
 
 ## Hub
 
@@ -33,7 +65,7 @@ The hub runs on an ESP32-S3 because it is the one widely available chip that com
 
 - **Inputs** each run independently and push `NoteEvent`s onto one lock-free ring buffer, so a slow input never blocks the lights.
 - **The practice engine** decides what each LED shows: played notes, the guide for the next notes, upcoming notes and wrong notes.
-- **The LED renderer** maps notes to LEDs through the instrument profile and drives the bars through the RMT peripheral, which produces the WS2812B timing in hardware.
+- **The LED renderer** maps notes to LEDs through the instrument profile and drives the WS2812B bars with FastLED, which uses the ESP32-S3's RMT peripheral for the timing.
 - **The session recorder** groups notes into sessions automatically. A session starts on the first note and ends after two minutes of silence.
 
 ## Server
@@ -56,3 +88,17 @@ A static TypeScript app that talks to devices directly in the browser through We
 - **The protocol** in [protocol.md](protocol.md) is the contract between the hub, the server and the Studio.
 
 The reasoning behind each choice is recorded in [decisions.md](decisions.md).
+
+## What exists today
+
+| Component | Built so far | Still to come |
+| --- | --- | --- |
+| Hub firmware | The 3.5 mm MIDI input at 31250 baud, LED bars through FastLED and session capture with the two-minute idle gap. Every input reports whether it is live | USB-MIDI host, Bluetooth MIDI and audio input, the note ring buffer and MQTT publishing |
+| Server | Health check, the sessions API with summaries (held in memory for now), MQTT topic validation, Spotify linking and the WLED and webhook integration modules | Storing sessions in Postgres, the MQTT subscriber, the WebSocket feed and Home Assistant |
+| Database | The schema, with `note_events` as a TimescaleDB hypertable | Wiring it to the server |
+| Import worker | The entry point and the import job types | A Redis queue and the importers themselves |
+| Scoring engine | The Rust `score` function and its tests | WebAssembly and Python bindings |
+| Studio | A keyboard view fed by WebMIDI, with instrument profiles | Web Bluetooth, the song library and progress views |
+| Client | A Python client and a hub simulator | |
+
+The [roadmap](roadmap.md) lists the order these arrive in.
