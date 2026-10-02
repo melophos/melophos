@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Changed
 
+- CI keeps the firmware's compiled objects between runs, so a firmware build only recompiles what changed.
 - The published component repositories credit the project's automation account for each commit. Messages and dates are unchanged.
 - Tidied the contributor guide.
 - The README and `docs/architecture.md` use Mermaid diagrams. The architecture doc adds a practice session walkthrough and a table of what each component has built so far. The README explains the name.
