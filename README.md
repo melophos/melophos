@@ -128,4 +128,4 @@ Software is licensed under the GNU Affero General Public License v3.0 or later. 
 
 ## Contributing and support
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) to get involved, [SUPPORT.md](SUPPORT.md) for help and [SECURITY.md](SECURITY.md) to report a vulnerability privately.
+See [CONTRIBUTING.md](CONTRIBUTING.md) to get involved, [SUPPORT.md](SUPPORT.md) for help, [SECURITY.md](SECURITY.md) to report a vulnerability privately and [ACCESSIBILITY.md](ACCESSIBILITY.md) for what the platform does for accessibility.
