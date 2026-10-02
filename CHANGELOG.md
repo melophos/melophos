@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Added
 
+- `ACCESSIBILITY.md` at the root, summarising [docs/accessibility.md](docs/accessibility.md) so the statement shows on the repository page.
 - A **Research** discussion form for papers, datasets and open questions that are not an issue yet
 - melophos.com in every copyright line alongside isaacadjei.me.
 - Monorepo scaffold: firmware, hardware, core, server, studio, client, profiles and docs components, each self-contained with its own README and licence.
