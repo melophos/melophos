@@ -43,6 +43,14 @@ jobs:
         with:
           path: ~/.platformio
           key: pio-${{ runner.os }}-${{ hashFiles('firmware/platformio.ini') }}
+      # keeps the compiled objects between runs, so the framework is not rebuilt from scratch every time.
+      # PlatformIO still recompiles anything whose source changed, so a stale entry cannot pass a broken build
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: firmware/.pio
+          key: pio-build-${{ runner.os }}-${{ hashFiles('firmware/platformio.ini') }}-${{ hashFiles('firmware/src/**', 'firmware/include/**', 'firmware/lib/**', 'firmware/test/**') }}
+          restore-keys: |
+            pio-build-${{ runner.os }}-${{ hashFiles('firmware/platformio.ini') }}-
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.12"
