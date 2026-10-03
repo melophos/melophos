@@ -23,4 +23,4 @@ Only the latest commit on `main` receives security fixes while MELOPHOS is in ea
 ## Reporting a vulnerability
 
 > [!IMPORTANT]
-> Report privately, never in a public issue. Use [GitHub private vulnerability reporting](https://github.com/melophos/melophos/security/advisories/new) or email contact@isaacadjei.me with details and reproduction steps. Expect an acknowledgement within a few days.
+> Report privately, never in a public issue. Use [GitHub private vulnerability reporting](https://github.com/melophos/melophos/security/advisories/new) or email contact@melophos.com with details and reproduction steps. Expect an acknowledgement within a few days.
