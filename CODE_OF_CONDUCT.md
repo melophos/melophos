@@ -11,4 +11,4 @@ Harassment, abuse or personal attacks of any kind. Spam or off-topic promotion. 
 ## Enforcement
 
 > [!NOTE]
-> Report unacceptable behaviour to contact@isaacadjei.me or through [isaacadjei.me/contact](https://isaacadjei.me/contact). Reports are reviewed and appropriate action is taken, including removing content or blocking users where necessary.
+> Report unacceptable behaviour to contact@melophos.com. Reports are reviewed and appropriate action is taken, including removing content or blocking users where necessary.
