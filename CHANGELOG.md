@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Added
 
+- An email-safe mark with outlined keys that reads on light and dark backgrounds, as an SVG source plus 256, 512 and 1000px PNGs.
 - `ACCESSIBILITY.md` at the root, summarising [docs/accessibility.md](docs/accessibility.md) so the statement shows on the repository page.
 - A **Research** discussion form for papers, datasets and open questions that are not an issue yet
 - melophos.com in every copyright line alongside isaacadjei.me.
@@ -22,6 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Changed
 
+- Conduct reports, security reports and general enquiries go to contact@melophos.com.
 - CI keeps the firmware's compiled objects between runs, so a firmware build only recompiles what changed.
 - The published component repositories credit the project's automation account for each commit. Messages and dates are unchanged.
 - Tidied the contributor guide.

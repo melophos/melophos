@@ -5,7 +5,7 @@
 - **Questions and ideas:** start a thread in [GitHub Discussions](https://github.com/melophos/melophos/discussions). This is the main help channel for build questions, setup problems and feature ideas.
 - **Bugs:** open an issue on [melophos/melophos](https://github.com/melophos/melophos/issues) using the bug report form.
 - **Security vulnerabilities:** never open a public issue. Follow [SECURITY.md](SECURITY.md).
-- **Anything else:** email contact@isaacadjei.me.
+- **Anything else:** email contact@melophos.com.
 
 ## Self-help
 
