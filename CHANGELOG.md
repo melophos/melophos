@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Added
 
+- `assets/brand/linkedin/`: the logo, cover image and profile text for the [MELOPHOS LinkedIn page](https://www.linkedin.com/company/melophos/), linked from the brand README.
 - An email-safe mark with outlined keys that reads on light and dark backgrounds, as an SVG source plus 256, 512 and 1000px PNGs.
 - `ACCESSIBILITY.md` at the root, summarising [docs/accessibility.md](docs/accessibility.md) so the statement shows on the repository page.
 - A **Research** discussion form for papers, datasets and open questions that are not an issue yet
