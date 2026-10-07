@@ -93,7 +93,7 @@ The reasoning behind each choice is recorded in [decisions.md](decisions.md).
 
 | Component | Built so far | Still to come |
 | --- | --- | --- |
-| Hub firmware | The 3.5 mm MIDI input at 31250 baud, LED bars through FastLED and session capture with the two-minute idle gap. Every input reports whether it is live | USB-MIDI host, Bluetooth MIDI and audio input, the note ring buffer and MQTT publishing |
+| Hub firmware | The 3.5 mm MIDI input at 31250 baud, the note bus ring buffer (`firmware/lib/notebus`) that carries every input's events to the render loop, LED bars through FastLED and session capture with the two-minute idle gap. Every input reports whether it is live | USB-MIDI host, Bluetooth MIDI and audio input and MQTT publishing |
 | Server | Health check, the sessions API with summaries (held in memory for now), MQTT topic validation, Spotify linking and the WLED and webhook integration modules | Storing sessions in Postgres, the MQTT subscriber, the WebSocket feed and Home Assistant |
 | Database | The schema, with `note_events` as a TimescaleDB hypertable | Wiring it to the server |
 | Import worker | The entry point and the import job types | A Redis queue and the importers themselves |

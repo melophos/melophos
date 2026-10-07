@@ -15,7 +15,7 @@ npm run dev
 Open the address Vite prints, press **Connect MIDI device** and play: the on-screen keyboard follows every note.
 
 > [!IMPORTANT]
-> WebMIDI and Web Bluetooth only work in Chromium-based browsers (Chrome, Edge) and only on `https://` or `localhost`. Safari and Firefox cannot reach MIDI devices.
+> WebMIDI works in Chromium-based browsers (Chrome, Edge) and in desktop Firefox 108 and later. Firefox asks to install a site permission add-on the first time **Connect MIDI device** is pressed. Safari and Firefox for Android cannot reach MIDI devices. Web Bluetooth only works in Chrome and Edge. Both need `https://` or `localhost`.
 
 ## Scripts
 
