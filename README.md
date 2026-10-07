@@ -92,7 +92,7 @@ npm install
 npm run dev
 ```
 
-WebMIDI works in Chrome, Edge and Firefox 108 and later. Web Bluetooth needs Chrome or Edge.
+WebMIDI works in Chrome, Edge and desktop Firefox 108 and later. Firefox asks to install a site permission add-on the first time a page requests MIDI access. Safari and Firefox for Android do not support WebMIDI. Every browser needs `https://` or `localhost`. Web Bluetooth needs Chrome or Edge.
 
 ### Firmware
 
