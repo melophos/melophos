@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Added
 
+- Melody practice in the Studio. A light strip above the on-screen keyboard shows the next note in amber with the two after it dimmed, as the hub's LEDs will. Each note is checked for pitch and timing, a wrong note is marked while the light waits on the right one and a summary shows accuracy, average timing and best streak.
+- Three public-domain songs and a **Play demo** button that plays a song with a simulated player, driving the same scoring as a MIDI keyboard.
+- The MELOPHOS wordmark and mark in the Studio, with the brand palette and a keyboard that fits the screen without scrolling.
 - `assets/brand/linkedin/`: the logo, cover image and profile text for the [MELOPHOS LinkedIn page](https://www.linkedin.com/company/melophos/), linked from the brand README.
 - An email-safe mark with outlined keys that reads on light and dark backgrounds, as an SVG source plus 256, 512 and 1000px PNGs.
 - `ACCESSIBILITY.md` at the root, summarising [docs/accessibility.md](docs/accessibility.md) so the statement shows on the repository page.
