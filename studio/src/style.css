@@ -1,52 +1,84 @@
 :root {
+  /* the MELOPHOS brand: near-black, off-white and the amber of a lit key */
   --bg: #0e0e12;
+  --panel: #16161c;
+  --line: #2a2a33;
   --fg: #f2f2f5;
-  --white-key: #f7f7f7;
+  --muted: #a5a5b2;
+  --white-key: #f2f2f5;
   --black-key: #1b1b1f;
   /* high-contrast amber reads well for most colour-vision types */
-  --pressed: #ffb000;
+  --amber: #ffb000;
+  --wrong: #ff5c5c;
+  color-scheme: dark;
   font-family: system-ui, sans-serif;
   color: var(--fg);
   background: var(--bg);
 }
 
-body {
-  margin: 0;
-  padding: 1rem;
-}
+* { box-sizing: border-box; }
+body { margin: 0; }
+main { max-width: 1320px; margin: 0 auto; padding: 1.5rem; display: grid; gap: 1rem; }
 
-.keyboard {
-  display: flex;
-  align-items: flex-start;
-  overflow-x: auto;
-  padding: 1rem 0;
-}
+.topbar { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.5rem; border-bottom: 1px solid var(--line); }
+.wordmark { height: 44px; width: auto; }
+.product { color: var(--muted); font-weight: 600; letter-spacing: 0.02em; }
+.connect { margin-left: auto; display: flex; align-items: center; gap: 0.75rem; }
+#status { margin: 0; font-size: 0.85rem; color: var(--muted); }
 
-.key {
-  flex: none;
-  border: 1px solid #555;
-}
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1.25rem; }
+.label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--muted); margin-bottom: 0.35rem; }
+.muted { color: var(--muted); margin: 0.25rem 0 0; }
+.small { font-size: 0.8rem; }
 
-.white {
-  width: 24px;
-  height: 140px;
-  background: var(--white-key);
-}
+.practice { display: grid; grid-template-columns: 2fr 1fr auto; gap: 1.5rem; align-items: end; }
+.practice h1 { margin: 0.75rem 0 0; font-size: 1.5rem; }
+.next-note { margin: 0; font-size: 2.5rem; font-weight: 700; color: var(--amber); font-variant-numeric: tabular-nums; }
+.actions { display: grid; gap: 0.5rem; }
 
-.black {
-  width: 14px;
-  height: 90px;
-  margin: 0 -7px;
-  background: var(--black-key);
-  z-index: 1;
-}
+select, button { font: inherit; border-radius: 8px; padding: 0.5rem 0.9rem; }
+select { background: var(--bg); color: var(--fg); border: 1px solid var(--line); min-width: 16rem; }
+button { background: var(--amber); color: #111; border: 1px solid var(--amber); font-weight: 600; cursor: pointer; }
+button.secondary { background: transparent; color: var(--fg); border-color: var(--line); }
+button:disabled { opacity: 0.5; cursor: default; }
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 
-.pressed {
-  background: var(--pressed);
+/* the keyboard: --whites white keys share the width, black keys straddle the gaps */
+.keyboard { --whites: 52; position: relative; padding-top: 1.75rem; }
+.led-strip { position: absolute; inset: 0 0 auto 0; height: 1.25rem; background: #0a0a0d; border-radius: 6px; }
+.led {
+  position: absolute; top: 50%;
+  left: calc(100% / var(--whites) * var(--x));
+  width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%;
+  background: #2b2b33;
+}
+.led.soon { background: color-mix(in srgb, var(--amber) 45%, transparent); }
+.led.next { background: var(--amber); box-shadow: 0 0 10px 3px color-mix(in srgb, var(--amber) 70%, transparent); }
+
+.keys { position: relative; display: flex; height: 160px; }
+.key.white { flex: 1; background: var(--white-key); border: 1px solid #c9c9d1; border-radius: 0 0 4px 4px; }
+.key.black {
+  position: absolute; top: 0; z-index: 1;
+  width: calc(100% / var(--whites) * 0.62);
+  left: calc(100% / var(--whites) * var(--x) - 100% / var(--whites) * 0.31);
+  height: 62%; background: var(--black-key); border-radius: 0 0 3px 3px;
+}
+.key.pressed { background: var(--amber); }
+.key.wrong { background: var(--wrong); }
+
+.feedback { margin: 1rem 0 0; min-height: 1.5rem; color: var(--fg); }
+
+.summary h2 { margin: 0 0 1rem; font-size: 1.1rem; }
+.summary dl { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 0; }
+.summary dt { font-size: 0.75rem; color: var(--muted); }
+.summary dd { margin: 0.25rem 0 0; font-size: 1.6rem; font-weight: 700; }
+
+@media (max-width: 760px) {
+  .practice { grid-template-columns: 1fr; }
+  .summary dl { grid-template-columns: repeat(2, 1fr); }
+  .keys { height: 110px; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .key {
-    transition: background 60ms linear;
-  }
+  .key, .led { transition: background 80ms linear, box-shadow 120ms ease-out; }
 }

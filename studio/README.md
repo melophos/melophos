@@ -12,7 +12,9 @@ npm install
 npm run dev
 ```
 
-Open the address Vite prints, press **Connect MIDI device** and play: the on-screen keyboard follows every note.
+Open the address Vite prints and pick a song. The amber light above the keys shows the next note, the two after it glow dimly and every note is checked for pitch and timing. A summary of accuracy, timing and best streak follows the last note.
+
+Press **Connect MIDI device** to practise on a real keyboard. **Play demo** lets you watch a simulated player run through the song with no hardware.
 
 > [!IMPORTANT]
 > WebMIDI works in Chromium-based browsers (Chrome, Edge) and in desktop Firefox 108 and later. Firefox asks to install a site permission add-on the first time **Connect MIDI device** is pressed. Safari and Firefox for Android cannot reach MIDI devices. Web Bluetooth only works in Chrome and Edge. Both need `https://` or `localhost`.
