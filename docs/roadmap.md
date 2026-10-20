@@ -15,7 +15,7 @@ MELOPHOS is built in three versions. Each one is useful on its own, so the proje
 - [x] Studio keyboard that shows notes from any WebMIDI device
 - [x] CI for every component and publishing of each component to its own repository
 
-## v1: works on a real piano (target: December 2026)
+## v1: works on a real piano (target: February 2027)
 
 ### Hardware
 
