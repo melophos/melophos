@@ -46,6 +46,16 @@ body:
       label: Hardware and versions
       description: Hub revision or development board, instrument model, how it connects, firmware or commit.
       placeholder: ESP32-S3-DevKitC-1, 88-key keyboard over USB-MIDI, firmware 0.1.0
+  - type: dropdown
+    id: ai-use
+    attributes:
+      label: AI use
+      description: "Required. Did AI help you find, test or check this? Write the title and description yourself either way. See the [AI policy](https://github.com/melophos/.github/blob/main/AI_POLICY.md). Dictation, translation and spelling tools do not count."
+      options:
+        - No AI was used
+        - "Yes: AI helped me find, test or check it"
+    validations:
+      required: true
   - type: checkboxes
     id: checks
     attributes:

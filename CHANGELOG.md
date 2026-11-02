@@ -27,6 +27,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Changed
 
+- Community files follow the [AI policy](https://github.com/melophos/.github/blob/main/AI_POLICY.md): pull requests declare AI use and issue forms ask whether AI helped. Security reports go to security@melophos.com.
 - Conduct reports, security reports and general enquiries go to contact@melophos.com.
 - CI keeps the firmware's compiled objects between runs, so a firmware build only recompiles what changed.
 - The published component repositories credit the project's automation account for each commit. Messages and dates are unchanged.
