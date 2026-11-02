@@ -38,3 +38,7 @@ Thanks for taking an interest in MELOPHOS. Contributions are welcome across ever
 Open an issue using the bug report form. Include the component, the hardware involved (hub revision, instrument model and how it connects), what you expected and what actually happened.
 
 Please read the [Code of Conduct](CODE_OF_CONDUCT.md) before taking part. More about the maintainer: [isaacadjei.me](https://isaacadjei.me).
+
+## Using AI
+
+AI tools are welcome within the [AI policy](https://github.com/melophos/.github/blob/main/AI_POLICY.md). **Every pull request must say how AI was used, even when the answer is None.** Write your own issue and pull request titles and descriptions, understand everything you submit and test it before you open it.
