@@ -7,6 +7,11 @@
 
 Song made visible. MELOPHOS is an open instrument learning platform: a small hub lights up the notes to play on a keyboard or guitar, captures every note played and turns practice into data you can see and share.
 
+[![CI](https://github.com/melophos/melophos/actions/workflows/ci.yml/badge.svg)](https://github.com/melophos/melophos/actions/workflows/ci.yml)
+[![Markdown Lint](https://github.com/melophos/melophos/actions/workflows/markdownlint.yml/badge.svg)](https://github.com/melophos/melophos/actions/workflows/markdownlint.yml)
+[![Gitleaks](https://github.com/melophos/melophos/actions/workflows/gitleaks-scan.yml/badge.svg)](https://github.com/melophos/melophos/actions/workflows/gitleaks-scan.yml)
+[![Licence: AGPL-3.0](https://img.shields.io/badge/licence-AGPL--3.0-green.svg)](LICENSE)
+
 > [!NOTE]
 > MELOPHOS is in early development. The code in this repository is the working scaffold each component grows from. The first hardware revision is in design. See [docs/roadmap.md](docs/roadmap.md) for what is planned and in which order.
 

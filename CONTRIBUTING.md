@@ -39,6 +39,13 @@ Open an issue using the bug report form. Include the component, the hardware inv
 
 Please read the [Code of Conduct](CODE_OF_CONDUCT.md) before taking part. More about the maintainer: [isaacadjei.me](https://isaacadjei.me).
 
+## Security
+
+> [!IMPORTANT]
+> Never report a security vulnerability in a public issue, pull request or discussion.
+
+[SECURITY.md](SECURITY.md) says what is in scope and how to report privately, through [GitHub private vulnerability reporting](https://github.com/melophos/melophos/security/advisories/new) or by email to [security@melophos.com](mailto:security@melophos.com).
+
 ## Using AI
 
 AI tools are welcome within the [AI policy](https://github.com/melophos/.github/blob/main/AI_POLICY.md). **Every pull request must say how AI was used, even when the answer is None.** Write your own issue and pull request titles and descriptions, understand everything you submit and test it before you open it.
