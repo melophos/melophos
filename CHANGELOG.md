@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Added
 
+- Status badges for CI, markdown linting, the secret scan and the licence at the top of the README.
 - Melody practice in the Studio. A light strip above the on-screen keyboard shows the next note in amber with the two after it dimmed, as the hub's LEDs will. Each note is checked for pitch and timing, a wrong note is marked while the light waits on the right one and a summary shows accuracy, average timing and best streak.
 - Three public-domain songs and a **Play demo** button that plays a song with a simulated player, driving the same scoring as a MIDI keyboard.
 - The MELOPHOS wordmark and mark in the Studio, with the brand palette and a keyboard that fits the screen without scrolling.
@@ -27,6 +28,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Changed
 
+- `CONTRIBUTING.md` has a Security section pointing at SECURITY.md and security@melophos.com.
 - Community files follow the [AI policy](https://github.com/melophos/.github/blob/main/AI_POLICY.md): pull requests declare AI use and issue forms ask whether AI helped. Security reports go to security@melophos.com.
 - Conduct reports, security reports and general enquiries go to contact@melophos.com.
 - CI keeps the firmware's compiled objects between runs, so a firmware build only recompiles what changed.
