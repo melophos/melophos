@@ -3,8 +3,9 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: cron
-      cronjob: "0 18 1,15 * *"
+      interval: weekly
+      day: sunday
+      time: "18:00"
       timezone: Europe/London
     labels: [dependencies]
     commit-message:
@@ -16,8 +17,9 @@ updates:
   - package-ecosystem: pip
     directories: [/server, /client]
     schedule:
-      interval: cron
-      cronjob: "0 18 1,15 * *"
+      interval: weekly
+      day: sunday
+      time: "18:00"
       timezone: Europe/London
     labels: [dependencies]
     commit-message:
@@ -29,8 +31,9 @@ updates:
   - package-ecosystem: npm
     directory: /studio
     schedule:
-      interval: cron
-      cronjob: "0 18 1,15 * *"
+      interval: weekly
+      day: sunday
+      time: "18:00"
       timezone: Europe/London
     labels: [dependencies, studio]
     commit-message:
@@ -42,8 +45,9 @@ updates:
   - package-ecosystem: cargo
     directory: /core
     schedule:
-      interval: cron
-      cronjob: "0 18 1,15 * *"
+      interval: weekly
+      day: sunday
+      time: "18:00"
       timezone: Europe/London
     labels: [dependencies, core]
     commit-message:
@@ -59,8 +63,9 @@ updates:
   - package-ecosystem: docker
     directory: /server
     schedule:
-      interval: cron
-      cronjob: "0 18 1,15 * *"
+      interval: weekly
+      day: sunday
+      time: "18:00"
       timezone: Europe/London
     labels: [dependencies, server]
     commit-message:
@@ -76,8 +81,9 @@ updates:
   - package-ecosystem: docker-compose
     directory: /server/deploy
     schedule:
-      interval: cron
-      cronjob: "0 18 1,15 * *"
+      interval: weekly
+      day: sunday
+      time: "18:00"
       timezone: Europe/London
     labels: [dependencies, server]
     commit-message:
