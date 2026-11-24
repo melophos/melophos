@@ -1,0 +1,102 @@
+[
+  {
+    "package": "@isaacs/nonrecursive-glob-match",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "argparse",
+    "licence": "PSF-2.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "chownr",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "common-ancestor-path",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "glob",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "graceful-fs",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "isexe",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "lru-cache",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "minimatch",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "minipass-flush",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "minipass",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "path-scurry",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "sentry",
+    "licence": "Apache*",
+    "reason": "The package states Apache 2.0 in a non-SPDX form. Pulled in by Lighthouse CI and never shipped to users"
+  },
+  {
+    "package": "spdx-exceptions",
+    "licence": "CC-BY-3.0",
+    "reason": "Data file of licence names read by the licence checker. Attribution licence on a build-time list, never shipped to users"
+  },
+  {
+    "package": "spdx-license-ids",
+    "licence": "CC0-1.0",
+    "reason": "Public domain dedication. Pulled in by the licence checker and never shipped to users"
+  },
+  {
+    "package": "spdx-ranges",
+    "licence": "(MIT AND CC-BY-3.0)",
+    "reason": "MIT code with an attribution licensed data file. Pulled in by the licence checker and never shipped to users"
+  },
+  {
+    "package": "tar",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "tslib",
+    "licence": "0BSD",
+    "reason": "Permissive licence with no conditions. Pulled in by build tooling and never shipped to users"
+  },
+  {
+    "package": "yallist",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence, compatible with AGPL-3.0-or-later. Pulled in by the test tooling and never shipped to users"
+  },
+  {
+    "package": "@melophos/core",
+    "licence": "AGPL-3.0-or-later",
+    "reason": "The project's own scoring engine from core/wasm, the same licence as the Studio. It is shipped to users as a WebAssembly module"
+  }
+]
