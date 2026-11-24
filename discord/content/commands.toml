@@ -1,0 +1,444 @@
+# what the slash commands are called and what they say, for the MELOPHOS server.
+#
+# One file feeds two readers. The set-up script registers the commands from the
+# [[commands]] tables. The worker answers from the rest. The worker's own build step
+# turns this file into worker/src/content.generated.json, so there is one source.
+#
+# Format (schema 1)
+#   [project]        names and addresses. Every address is a plain https link or a mailbox.
+#   [status]         left out here: MELOPHOS has no hosted service, so there is no /status.
+#   [[commands]]     one command each, in the order /help lists them.
+#     name           lower case 1 to 32 characters. A message command may use capitals and spaces.
+#     type           "chat_input" (default) or "message"
+#     description    1 to 100 characters. Left out for a message command.
+#     help           the one line /help shows. Left out when the command is not listed.
+#     visibility     "private" (only the caller sees it) or "public"
+#     share          true adds an optional boolean option named share
+#     staff          true registers it with default_member_permissions "8192" and the worker
+#                    checks the same bit again
+#     [[commands.options]]       name, description, type ("string", "integer", "user", "boolean"),
+#                                required, choices_from (the name of a content list below),
+#                                min_value, max_value, max_length
+#     [[commands.subcommands]]   name, description and options, for /mod
+#       choices_from also accepts a list of plain values: choices = ["raid", "report"]
+#   [[docs]] [[faq]] [[hardware]]   key (the choice value), title (the choice name), lines (two
+#                    short lines) and links (label and url)
+#   [bug] [security] [contribute] [roles]   lines and links
+#   [[mod_guide]]    key, title and steps
+#   [[mod_reply]]    key and text, sent after the words "From the moderators:"
+
+schema = 1
+
+[project]
+name = "MELOPHOS"
+slug = "melophos"
+repository = "melophos/melophos"
+site = "https://github.com/melophos/melophos"
+releases = "https://github.com/melophos/melophos/releases"
+issue_form = "https://github.com/melophos/melophos/issues/new/choose"
+security_form = "https://github.com/melophos/melophos/security/advisories/new"
+security_email = "security@melophos.com"
+commands_channel = "bot-commands"
+contact_page = "https://github.com/melophos/melophos/blob/main/SUPPORT.md"
+contact_email = "contact@melophos.com"
+contributing = "https://github.com/melophos/melophos/blob/main/CONTRIBUTING.md"
+first_issues = "https://github.com/melophos/melophos/labels/good%20first%20issue"
+run_locally = "https://github.com/melophos/melophos/blob/main/docs/self-hosting.md"
+
+# commands
+
+[[commands]]
+name = "help"
+description = "List what the commands can do"
+help = "List the commands."
+visibility = "private"
+share = false
+
+[[commands]]
+name = "docs"
+description = "Find the documentation for a topic"
+help = "Find the documentation for a topic."
+visibility = "public"
+share = true
+  [[commands.options]]
+  name = "topic"
+  description = "What you want to read about"
+  type = "string"
+  required = true
+  choices_from = "docs"
+
+[[commands]]
+name = "faq"
+description = "Read the answer to a common problem"
+help = "Read the answer to a common problem."
+visibility = "public"
+share = true
+  [[commands.options]]
+  name = "topic"
+  description = "The problem"
+  type = "string"
+  required = true
+  choices_from = "faq"
+
+[[commands]]
+name = "release"
+description = "Show the latest release"
+help = "Show the latest release with its notes."
+visibility = "public"
+share = true
+
+[[commands]]
+name = "issue"
+description = "Look up an issue or start a new one on GitHub"
+help = "Look up an issue by its number or find the form for a new one."
+visibility = "public"
+share = false
+  [[commands.subcommands]]
+  name = "show"
+  description = "Look up an issue or pull request by its number"
+    [[commands.subcommands.options]]
+    name = "number"
+    description = "The number on GitHub, such as 412"
+    type = "integer"
+    required = true
+    min_value = 1
+    max_value = 99999999
+    [[commands.subcommands.options]]
+    name = "share"
+    description = "Show the answer to everyone in the channel"
+    type = "boolean"
+    required = false
+  [[commands.subcommands]]
+  name = "new"
+  description = "Where to report a bug, a feature, a hardware problem or a docs problem"
+    [[commands.subcommands.options]]
+    name = "share"
+    description = "Show the answer to everyone in the channel"
+    type = "boolean"
+    required = false
+
+[[commands]]
+name = "ticket"
+description = "Ask the staff privately about something that should not be public"
+help = "Ask the staff privately. A member of staff opens a private thread for you."
+visibility = "private"
+share = false
+  [[commands.options]]
+  name = "kind"
+  description = "What it is about"
+  type = "string"
+  required = true
+  choices_from = "ticket_kinds"
+
+[[commands]]
+name = "security"
+description = "How to report a security problem privately"
+help = "How to report a security problem privately."
+visibility = "private"
+share = true
+
+[[commands]]
+name = "hardware"
+description = "Find the wiring, schematic and parts for a board"
+help = "Find the wiring, schematic and parts for a board."
+visibility = "public"
+share = true
+  [[commands.options]]
+  name = "part"
+  description = "The board or topic"
+  type = "string"
+  required = true
+  choices_from = "hardware"
+
+[[commands]]
+name = "contribute"
+description = "Where to start if you want to help"
+help = "Where to start if you want to help."
+visibility = "private"
+share = true
+
+[[commands]]
+name = "roles"
+description = "Pick your interest roles"
+help = "Pick your interest roles."
+visibility = "private"
+share = false
+
+[[commands]]
+name = "report"
+description = "Tell the moderators about a problem"
+help = "Tell the moderators about a problem. Every moderator sees it with your name."
+visibility = "private"
+share = false
+  [[commands.options]]
+  name = "details"
+  description = "Every moderator sees this and your name. To report staff, email us instead."
+  type = "string"
+  required = true
+  max_length = 1000
+  [[commands.options]]
+  name = "member"
+  description = "The member this is about, if any"
+  type = "user"
+  required = false
+
+[[commands]]
+name = "Report to moderators"
+type = "message"
+help = "Press and hold a message or right-click it, choose Apps, then Report to moderators. Every moderator sees it with your name."
+visibility = "private"
+share = false
+
+[[commands]]
+name = "mod"
+description = "Moderator tools"
+help = "Moderator tools: guides and standard replies."
+visibility = "private"
+share = false
+staff = true
+  [[commands.subcommands]]
+  name = "guide"
+  description = "Show the steps for a situation"
+    [[commands.subcommands.options]]
+    name = "topic"
+    description = "The situation"
+    type = "string"
+    required = true
+    choices_from = "mod_guide"
+  [[commands.subcommands]]
+  name = "reply"
+  description = "Post a standard message to the channel"
+    [[commands.subcommands.options]]
+    name = "template"
+    description = "The message"
+    type = "string"
+    required = true
+    choices_from = "mod_reply"
+
+# ticket kinds. The title is also the name of the tag in the staff tickets forum
+
+[[ticket_kinds]]
+key = "privacy"
+title = "Privacy"
+
+[[ticket_kinds]]
+key = "conduct"
+title = "Conduct"
+
+[[ticket_kinds]]
+key = "other"
+title = "Other"
+
+[ticket]
+lines = [
+  "Thank you. We have your ticket and only the staff can read it.",
+  "A member of staff will add you to a private thread in the private-help channel, usually within two days. Nobody is on call.",
+  "Never send a password or a key. We will never ask for one.",
+]
+
+# static answers
+
+[[docs]]
+key = "getting-started"
+title = "Getting started"
+lines = ["The overview of MELOPHOS and the quickstart for running the stack on your own machine.", "Start here if this is your first visit."]
+links = [{ label = "Quickstart", url = "https://github.com/melophos/melophos/blob/main/README.md" }]
+
+[[docs]]
+key = "self-hosting"
+title = "Self-hosting"
+lines = ["How to run the MELOPHOS server stack on your own computer.", "MELOPHOS has no hosted service, so everything runs at home."]
+links = [{ label = "Self-hosting guide", url = "https://github.com/melophos/melophos/blob/main/docs/self-hosting.md" }]
+
+[[docs]]
+key = "instruments"
+title = "Instruments"
+lines = ["How instrument profiles work and how to align the lights to your keyboard or guitar.", "If your instrument is missing, a new profile is the easiest first contribution."]
+links = [{ label = "Instruments guide", url = "https://github.com/melophos/melophos/blob/main/docs/instruments.md" }]
+
+[[docs]]
+key = "architecture"
+title = "Architecture"
+lines = ["How the hub, the server and Studio fit together and what exists today.", "Read this before you change a part that touches another one."]
+links = [{ label = "Architecture", url = "https://github.com/melophos/melophos/blob/main/docs/architecture.md" }]
+
+[[docs]]
+key = "protocol"
+title = "Protocol"
+lines = ["The messages the hub and the server send to each other.", "Useful if you are building a client or a tool that talks to the hub."]
+links = [{ label = "Protocol", url = "https://github.com/melophos/melophos/blob/main/docs/protocol.md" }]
+
+[[docs]]
+key = "song-import"
+title = "Song import"
+lines = ["How songs come into MELOPHOS and what formats we read.", "Share only your own playing and your own arrangements."]
+links = [{ label = "Song import", url = "https://github.com/melophos/melophos/blob/main/docs/song-import.md" }]
+
+[[docs]]
+key = "integrations"
+title = "Integrations"
+lines = ["Spotify, WLED, Home Assistant and webhooks.", "Each one is optional and off until you turn it on."]
+links = [{ label = "Integrations", url = "https://github.com/melophos/melophos/blob/main/docs/integrations.md" }]
+
+[[docs]]
+key = "roadmap"
+title = "Roadmap"
+lines = ["What is built and what is planned across the three versions.", "Dates are targets and not promises."]
+links = [{ label = "Roadmap", url = "https://github.com/melophos/melophos/blob/main/docs/roadmap.md" }]
+
+[[docs]]
+key = "accessibility"
+title = "Accessibility"
+lines = ["What MELOPHOS does for people who use a keyboard or a screen reader or need large text.", "Tell us if something does not work for you."]
+links = [{ label = "Accessibility", url = "https://github.com/melophos/melophos/blob/main/docs/accessibility.md" }]
+
+[[faq]]
+key = "keyboard-not-detected"
+title = "The keyboard is not detected"
+lines = ["The hub reads the 3.5 mm MIDI jack today. USB-MIDI and Bluetooth MIDI are still to come.", "Check the keyboard on a computer first because some only take power through USB. If nothing appears there then use the MIDI jacks or the audio input."]
+links = [{ label = "Support page", url = "https://github.com/melophos/melophos/blob/main/SUPPORT.md" }]
+
+[[faq]]
+key = "lights-drift"
+title = "The lights drift out of line"
+lines = ["The profile's LED spacing does not match the bar or strip you use.", "The alignment section of the instruments guide explains how to fix it."]
+links = [{ label = "Support page", url = "https://github.com/melophos/melophos/blob/main/SUPPORT.md" }, { label = "Instruments guide", url = "https://github.com/melophos/melophos/blob/main/docs/instruments.md" }]
+
+[[faq]]
+key = "studio-no-midi"
+title = "Studio cannot see a MIDI device"
+lines = ["WebMIDI needs a secure address (https or localhost) and a browser that supports it: Chrome or Edge or Firefox 108 and later.", "Safari does not support WebMIDI. Web Bluetooth works in Chrome and Edge only."]
+links = [{ label = "Support page", url = "https://github.com/melophos/melophos/blob/main/SUPPORT.md" }]
+
+[[hardware]]
+key = "hub"
+title = "Hub"
+lines = ["The board that reads notes from the instrument and drives the light bars.", "Check the Rev A requirements before you order parts."]
+links = [{ label = "Hub notes", url = "https://github.com/melophos/melophos/blob/main/hardware/hub/README.md" }, { label = "Parts list", url = "https://github.com/melophos/melophos/blob/main/hardware/bom/hub-rev-a.csv" }]
+
+[[hardware]]
+key = "key-bars"
+title = "Key bars"
+lines = ["A strip of 12 LEDs for one octave with one LED for every key.", "Bars join end to end along the keyboard."]
+links = [{ label = "Octave bar notes", url = "https://github.com/melophos/melophos/blob/main/hardware/keys-octave/README.md" }, { label = "Parts list", url = "https://github.com/melophos/melophos/blob/main/hardware/bom/README.md" }]
+
+[[hardware]]
+key = "fret-bar"
+title = "Fret bar"
+lines = ["A flexible LED grid with one LED for each string at each fret.", "It is planned for version 3 with the guitar profiles."]
+links = [{ label = "Fret bar notes", url = "https://github.com/melophos/melophos/blob/main/hardware/frets/README.md" }]
+
+[[hardware]]
+key = "enclosures"
+title = "Enclosures"
+lines = ["Printable parts for the hub and the light bars.", "Most are planned and not yet finished."]
+links = [{ label = "Enclosure notes", url = "https://github.com/melophos/melophos/blob/main/hardware/enclosures/README.md" }]
+
+[[hardware]]
+key = "parts"
+title = "Parts"
+lines = ["The bill of materials for each board.", "Ask in the hardware forum before you substitute a part."]
+links = [{ label = "Parts list", url = "https://github.com/melophos/melophos/blob/main/hardware/bom/README.md" }, { label = "Hardware overview", url = "https://github.com/melophos/melophos/blob/main/hardware/README.md" }]
+
+[bug]
+lines = [
+  "Open a new issue on GitHub and pick the form that fits: a bug, a feature, a hardware problem or a docs problem.",
+  "1. Search the open issues in case we already know about it.",
+  "2. Say what you did, what you expected and what happened instead.",
+  "3. Add the version you run and what hardware you use (hub revision, instrument model and how it connects) and the exact error as text.",
+  "4. Leave out passwords and keys.",
+  "A security problem never goes in an issue. Type /security instead.",
+]
+links = [{ label = "Issue forms", url = "https://github.com/melophos/melophos/issues/new/choose" }]
+
+[security]
+lines = [
+  "Please report a security problem privately. Never in this server and never by direct message.",
+  "We remove posts that describe a vulnerability and we never ask for detail in public.",
+]
+links = [{ label = "Private report form", url = "https://github.com/melophos/melophos/security/advisories/new" }]
+email = "security@melophos.com"
+
+[contribute]
+lines = [
+  "Welcome. Here is where to start:",
+  "1. Read the contributing guide.",
+  "2. The easiest first contribution is an instrument profile for a keyboard or guitar we do not cover yet.",
+  "3. Or pick an issue marked good first issue.",
+  "Ask in the contributing channel if you are unsure where to begin.",
+]
+links = [{ label = "Contributing guide", url = "https://github.com/melophos/melophos/blob/main/CONTRIBUTING.md" }, { label = "Instrument profiles", url = "https://github.com/melophos/melophos/tree/main/profiles" }, { label = "First issues", url = "https://github.com/melophos/melophos/labels/good%20first%20issue" }, { label = "Run it locally", url = "https://github.com/melophos/melophos/blob/main/docs/self-hosting.md" }]
+
+[roles]
+lines = ["Pick your interest roles in Channels and Roles: <id:customize>"]
+links = []
+
+[[mod_guide]]
+key = "raid"
+title = "A raid"
+steps = [
+  "Time out the accounts that are posting. Do not argue with them.",
+  "Tell the owner in moderator-only. If the owner is away, a Maintainer starts banning.",
+  "The owner pauses invites and direct messages.",
+  "Delete what was posted. Leave the entries in mod-log.",
+  "When it is quiet, the owner raises the verification level for a day and writes two lines in moderator-only on what happened.",
+]
+
+[[mod_guide]]
+key = "report"
+title = "A member report"
+steps = [
+  "Read the link first. The link is the evidence. The words under Why are the reporter's own and are not verified.",
+  "Open a thread on the entry in mod-log.",
+  "Say in the thread what you did.",
+  "React with a tick when it is done.",
+  "A report about a member of staff arrives by email, so tell the owner.",
+]
+
+[[mod_guide]]
+key = "security"
+title = "A security post"
+steps = [
+  "Delete the message if it gives detail.",
+  "Post /mod reply with the security template.",
+  "Never ask for detail in public or in a direct message.",
+  "Tell a Maintainer in moderator-only.",
+]
+
+[[mod_guide]]
+key = "timeout"
+title = "A timeout"
+steps = [
+  "Remind first. A timeout is for repeat or serious breaks of the rules.",
+  "Use the shortest timeout that stops the harm.",
+  "Write what you did and why in moderator-only.",
+  "A Moderator cannot act on a Maintainer. Pass it on.",
+]
+
+[[mod_reply]]
+key = "security"
+text = "Please do not share the details of a security problem here or in a direct message. Report it privately instead: type /security to see how. We never take reports by direct message."
+
+[[mod_reply]]
+key = "search-first"
+text = "Please search this forum and the documentation first. The /docs and /faq commands can help. If you cannot find an answer, post again and say what you tried."
+
+[[mod_reply]]
+key = "needs-details"
+text = "We need more detail to help. Please add what you were trying to do, the version you run, how you run it and the exact error as text in a code block."
+
+[[mod_reply]]
+key = "one-topic"
+text = "Please keep one question in each post. Open a new post for the next question so that each answer is easy to find."
+
+[[mod_reply]]
+key = "be-kind"
+text = "Please keep the tone kind and patient. Our Code of Conduct applies everywhere in this server."
+
+[[mod_reply]]
+key = "english"
+text = "Please write in English in the public channels so that everyone can follow, moderators included."
+
+[[mod_reply]]
+key = "no-direct-messages"
+text = "Please ask in public and not by direct message. The answer then helps the next person. We never ask for a password, a key or money in a direct message."
