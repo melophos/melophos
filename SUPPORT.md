@@ -4,6 +4,9 @@
 
 - **Questions and ideas:** start a thread in [GitHub Discussions](https://github.com/melophos/melophos/discussions). This is the main help channel for build questions, setup problems and feature ideas.
 - **Bugs:** open an issue on [melophos/melophos](https://github.com/melophos/melophos/issues) using the bug report form.
+- **Community chat:** join the [MELOPHOS Discord server](https://discord.gg/VKJS7HepGq). Ask in `help` for software and in `hardware` for build questions so the answer helps the next person.
+- **Private help:** type `/ticket` on the server for an account problem or a privacy request or a conduct matter. We aim to reply within two days. Nobody is on call.
+- **Conduct reports:** see the [Code of Conduct](CODE_OF_CONDUCT.md).
 - **Security vulnerabilities:** never open a public issue. Follow [SECURITY.md](SECURITY.md).
 - **Anything else:** email contact@melophos.com.
 

@@ -20,5 +20,8 @@
   "MD049": false,
   "MD050": false,
   "MD051": false,
-  "MD060": false
+  "MD060": false,
+  "MD012": {
+    "code_blocks": false
+  }
 }

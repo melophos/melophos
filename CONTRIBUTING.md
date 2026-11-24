@@ -37,7 +37,9 @@ Thanks for taking an interest in MELOPHOS. Contributions are welcome across ever
 
 Open an issue using the bug report form. Include the component, the hardware involved (hub revision, instrument model and how it connects), what you expected and what actually happened.
 
-Please read the [Code of Conduct](CODE_OF_CONDUCT.md) before taking part. More about the maintainer: [isaacadjei.me](https://isaacadjei.me).
+## Talking to us
+
+Chat happens on the [MELOPHOS Discord server](https://discord.gg/VKJS7HepGq). Bugs and decisions are tracked on GitHub so we may ask you to open an issue. Please read the [Code of Conduct](CODE_OF_CONDUCT.md) before taking part. It covers the server too.
 
 ## Security
 

@@ -15,6 +15,8 @@
 - [ ] studio
 - [ ] client
 - [ ] profiles
+- [ ] site
+- [ ] discord
 - [ ] docs
 
 ## AI use
