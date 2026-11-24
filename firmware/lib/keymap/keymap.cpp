@@ -6,7 +6,7 @@ namespace melophos {
 
 namespace {
 
-// White keys below each pitch class inside one octave, starting from C.
+// white keys below each pitch class inside one octave, starting from C.
 const uint8_t kWhiteBefore[12] = {0, 1, 1, 2, 2, 3, 4, 4, 5, 5, 6, 6};
 const bool kBlack[12] = {false, true, false, true, false, false, true, false, true, false, true, false};
 
@@ -14,7 +14,7 @@ int whiteKeysBelow(uint8_t note) {
     return (note / 12) * 7 + kWhiteBefore[note % 12];
 }
 
-// Left edge of the lowest key in white-key units. A black lowest key is rare
+// left edge of the lowest key in white-key units. A black lowest key is rare
 // but possible on a custom profile, so its left edge sits half a white key back.
 float leftEdgeUnits(uint8_t lowest) {
     float edge = (float)whiteKeysBelow(lowest);
@@ -56,8 +56,15 @@ int ledIndexForNote(const KeyboardProfile &p, uint8_t note) {
         float pitchMm = 1000.0f / p.densityPerM;
         index = (int)floorf(keyCentreMm(p, note) / pitchMm) + p.offset;
     }
+    int count = ledCount(p);
+    // a key at the very top edge of a strip can round onto the LED after the last one
+    if (index > count - 1) {
+        index = count - 1;
+    }
     if (p.reversed) {
-        index = ledCount(p) - 1 - (index - p.offset) + p.offset;
+        // mirror inside the bar's own LEDs, which start after the offset: (count - 1) - (index - offset)
+        // would be wrong by the offset, it is count - 1 - local
+        index = count - 1 - (index - p.offset);
     }
     return index;
 }

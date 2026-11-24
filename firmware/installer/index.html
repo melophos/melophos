@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install MELOPHOS hub firmware</title>
+<style>
+  :root { --bg: #ffffff; --text: #111111; --muted: #3b3b3b; --accent: #0b3d91; --on-accent: #ffffff; --line: #111111; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0e0e12; --text: #f2f2f5; --muted: #c8c8d0; --accent: #9ec5ff; --on-accent: #0e0e12; --line: #f2f2f5; }
+  }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 1.125rem/1.6 system-ui, sans-serif; }
+  main { max-width: 40rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+  h1 { font-size: 1.75rem; line-height: 1.2; }
+  p, li { max-width: 60ch; }
+  .muted { color: var(--muted); }
+  ol { padding-left: 1.5rem; }
+  /* the install button is slotted in below: a 44 px target with a border that does not rely on colour */
+  button.install { min-height: 2.75rem; min-width: 2.75rem; padding: 0.5rem 1.5rem; font: inherit; font-weight: 600;
+    background: var(--accent); color: var(--on-accent); border: 2px solid var(--line); border-radius: 0.5rem; cursor: pointer; }
+  button.install:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+  .box { border: 2px solid var(--line); border-radius: 0.5rem; padding: 1rem; margin: 1.5rem 0; }
+</style>
+<!-- pinned to an exact version. Pages that flash firmware should not follow "latest" -->
+<script type="module" src="https://unpkg.com/esp-web-tools@10.4.0/dist/web/install-button.js?module"></script>
+</head>
+<body>
+<main>
+  <h1>Install MELOPHOS hub firmware</h1>
+  <p>This page puts the hub firmware on an ESP32-S3 or ESP32 board over USB. It works in Chrome or Edge on a computer. Safari and Firefox cannot do it and neither can a phone.</p>
+
+  <div class="box">
+    <p><strong>Before you start</strong></p>
+    <ol>
+      <li>Plug the board into the computer with a USB cable that carries data.</li>
+      <li>Close any other program that has the board's serial port open.</li>
+      <li>Select Install and choose the board's port in the list the browser shows.</li>
+    </ol>
+    <p>
+      <esp-web-install-button manifest="manifest.json">
+        <button class="install" slot="activate">Install firmware</button>
+        <span slot="unsupported">This browser cannot install firmware. Open this page in Chrome or Edge on a computer.</span>
+        <span slot="not-allowed">This page must be opened over https to install firmware.</span>
+      </esp-web-install-button>
+    </p>
+  </div>
+
+  <p class="muted">The installer erases the board's flash when you tick the erase option, which removes saved profiles. Leave it unticked to keep them. Later updates over Wi-Fi never erase profiles.</p>
+  <p class="muted">Nothing here has been tried on a hub board yet.</p>
+</main>
+</body>
+</html>
