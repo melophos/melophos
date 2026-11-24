@@ -22,10 +22,11 @@ jobs:
   publish:
     name: Publish ${{ matrix.folder }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
-        folder: [firmware, hardware, core, server, studio, client, profiles, docs]
+        folder: [firmware, hardware, core, server, studio, client, profiles, docs, discord]
     steps:
       - name: Check for the publishing token
         id: token

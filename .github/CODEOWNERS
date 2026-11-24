@@ -3,3 +3,11 @@
 # This file exists so that any pull request automatically requests a review.
 
 * @zaccesss
+
+# The files that decide what households install need review. GitHub applies the LAST line that matches a file, so
+# these two lines must name an owner or the files would lose the one on the first line. They name the same owner for
+# now. A maintainer replaces it with a real team of this organisation (for example `@melophos/release-maintainers`)
+# once one exists, then turns on "Require review from Code Owners" in the ruleset for main. See docs/self-hosting.md,
+# maintainer section.
+/.github/ @zaccesss
+/server/deploy/ @zaccesss

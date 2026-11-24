@@ -15,7 +15,7 @@ updates:
         patterns: ["*"]
 
   - package-ecosystem: pip
-    directories: [/server, /client]
+    directories: [/server, /client, /discord, /core/python]
     schedule:
       interval: weekly
       day: sunday
@@ -40,6 +40,34 @@ updates:
       prefix: chore
     groups:
       studio-minor-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: npm
+    directory: /site
+    schedule:
+      interval: weekly
+      day: sunday
+      time: "18:00"
+      timezone: Europe/London
+    labels: [dependencies]
+    commit-message:
+      prefix: chore
+    groups:
+      site-minor-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: npm
+    directory: /discord/worker
+    schedule:
+      interval: weekly
+      day: sunday
+      time: "18:00"
+      timezone: Europe/London
+    labels: [dependencies]
+    commit-message:
+      prefix: chore
+    groups:
+      discord-worker-minor-patch:
         update-types: [minor, patch]
 
   - package-ecosystem: cargo
@@ -72,6 +100,24 @@ updates:
       prefix: chore
     groups:
       docker-minor-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: docker
+    directory: /server/deploy/mosquitto
+    schedule:
+      interval: weekly
+      day: sunday
+      time: "18:00"
+      timezone: Europe/London
+    labels: [dependencies, server]
+    commit-message:
+      prefix: chore
+    groups:
+      docker-broker-minor-patch:
         patterns:
           - "*"
         update-types:

@@ -17,7 +17,7 @@ Song made visible. MELOPHOS is an open instrument learning platform: a small hub
 
 ## Why
 
-I have monocular vision, which makes judging depth and scanning across a wide 88-key keyboard harder than it looks. Light-up keyboards helped, but every one I found was locked to one brand's app, one instrument and a subscription. MELOPHOS is the tool I wanted: lights on a single flat line right where my hands are, any instrument I own now or later and my practice data kept on my own server.
+MELOPHOS began with a player who has monocular vision, which makes judging depth and scanning across a wide 88-key keyboard harder than it looks. It aims for lights on a single flat line right where the hands are, any instrument and practice data kept on the player's own server, as the [founder's note on the About page](https://melophos.com/about/) explains.
 
 Accessibility is a design goal from the start rather than a feature added later, see [docs/accessibility.md](docs/accessibility.md).
 
@@ -41,7 +41,7 @@ MELOPHOS, pronounced MEL-oh-fos, joins two Greek words.
 | MELO- | *mélos* (μέλος) | song or melody, the root behind *melody* |
 | -PHOS | *phôs* (φῶς) | light, the root behind *photon* and *photograph* |
 
-Together they describe what the hub does: it turns the notes of a song into light you can follow, which is where the tagline comes from: **song made visible**. The sister project [PHAEMOS](https://github.com/phaemos) is named the same way.
+Together they describe what the hub is designed to do: it turns the notes of a song into light you can follow, which is where the tagline comes from: **song made visible**. The sister project [PHAEMOS](https://github.com/phaemos) is named the same way.
 
 ## Architecture
 
@@ -74,7 +74,9 @@ This repository is the single source of truth. Every component folder is self-co
 | [`client/`](client/) | Python client and a hub simulator for development without hardware | `melophos/client` |
 | [`profiles/`](profiles/) | Instrument profiles and their JSON schema, shared by every component | `melophos/profiles` |
 | [`docs/`](docs/) | Architecture, protocol, roadmap and guides | `melophos/docs` |
+| [`discord/`](discord/) | The community Discord server: layout, setup script, GitHub relay and slash command worker | `melophos/discord` |
 | [`assets/`](assets/) | Brand files, photos, diagrams, renders and screenshots | stays here |
+| [`site/`](site/) | The public website at melophos.com, built with Next.js from the documents and design files in this repository | stays here |
 
 ## Quickstart
 
@@ -133,4 +135,4 @@ Software is licensed under the GNU Affero General Public License v3.0 or later. 
 
 ## Contributing and support
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) to get involved, [SUPPORT.md](SUPPORT.md) for help, [SECURITY.md](SECURITY.md) to report a vulnerability privately and [ACCESSIBILITY.md](ACCESSIBILITY.md) for what the platform does for accessibility.
+See [CONTRIBUTING.md](CONTRIBUTING.md) to get involved. Chat with us on the [MELOPHOS Discord server](https://discord.gg/VKJS7HepGq) and ask on [GitHub Discussions](https://github.com/melophos/melophos/discussions) when you want the answer to stay searchable. [SUPPORT.md](SUPPORT.md) for help, [SECURITY.md](SECURITY.md) to report a vulnerability privately and [ACCESSIBILITY.md](ACCESSIBILITY.md) for what the platform does for accessibility.
