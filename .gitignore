@@ -18,6 +18,11 @@ build/
 # node
 node_modules/
 studio/dist/
+studio/dist-specimen/
+studio/.lighthouseci/
+studio/test-results/
+studio/playwright-report/
+studio/specimen-screenshots/
 
 # platformio
 firmware/.pio/
@@ -39,3 +44,14 @@ server/deploy/data/
 
 # rust
 core/target/
+core/wasm/package/pkg/
+
+# the hub firmware reads its Wi-Fi and device settings from this file, which is never committed
+firmware/include/secrets.h
+
+# the compiled scoring module is built by maturin and differs per machine
+core/python/python/melophos_core/_native.*
+
+# local browser audit output and fuzzing state, never published
+studio/.lighthouseci-app/
+studio/.fuzz/

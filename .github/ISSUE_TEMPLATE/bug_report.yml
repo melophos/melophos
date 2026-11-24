@@ -14,6 +14,8 @@ body:
         - Studio
         - Client or simulator
         - Profiles
+        - Website
+        - Discord (server setup script and relay)
         - Docs
     validations:
       required: true

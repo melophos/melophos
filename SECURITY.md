@@ -9,6 +9,9 @@ MELOPHOS runs on a user's own network: a hub on Wi-Fi, a self-hosted server and 
 - Injection flaws in the server (SQL, command or template injection), including through imported files such as MIDI, audio or video
 - Secrets exposed by default configuration, logs or the Docker Compose stack
 - Cross-site scripting or unsafe message handling in the Studio app, including WebMIDI and Web Bluetooth input
+- The hub's update signature check and the images and install files that ship with a release
+- The public website in `site/`
+- The Discord tooling in `discord/`: the GitHub relay and the slash command worker
 
 ## Out of scope
 
@@ -23,4 +26,11 @@ Only the latest commit on `main` receives security fixes while MELOPHOS is in ea
 ## Reporting a vulnerability
 
 > [!IMPORTANT]
-> Report privately, never in a public issue. Use [GitHub private vulnerability reporting](https://github.com/melophos/melophos/security/advisories/new) or email security@melophos.com with details and reproduction steps. Expect an acknowledgement within a few days.
+> Report privately, never in a public issue or on the Discord server.
+
+- Use [GitHub private vulnerability reporting](https://github.com/melophos/melophos/security/advisories/new).
+- Or email [security@melophos.com](mailto:security@melophos.com) with a description and the steps to reproduce and the likely impact.
+
+The Discord server is not a reporting route. Not even a direct message or a `/ticket` is read as a security report. We remove posts that describe a vulnerability.
+
+We reply within 72 hours.

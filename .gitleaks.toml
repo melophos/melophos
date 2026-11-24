@@ -1,0 +1,62 @@
+# settings for the secret scan (.github/workflows/gitleaks-scan.yml), which reads this file from the root.
+#
+# every entry below allows one made-up value in the test or example files that hold it and nothing else.
+# a real-looking secret in any other file or any other value in these files is still found.
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "a made-up webhook signing secret that the server tests use"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = [
+    '''^server/tests/test_floods_and_broker_upgrade\.py$''',
+    '''^server/tests/test_webhooks\.py$''',
+]
+regexes = ['''^Hq7vN2xKz9LmW4RjY8bT3cDfGaP5sUe$''']
+
+[[allowlists]]
+description = "made-up database and broker passwords that the server tests use"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = [
+    '''^server/tests/test_secrets\.py$''',
+    '''^server/tests/test_app_role\.py$''',
+]
+regexes = [
+    '''^Zq81LmXv0TgR5aYb3NcWd7$''',
+    '''^Kq3vN8xTz0LmW5RjY2bH7$''',
+    '''^Wn40PzKs7RtUq2LcYh9XeB$''',
+]
+
+[[allowlists]]
+description = "the signing key the server tests use"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''^server/tests/conftest\.py$''']
+regexes = ['''^test-secret-key-that-is-long-enough-to-sign-things-0123456789$''']
+
+[[allowlists]]
+description = "a made-up broker password in a release test"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''^server/tests/test_release\.py$''']
+regexes = ['''^pw-for-the-test-1234$''']
+
+[[allowlists]]
+description = "the worked example of a device secret and its derived broker password in the protocol document"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''^docs/protocol\.md$''']
+regexes = [
+    '''^mph_EXAMPLE-secret-for-the-docs-0123456789abcdefABCDEF$''',
+    '''^189c20803646ddce9ef9c008449266de589380c1b0873647c9f53cf763a77cca$''',
+]
+
+[[allowlists]]
+description = "the installer's empty default for its signing key option"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''^server/deploy/install\.sh$''']
+regexes = ['''^skip_verify=0$''']

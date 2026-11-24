@@ -2,6 +2,9 @@
 
 KiCad designs for the MELOPHOS hub and its light bars.
 
+> [!IMPORTANT]
+> The boards are still in the works. We publish the finished designs here once the boards have been made and tested.
+
 > [!NOTE]
 > This is a read-only copy published from [melophos/melophos](https://github.com/melophos/melophos). Open issues and pull requests there.
 
@@ -23,13 +26,7 @@ KiCad designs for the MELOPHOS hub and its light bars.
 
 ## Power budget
 
-| Load | Worst case | Typical |
-| --- | --- | --- |
-| ESP32-S3 module with Wi-Fi | 0.5 A | 0.15 A |
-| Instrument on the USB host port | 1.0 A (capped by the power switch) | 0.3 A |
-| 88 LEDs at the firmware's brightness cap | 3.0 A (capped in firmware) | 0.2 A |
-
-A 5 V 6 A supply covers the worst case with headroom.
+The power budget is being finalised with the boards. The firmware's current limits and the figures behind them are in [firmware/docs/pins-and-power.md](https://github.com/melophos/melophos/blob/main/firmware/docs/pins-and-power.md).
 
 ## Licence
 
