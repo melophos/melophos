@@ -1,0 +1,214 @@
+{
+  "docs.accessibility": {
+    "content": "Accessibility\nWhat MELOPHOS does for people who use a keyboard or a screen reader or need large text.\nTell us if something does not work for you.\nAccessibility: <https://github.com/melophos/melophos/blob/main/docs/accessibility.md>",
+    "ephemeral": false
+  },
+  "docs.architecture": {
+    "content": "Architecture\nHow the hub, the server and Studio fit together and what exists today.\nRead this before you change a part that touches another one.\nArchitecture: <https://github.com/melophos/melophos/blob/main/docs/architecture.md>",
+    "ephemeral": false
+  },
+  "docs.getting-started": {
+    "content": "Getting started\nThe overview of MELOPHOS and the quickstart for running the stack on your own machine.\nStart here if this is your first visit.\nQuickstart: <https://github.com/melophos/melophos/blob/main/README.md>",
+    "ephemeral": false
+  },
+  "docs.instruments": {
+    "content": "Instruments\nHow instrument profiles work and how to align the lights to your keyboard or guitar.\nIf your instrument is missing, a new profile is the easiest first contribution.\nInstruments guide: <https://github.com/melophos/melophos/blob/main/docs/instruments.md>",
+    "ephemeral": false
+  },
+  "docs.integrations": {
+    "content": "Integrations\nSpotify, WLED, Home Assistant and webhooks.\nEach one is optional and off until you turn it on.\nIntegrations: <https://github.com/melophos/melophos/blob/main/docs/integrations.md>",
+    "ephemeral": false
+  },
+  "docs.protocol": {
+    "content": "Protocol\nThe messages the hub and the server send to each other.\nUseful if you are building a client or a tool that talks to the hub.\nProtocol: <https://github.com/melophos/melophos/blob/main/docs/protocol.md>",
+    "ephemeral": false
+  },
+  "docs.roadmap": {
+    "content": "Roadmap\nWhat is built and what is planned across the three versions.\nDates are targets and not promises.\nRoadmap: <https://github.com/melophos/melophos/blob/main/docs/roadmap.md>",
+    "ephemeral": false
+  },
+  "docs.self-hosting": {
+    "content": "Self-hosting\nHow to run the MELOPHOS server stack on your own computer.\nMELOPHOS has no hosted service, so everything runs at home.\nSelf-hosting guide: <https://github.com/melophos/melophos/blob/main/docs/self-hosting.md>",
+    "ephemeral": false
+  },
+  "docs.song-import": {
+    "content": "Song import\nHow songs come into MELOPHOS and what formats we read.\nShare only your own playing and your own arrangements.\nSong import: <https://github.com/melophos/melophos/blob/main/docs/song-import.md>",
+    "ephemeral": false
+  },
+  "docs.unknown": {
+    "content": "We do not have that topic. Type /help.",
+    "ephemeral": true
+  },
+  "faq.keyboard-not-detected": {
+    "content": "The keyboard is not detected\nThe hub reads the 3.5 mm MIDI jack today. USB-MIDI and Bluetooth MIDI are still to come.\nCheck the keyboard on a computer first because some only take power through USB. If nothing appears there then use the MIDI jacks or the audio input.\nSupport page: <https://github.com/melophos/melophos/blob/main/SUPPORT.md>",
+    "ephemeral": false
+  },
+  "faq.lights-drift": {
+    "content": "The lights drift out of line\nThe profile's LED spacing does not match the bar or strip you use.\nThe alignment section of the instruments guide explains how to fix it.\nSupport page: <https://github.com/melophos/melophos/blob/main/SUPPORT.md>\nInstruments guide: <https://github.com/melophos/melophos/blob/main/docs/instruments.md>",
+    "ephemeral": false
+  },
+  "faq.studio-no-midi": {
+    "content": "Studio cannot see a MIDI device\nWebMIDI needs a secure address (https or localhost) and a browser that supports it: Chrome or Edge or Firefox 108 and later.\nSafari does not support WebMIDI. Web Bluetooth works in Chrome and Edge only.\nSupport page: <https://github.com/melophos/melophos/blob/main/SUPPORT.md>",
+    "ephemeral": false
+  },
+  "faq.unknown": {
+    "content": "We do not have that topic. Type /help.",
+    "ephemeral": true
+  },
+  "hardware.enclosures": {
+    "content": "Enclosures\nPrintable parts for the hub and the light bars.\nMost are planned and not yet finished.\nEnclosure notes: <https://github.com/melophos/melophos/blob/main/hardware/enclosures/README.md>",
+    "ephemeral": false
+  },
+  "hardware.fret-bar": {
+    "content": "Fret bar\nA flexible LED grid with one LED for each string at each fret.\nIt is planned for version 3 with the guitar profiles.\nFret bar notes: <https://github.com/melophos/melophos/blob/main/hardware/frets/README.md>",
+    "ephemeral": false
+  },
+  "hardware.hub": {
+    "content": "Hub\nThe board that reads notes from the instrument and drives the light bars.\nCheck the Rev A requirements before you order parts.\nHub notes: <https://github.com/melophos/melophos/blob/main/hardware/hub/README.md>\nParts list: <https://github.com/melophos/melophos/blob/main/hardware/bom/hub-rev-a.csv>",
+    "ephemeral": false
+  },
+  "hardware.key-bars": {
+    "content": "Key bars\nA strip of 12 LEDs for one octave with one LED for every key.\nBars join end to end along the keyboard.\nOctave bar notes: <https://github.com/melophos/melophos/blob/main/hardware/keys-octave/README.md>\nParts list: <https://github.com/melophos/melophos/blob/main/hardware/bom/README.md>",
+    "ephemeral": false
+  },
+  "hardware.parts": {
+    "content": "Parts\nThe bill of materials for each board.\nAsk in the hardware forum before you substitute a part.\nParts list: <https://github.com/melophos/melophos/blob/main/hardware/bom/README.md>\nHardware overview: <https://github.com/melophos/melophos/blob/main/hardware/README.md>",
+    "ephemeral": false
+  },
+  "hardware.unknown": {
+    "content": "We do not have that topic. Type /help.",
+    "ephemeral": true
+  },
+  "help.member": {
+    "content": "Our commands:\n/help - List the commands.\n/docs - Find the documentation for a topic.\n/faq - Read the answer to a common problem.\n/release - Show the latest release with its notes.\n/issue - Look up an issue by its number or find the form for a new one.\n/ticket - Ask the staff privately. A member of staff opens a private thread for you.\n/security - How to report a security problem privately.\n/hardware - Find the wiring, schematic and parts for a board.\n/contribute - Where to start if you want to help.\n/roles - Pick your interest roles.\n/report - Tell the moderators about a problem. Every moderator sees it with your name.\nReport to moderators - Press and hold a message or right-click it, choose Apps, then Report to moderators. Every moderator sees it with your name.\nYou can try them in #bot-commands.",
+    "ephemeral": true
+  },
+  "help.staff": {
+    "content": "Our commands:\n/help - List the commands.\n/docs - Find the documentation for a topic.\n/faq - Read the answer to a common problem.\n/release - Show the latest release with its notes.\n/issue - Look up an issue by its number or find the form for a new one.\n/ticket - Ask the staff privately. A member of staff opens a private thread for you.\n/security - How to report a security problem privately.\n/hardware - Find the wiring, schematic and parts for a board.\n/contribute - Where to start if you want to help.\n/roles - Pick your interest roles.\n/report - Tell the moderators about a problem. Every moderator sees it with your name.\nReport to moderators - Press and hold a message or right-click it, choose Apps, then Report to moderators. Every moderator sees it with your name.\n/mod - Moderator tools: guides and standard replies.\nYou can try them in #bot-commands.",
+    "ephemeral": true
+  },
+  "issue.closed": {
+    "content": "Issue 8 (closed): Pico 2W drops its link\nLabels: bug, firmware\n<https://github.com/melophos/melophos/issues/8>",
+    "ephemeral": false
+  },
+  "issue.down": {
+    "content": "We could not reach GitHub just now. Issue 412 is at <https://github.com/melophos/melophos/issues/412>",
+    "ephemeral": false
+  },
+  "issue.hostile": {
+    "content": "Issue 5 (open): \\[click\\]\\(http://evil.example\\) @everyone \\<@12345\\> \\*\\*loud\\*\\* \\`code\\` second line\nLabels: \\_x\\_\n<https://github.com/melophos/melophos/issues/5>",
+    "ephemeral": false
+  },
+  "issue.merged": {
+    "content": "Pull request 7 (merged): Pico 2W drops its link\n<https://github.com/melophos/melophos/issues/7>",
+    "ephemeral": false
+  },
+  "issue.missing": {
+    "content": "We could not find number 999.",
+    "ephemeral": true
+  },
+  "issue.open": {
+    "content": "Issue 412 (open): Pico 2W drops its link\nLabels: bug, firmware\n<https://github.com/melophos/melophos/issues/412>",
+    "ephemeral": false
+  },
+  "mod.guide.raid": {
+    "content": "A raid\n1. Time out the accounts that are posting. Do not argue with them.\n2. Tell the owner in moderator-only. If the owner is away, a Maintainer starts banning.\n3. The owner pauses invites and direct messages.\n4. Delete what was posted. Leave the entries in mod-log.\n5. When it is quiet, the owner raises the verification level for a day and writes two lines in moderator-only on what happened.",
+    "ephemeral": true
+  },
+  "mod.guide.report": {
+    "content": "A member report\n1. Read the link first. The link is the evidence. The words under Why are the reporter's own and are not verified.\n2. Open a thread on the entry in mod-log.\n3. Say in the thread what you did.\n4. React with a tick when it is done.\n5. A report about a member of staff arrives by email, so tell the owner.",
+    "ephemeral": true
+  },
+  "mod.guide.security": {
+    "content": "A security post\n1. Delete the message if it gives detail.\n2. Post /mod reply with the security template.\n3. Never ask for detail in public or in a direct message.\n4. Tell a Maintainer in moderator-only.",
+    "ephemeral": true
+  },
+  "mod.guide.timeout": {
+    "content": "A timeout\n1. Remind first. A timeout is for repeat or serious breaks of the rules.\n2. Use the shortest timeout that stops the harm.\n3. Write what you did and why in moderator-only.\n4. A Moderator cannot act on a Maintainer. Pass it on.",
+    "ephemeral": true
+  },
+  "mod.reply.be-kind": {
+    "content": "From the moderators: Please keep the tone kind and patient. Our Code of Conduct applies everywhere in this server.",
+    "ephemeral": false
+  },
+  "mod.reply.english": {
+    "content": "From the moderators: Please write in English in the public channels so that everyone can follow, moderators included.",
+    "ephemeral": false
+  },
+  "mod.reply.needs-details": {
+    "content": "From the moderators: We need more detail to help. Please add what you were trying to do, the version you run, how you run it and the exact error as text in a code block.",
+    "ephemeral": false
+  },
+  "mod.reply.no-direct-messages": {
+    "content": "From the moderators: Please ask in public and not by direct message. The answer then helps the next person. We never ask for a password, a key or money in a direct message.",
+    "ephemeral": false
+  },
+  "mod.reply.one-topic": {
+    "content": "From the moderators: Please keep one question in each post. Open a new post for the next question so that each answer is easy to find.",
+    "ephemeral": false
+  },
+  "mod.reply.search-first": {
+    "content": "From the moderators: Please search this forum and the documentation first. The /docs and /faq commands can help. If you cannot find an answer, post again and say what you tried.",
+    "ephemeral": false
+  },
+  "mod.reply.security": {
+    "content": "From the moderators: Please do not share the details of a security problem here or in a direct message. Report it privately instead: type /security to see how. We never take reports by direct message.",
+    "ephemeral": false
+  },
+  "release.down": {
+    "content": "We could not reach GitHub just now. The releases are at <https://github.com/melophos/melophos/releases>",
+    "ephemeral": false
+  },
+  "release.none": {
+    "content": "There is no release yet. We will post each new one in releases.",
+    "ephemeral": false
+  },
+  "release.ok": {
+    "content": "Latest release: v2.6.0 (published 30 November 2026)\n> Added\n> \\- Maintenance windows can repeat every week.\n> Fixed\n> \\- Edge gateway keeps readings on reconnect.\n> \\[Image: chart\\]\n> link text\nFull notes: <https://github.com/melophos/melophos/releases/tag/v2.6.0>",
+    "ephemeral": false
+  },
+  "report.failed": {
+    "content": "We could not record your report. Please write to contact@melophos.com or see <https://github.com/melophos/melophos/blob/main/SUPPORT.md>",
+    "ephemeral": true
+  },
+  "report.form.thanks": {
+    "content": "Thank you. Every moderator can see your report and your name. To report a member of staff, write to contact@melophos.com or see <https://github.com/melophos/melophos/blob/main/SUPPORT.md>.",
+    "ephemeral": true
+  },
+  "report.thanks": {
+    "content": "Thank you. Every moderator can see your report and your name. To report a member of staff, write to contact@melophos.com or see <https://github.com/melophos/melophos/blob/main/SUPPORT.md>.",
+    "ephemeral": true
+  },
+  "report.wait": {
+    "content": "Please wait a minute before sending another report.",
+    "ephemeral": true
+  },
+  "static.bug": {
+    "content": "Open a new issue on GitHub and pick the form that fits: a bug, a feature, a hardware problem or a docs problem.\n1. Search the open issues in case we already know about it.\n2. Say what you did, what you expected and what happened instead.\n3. Add the version you run and what hardware you use (hub revision, instrument model and how it connects) and the exact error as text.\n4. Leave out passwords and keys.\nA security problem never goes in an issue. Type /security instead.\nIssue forms: <https://github.com/melophos/melophos/issues/new/choose>",
+    "ephemeral": true
+  },
+  "static.contribute": {
+    "content": "Welcome. Here is where to start:\n1. Read the contributing guide.\n2. The easiest first contribution is an instrument profile for a keyboard or guitar we do not cover yet.\n3. Or pick an issue marked good first issue.\nAsk in the contributing channel if you are unsure where to begin.\nContributing guide: <https://github.com/melophos/melophos/blob/main/CONTRIBUTING.md>\nInstrument profiles: <https://github.com/melophos/melophos/tree/main/profiles>\nFirst issues: <https://github.com/melophos/melophos/labels/good%20first%20issue>\nRun it locally: <https://github.com/melophos/melophos/blob/main/docs/self-hosting.md>",
+    "ephemeral": true
+  },
+  "static.roles": {
+    "content": "Pick your interest roles in Channels and Roles: <id:customize>",
+    "ephemeral": true
+  },
+  "static.security": {
+    "content": "Please report a security problem privately. Never in this server and never by direct message.\nWe remove posts that describe a vulnerability and we never ask for detail in public.\nPrivate report form: <https://github.com/melophos/melophos/security/advisories/new>\nEmail: security@melophos.com",
+    "ephemeral": true
+  },
+  "status.degraded": {
+    "content": "Some parts are not working: database, model. Checked at 14:05 UTC. The status page is at <https://status.example>",
+    "ephemeral": false
+  },
+  "status.down": {
+    "content": "We could not get an answer from the status service just now. The service may not be live yet or may itself be the problem. The status page is at <https://status.example>",
+    "ephemeral": false
+  },
+  "status.ok": {
+    "content": "All systems are working. Checked at 14:05 UTC.",
+    "ephemeral": false
+  }
+}
