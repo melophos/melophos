@@ -1,0 +1,1 @@
+{ "id": "no-frets", "name": "Zero frets", "type": "fretboard", "strings": [40, 45], "frets": 0, "leds": { "layout": "grid" } }

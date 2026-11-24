@@ -12,6 +12,8 @@ MELOPHOS lives in one monorepo, [melophos/melophos](https://github.com/melophos/
 | `client/` | [melophos/client](https://github.com/melophos/client) | AGPL-3.0-or-later |
 | `profiles/` | [melophos/profiles](https://github.com/melophos/profiles) | AGPL-3.0-or-later |
 | `docs/` | [melophos/docs](https://github.com/melophos/docs) | AGPL-3.0-or-later |
+| `discord/` | [melophos/discord](https://github.com/melophos/discord) | AGPL-3.0-or-later |
+| `site/` | Not published. It builds only inside the monorepo, because it reads `docs/`, `hardware/` and the Studio's design files | AGPL-3.0-or-later |
 
 The organisation's [`.github`](https://github.com/melophos/.github) repository holds the organisation profile and the default community files.
 

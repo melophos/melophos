@@ -1,0 +1,1 @@
+{ "id": "extra", "name": "Has a field the schema does not know", "type": "keyboard", "notes": { "lowest": 21, "highest": 108 }, "geometry": { "white_key_mm": 23.5 }, "leds": { "layout": "per-key" }, "colour": "red" }

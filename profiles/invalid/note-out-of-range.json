@@ -1,0 +1,1 @@
+{ "id": "high-note", "name": "Highest note above 127", "type": "keyboard", "notes": { "lowest": 21, "highest": 200 }, "geometry": { "white_key_mm": 23.5 }, "leds": { "layout": "per-key" } }

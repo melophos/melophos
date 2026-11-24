@@ -1,0 +1,1 @@
+{ "id": "too-many", "name": "Strip too dense for the hub", "type": "keyboard", "notes": { "lowest": 21, "highest": 108 }, "geometry": { "white_key_mm": 23.5 }, "leds": { "layout": "strip", "density_per_m": 300 } }

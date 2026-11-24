@@ -43,7 +43,13 @@ Every profile validates against [`schema.json`](schema.json) (JSON Schema 2020-1
    python -m jsonschema --instance your-profile.json schema.json
    ```
 
+   Then run `python check_profiles.py` to check every profile and the corpus in [`invalid/`](invalid/).
+
 4. Open a pull request against `melophos/melophos`.
+
+## Limits
+
+The schema bounds everything the hub has to allocate or index: ids up to 32 characters, names up to 64, white keys 5 to 50 mm, strip density 10 to 300 LEDs per metre, offsets 0 to 32, up to 8 strings and up to 36 frets. The hub applies the same numbers and also refuses a profile that needs more LEDs than its strip has, which a schema cannot express. The files in [`invalid/`](invalid/) are profiles that must be refused. Three of them (too many LEDs, lowest above highest and a grid layout on a keyboard) pass the schema on purpose and are refused by the hub, see `check_profiles.py`.
 
 ## Licence
 
