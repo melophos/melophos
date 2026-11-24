@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-GB" data-surface="site">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="The MELOPHOS design foundations: type, colour with measured contrast, focus, lights and icons." />
+    <link rel="preload" href="/src/styles/fonts/AtkinsonHyperlegibleNext-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/src/styles/fonts/AtkinsonHyperlegibleMono-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href="/melophos-mark-transparent.svg" type="image/svg+xml" />
+    <title>MELOPHOS design specimen</title>
+    <script type="module" src="/src/specimen/specimen.ts"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to the specimen</a>
+
+    <header class="page-header">
+      <div class="wrap">
+        <p class="eyebrow">MELOPHOS design foundations, stage 1</p>
+        <h1>Specimen</h1>
+        <p class="lead">
+          Every figure on this page is measured in your browser from <code>tokens.css</code> and
+          <code>tokens.pairs.json</code>. Nothing is typed in by hand. Change the settings to see each set of colours.
+        </p>
+
+        <div class="controls" aria-label="Page settings" role="group">
+          <fieldset>
+            <legend>Theme</legend>
+            <div class="segmented" id="control-theme" role="group" aria-label="Theme"></div>
+          </fieldset>
+          <fieldset>
+            <legend>Contrast</legend>
+            <div class="segmented" id="control-contrast" role="group" aria-label="Contrast"></div>
+          </fieldset>
+          <fieldset>
+            <legend>Distance</legend>
+            <div class="segmented" id="control-distance" role="group" aria-label="Distance"></div>
+          </fieldset>
+        </div>
+        <p id="state" class="state" role="status"></p>
+      </div>
+    </header>
+
+    <nav class="wrap contents" aria-label="On this page">
+      <ul>
+        <li><a href="#type">Type</a></li>
+        <li><a href="#colour">Colour</a></li>
+        <li><a href="#lights">Lights</a></li>
+        <li><a href="#vision">Colour vision</a></li>
+        <li><a href="#focus">Focus</a></li>
+        <li><a href="#shape">Space and shape</a></li>
+        <li><a href="#controls">Controls</a></li>
+        <li><a href="#icons">Icons</a></li>
+        <li><a href="#motion">Motion</a></li>
+        <li><a href="#sets">All sets</a></li>
+      </ul>
+    </nav>
+
+    <main id="main" class="wrap">
+      <noscript>
+        <p class="panel">The ratios and figures on this page are measured in the browser, so this page needs script.</p>
+      </noscript>
+      <div id="sections"></div>
+    </main>
+
+    <footer class="wrap page-footer">
+      <p>
+        Sources of truth: <code>src/styles/tokens.css</code>, <code>src/styles/tokens.pairs.json</code>,
+        <code>src/styles/lights.json</code> and the font files in <code>src/styles/fonts</code>.
+      </p>
+    </footer>
+  </body>
+</html>

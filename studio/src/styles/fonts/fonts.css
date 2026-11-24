@@ -1,0 +1,65 @@
+/*
+  self-hosted type. this file and the files beside it are the only place a font name or file is written.
+  the names must match --font-sans and --font-mono in ../tokens.css. to change the typeface (D2 and D3),
+  replace the files, update README.md and change the names here and in tokens.css.
+
+  text swaps in as soon as the font loads. the fallback faces below carry the metrics of Verdana and
+  Courier New, scaled to match, so the lines do not move when the swap happens.
+  the figures come from npm run fonts:metrics and tests/fonts.test.ts fails when they drift.
+
+  the sharp, flat and natural signs are not in Atkinson Hyperlegible, so a small file supplies them.
+  its face is declared after the text face with a unicode-range of those three signs, so it wins for
+  them alone and the file is fetched only on a page that uses one.
+*/
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("./AtkinsonHyperlegibleNext-Variable.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("./MelophosMusicSigns.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+266D-266F;
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Mono";
+  src: url("./AtkinsonHyperlegibleMono-Variable.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Mono";
+  src: url("./MelophosMusicSigns.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+266D-266F;
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Next Fallback";
+  src: local("Verdana");
+  size-adjust: 86.6837%;
+  ascent-override: 113.5162%;
+  descent-override: 36.4544%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Mono Fallback";
+  src: local("Courier New");
+  size-adjust: 105.3162%;
+  ascent-override: 93.4329%;
+  descent-override: 30.0049%;
+  line-gap-override: 0%;
+}

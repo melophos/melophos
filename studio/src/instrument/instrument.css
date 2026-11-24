@@ -1,0 +1,319 @@
+/*
+  the keyboard and the rail. the rail is ink in both themes, as the real bar is, so amber keeps its 11 to 1 on paper.
+  nothing here transitions: a key and a light change in the frame they are told to. no glow, no blur, no gradient.
+  every state has a shape: disc, square, ring, hollow square or cross. the shape is the cue, the colour only helps.
+*/
+
+.kb {
+  display: grid;
+  gap: var(--space-2);
+  inline-size: 100%;
+}
+
+/* the frame scrolls inside itself when the keyboard is wider than the screen and the page never does */
+.kb-frame {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  background: var(--rail);
+  border-radius: var(--radius);
+}
+
+.kb-stage {
+  inline-size: calc(var(--whites) * (2.75rem + 0.5rem * (var(--distance-factor) - 1)));
+}
+
+.kb-slot {
+  block-size: clamp(12rem, 36dvh, 24rem);
+  background: var(--rail);
+}
+
+.kb-slot:empty {
+  display: none;
+}
+
+.lane-canvas {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.kb-svg {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  max-inline-size: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.kb-svg .rail {
+  fill: var(--rail);
+}
+
+.kb-svg .key {
+  cursor: pointer;
+}
+
+.kb-svg .key-white .body {
+  fill: var(--key-white);
+  stroke: var(--key-ink);
+  stroke-width: 1;
+}
+
+.kb-svg .key-black .body {
+  fill: var(--key-ink);
+  stroke: var(--key-white);
+  stroke-width: 1;
+}
+
+.kb-svg .label {
+  fill: var(--key-ink);
+  font-family: var(--font-sans);
+  font-weight: var(--weight-bold);
+  pointer-events: none;
+}
+
+/* middle C is marked on its own with a short bar under its name */
+.kb-svg .label[data-middle="true"] {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+}
+
+/* every shape starts hidden. a state shows exactly one */
+/* the wider hit area of a black key takes touches and clicks but draws nothing */
+.kb-svg .hit {
+  fill: none;
+  pointer-events: all;
+}
+
+.kb-svg .shape {
+  display: none;
+  pointer-events: none;
+}
+
+/* the lights on the rail */
+.kb-svg .light[data-cue="next"][data-hand="right"] .disc {
+  display: block;
+  fill: var(--light-right);
+}
+
+/* the left hand is dimmer than the right as a second signal, 70 per cent, as the hub's bar shows it */
+.kb-svg .light[data-cue="next"][data-hand="left"] .square {
+  display: block;
+  fill: var(--light-left);
+  opacity: 0.7;
+}
+
+.kb-svg .light[data-cue="soon"][data-hand="right"] .ring {
+  display: block;
+  fill: none;
+  stroke: var(--light-right-soon);
+  stroke-width: 3;
+}
+
+.kb-svg .light[data-cue="soon"][data-hand="left"] .hollow {
+  display: block;
+  fill: none;
+  stroke: var(--light-left-soon);
+  stroke-width: 3;
+}
+
+.kb-svg .light[data-cue="unsure"] .diamond {
+  display: block;
+  fill: none;
+  stroke: var(--key-white);
+  stroke-width: 3;
+  stroke-dasharray: 4 3;
+}
+
+.kb-svg .light[data-cue="wrong"] .cross {
+  display: block;
+  fill: none;
+  stroke: var(--light-wrong);
+  stroke-width: 4;
+  stroke-linecap: butt;
+}
+
+/* the same shapes on the key itself, in ink on the pale fills and white on the dark ones */
+.kb-svg .key[data-cue="next"][data-hand="right"] .mark .disc,
+.kb-svg .key[data-held="true"] .mark .disc {
+  display: block;
+  fill: var(--key-ink);
+}
+
+.kb-svg .key[data-cue="next"][data-hand="left"] .mark .square {
+  display: block;
+  fill: var(--on-key-fill);
+}
+
+.kb-svg .key[data-cue="soon"][data-hand="right"] .mark .ring {
+  display: block;
+  fill: none;
+  stroke: var(--key-ink);
+  stroke-width: 3;
+}
+
+.kb-svg .key[data-cue="soon"][data-hand="left"] .mark .hollow {
+  display: block;
+  fill: none;
+  stroke: var(--key-ink);
+  stroke-width: 3;
+}
+
+.kb-svg .key[data-cue="unsure"] .mark .diamond {
+  display: block;
+  fill: none;
+  stroke: var(--key-ink);
+  stroke-width: 3;
+  stroke-dasharray: 4 3;
+}
+
+.kb-svg .key[data-cue="unsure"] .body {
+  stroke: var(--key-ink);
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+
+.kb-svg .key[data-cue="wrong"] .mark .cross {
+  display: block;
+  fill: none;
+  stroke: var(--on-key-fill);
+  stroke-width: 4;
+}
+
+/* fills: an ink outline on every lit key, because amber against a white key is 1.6 to 1 */
+.kb-svg .key[data-cue="next"][data-hand="right"] .body,
+.kb-svg .key[data-held="true"] .body {
+  fill: var(--light-right);
+  stroke: var(--key-ink);
+  stroke-width: 3;
+}
+
+.kb-svg .key[data-cue="next"][data-hand="left"] .body {
+  fill: var(--key-left-fill);
+  stroke: var(--key-ink);
+  stroke-width: 3;
+}
+
+.kb-svg .key[data-cue="wrong"] .body {
+  fill: var(--key-wrong-fill);
+  stroke: var(--key-ink);
+  stroke-width: 3;
+}
+
+.kb-svg .key[data-cue="soon"] .body {
+  stroke: var(--key-ink);
+  stroke-width: 2;
+  stroke-dasharray: 6 4;
+}
+
+.kb-svg .label[data-tone="light"] {
+  fill: var(--on-key-fill);
+}
+
+/* focus: ink on a white key in both themes, white on a black one. the ring is never amber */
+.kb-svg .key-white:focus-visible .body {
+  stroke: var(--key-ink);
+  stroke-width: 6;
+  stroke-dasharray: none;
+}
+
+.kb-svg .key-black:focus-visible .body {
+  stroke: var(--key-white);
+  stroke-width: 6;
+}
+
+.kb-caption {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--size-floor);
+}
+
+/* the map of the whole keyboard shows where the zoomed range sits */
+.kb-map {
+  inline-size: 100%;
+  block-size: 1.5rem;
+  border-radius: var(--radius);
+}
+
+.kb-map .map-bed {
+  fill: var(--rail);
+}
+
+.kb-map .map-key {
+  fill: var(--key-white);
+}
+
+.kb-map .map-window {
+  fill: none;
+  stroke: var(--light-right);
+  stroke-width: 8;
+}
+
+@media (forced-colors: active) {
+  .kb-svg .rail,
+  .kb-map .map-bed {
+    fill: Canvas;
+  }
+
+  .kb-svg .key-white .body {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .kb-svg .key-black .body {
+    fill: CanvasText;
+    stroke: CanvasText;
+  }
+
+  .kb-svg .label {
+    fill: CanvasText;
+  }
+
+  .kb-svg .key[data-cue="next"] .body,
+  .kb-svg .key[data-held="true"] .body,
+  .kb-svg .key[data-cue="wrong"] .body {
+    fill: Highlight;
+    stroke: CanvasText;
+  }
+
+  .kb-svg .label[data-tone="light"] {
+    fill: HighlightText;
+  }
+
+  .kb-svg .key .mark .shape {
+    fill: CanvasText;
+    stroke: CanvasText;
+  }
+
+  .kb-svg .key[data-cue="next"] .mark .shape,
+  .kb-svg .key[data-cue="wrong"] .mark .shape {
+    fill: HighlightText;
+    stroke: HighlightText;
+  }
+
+  .kb-svg .light .shape {
+    fill: CanvasText;
+    stroke: CanvasText;
+  }
+
+  .kb-svg .light .ring,
+  .kb-svg .light .hollow,
+  .kb-svg .light .cross {
+    fill: none;
+  }
+
+  .kb-map .map-key {
+    fill: CanvasText;
+  }
+
+  .kb-map .map-window {
+    stroke: Highlight;
+  }
+
+  .kb-svg .key-white:focus-visible .body,
+  .kb-svg .key-black:focus-visible .body {
+    stroke: Highlight;
+  }
+}

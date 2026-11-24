@@ -10,11 +10,46 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "specimen": "vite --config vite.specimen.config.ts --port 5180 --strictPort",
+    "specimen:build": "vite build --config vite.specimen.config.ts",
+    "specimen:preview": "vite preview --config vite.specimen.config.ts --port 5181 --strictPort",
+    "specimen:shots": "playwright test --config playwright.shots.config.ts",
+    "fonts:metrics": "node scripts/font-metrics.ts",
+    "check:contrast": "vitest run tests/contrast.test.ts",
+    "check:vision": "vitest run tests/colour-vision.test.ts",
+    "check:rules": "vitest run tests/design-rules.test.ts",
+    "check:fonts": "vitest run tests/fonts.test.ts",
+    "check:licences": "node scripts/check-licences.ts",
+    "check:a11y": "playwright test",
+    "check:lighthouse": "npm run specimen:build && lhci autorun",
+    "check": "npm run typecheck && npm test && npm run check:licences && npm run check:a11y && npm run check:lighthouse && npm run check:lighthouse:app",
+    "check:lighthouse:app": "npm run build && lhci autorun --config=lighthouserc.app.json",
+    "fuzz:midi": "FUZZ_SECONDS=120 vitest run tests/fuzz-midi.test.ts"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@capsizecss/core": "^4.1.3",
+    "@capsizecss/metrics": "^4.5.0",
+    "@capsizecss/unpack": "^4.0.1",
+    "@lhci/cli": "^0.16.1",
+    "@phosphor-icons/core": "^2.1.1",
+    "@playwright/test": "1.65.1",
+    "@types/fontkit": "^2.0.9",
+    "@types/node": "^26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "axe-core": "^4.14.1",
+    "fontkit": "^3.0.0",
+    "license-checker-rseidelsohn": "^5.0.1",
     "typescript": "^7.0.2",
     "vite": "^8.3.8",
     "vitest": "^5.1.1"
+  },
+  "dependencies": {
+    "@melophos/core": "file:../core/wasm/package",
+    "react": "19.3.1",
+    "react-aria-components": "1.22.1",
+    "react-dom": "19.3.1"
   }
 }

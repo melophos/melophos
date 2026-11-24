@@ -1,0 +1,1136 @@
+/* the app chrome and the views. every colour, size and duration is a token. nothing here is smaller than 1rem */
+
+.shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "top" "nav" "main" "banners" "foot";
+  grid-template-rows: auto auto 1fr auto auto;
+  min-block-size: 100dvh;
+}
+
+.shell-top {
+  grid-area: top;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--gutter);
+  border-block-end: var(--border-width) solid var(--border);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-block-size: var(--target-app);
+  color: var(--text);
+  font-weight: var(--weight-bold);
+  font-size: var(--size-app-h3);
+  text-decoration: none;
+}
+
+.brand:visited {
+  color: var(--text);
+}
+
+.shell-nav {
+  grid-area: nav;
+  padding: var(--space-2) var(--gutter);
+  border-block-end: var(--border-width) solid var(--border);
+}
+
+.shell-nav ul,
+.subnav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shell-nav a,
+.subnav a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: var(--target-app);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  color: var(--text);
+}
+
+.shell-nav a[aria-current="page"],
+.subnav a[aria-current="page"] {
+  border: var(--border-width-control) solid var(--text);
+}
+
+.shell-main {
+  grid-area: main;
+  padding: var(--space-6) var(--gutter);
+  max-inline-size: var(--page-max);
+  inline-size: 100%;
+  margin-inline: auto;
+}
+
+.shell-foot {
+  grid-area: foot;
+  padding: var(--space-4) var(--gutter);
+  border-block-start: var(--border-width) solid var(--border);
+}
+
+@media (min-width: 48rem) {
+  .shell:not(.shell-practice) {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    grid-template-areas: "top top" "nav main" "nav banners" "foot foot";
+  }
+
+  .shell-nav {
+    border-block-end: 0;
+    border-inline-end: var(--border-width) solid var(--border);
+    padding-block: var(--space-6);
+  }
+
+  .shell-nav ul {
+    flex-direction: column;
+  }
+
+  .shell[data-controls="left"] .shell-main {
+    direction: ltr;
+  }
+}
+
+/* ---- shared parts ---- */
+
+.lead {
+  font-size: var(--size-lead);
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.panel {
+  margin-block-end: var(--space-6);
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.panel[data-kind="danger"] {
+  border-color: var(--problem);
+  border-width: var(--border-width-control);
+}
+
+.stack {
+  display: grid;
+  gap: var(--space-4);
+  margin-block-end: var(--space-6);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block: var(--space-4);
+}
+
+.note {
+  padding: var(--space-3);
+  border: var(--border-width-control) solid var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: var(--target-app);
+}
+
+.icon-wrap {
+  display: inline-flex;
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+  margin-block-end: var(--space-3);
+}
+
+.field-label {
+  font-weight: var(--weight-bold);
+}
+
+.stack-label {
+  display: grid;
+  gap: var(--space-1);
+  margin-block-end: var(--space-3);
+}
+
+.segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--target-gap);
+}
+
+.segment {
+  min-block-size: var(--target-app);
+}
+
+.segment[data-focus-visible="true"],
+.range-thumb[data-focus-visible="true"],
+.switch[data-focus-visible="true"] .switch-track {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-gap-width);
+  box-shadow: 0 0 0 var(--focus-gap-width) var(--focus-gap);
+}
+
+.range {
+  display: grid;
+  gap: var(--space-2);
+  margin-block-end: var(--space-3);
+}
+
+.range-head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.range-value {
+  font-weight: var(--weight-bold);
+}
+
+.range-track {
+  position: relative;
+  block-size: var(--target-app);
+}
+
+.range-track::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 50%;
+  block-size: 0.5rem;
+  transform: translateY(-50%);
+  border: var(--border-width-control) solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface-alt);
+}
+
+.range-thumb {
+  inset-block-start: 50%;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border: 3px solid var(--text);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: grab;
+}
+
+/* the track, the label and the state word share the first line. the hint runs under them across the whole width, so a
+   long hint is never squeezed into a narrow column beside the track */
+.switch {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  min-block-size: var(--target-app);
+  margin-block-end: var(--space-3);
+}
+
+.switch-track {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.switch-label {
+  grid-column: 2;
+  grid-row: 1;
+  font-weight: var(--weight-bold);
+}
+
+.switch-state {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.switch-hint {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.switch-track {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  inline-size: 3.5rem;
+  block-size: 2rem;
+  padding: 0.125rem;
+  border: var(--border-width-control) solid var(--border-strong);
+  border-radius: 1rem;
+  background: var(--surface);
+}
+
+.switch-thumb {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  border-radius: 50%;
+  background: var(--text);
+}
+
+.switch[data-selected="true"] .switch-thumb {
+  margin-inline-start: auto;
+}
+
+.switch[data-selected="true"] .switch-track {
+  border-color: var(--text);
+  background: var(--surface-alt);
+}
+
+.switch-text {
+  display: contents;
+}
+
+.switch-hint {
+  color: var(--text-muted);
+}
+
+.switch-state {
+  font-weight: var(--weight-bold);
+  min-inline-size: 2.5rem;
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-2);
+  margin-block-end: var(--space-6);
+}
+
+.facts div {
+  display: grid;
+  gap: var(--space-1) var(--space-4);
+}
+
+@media (min-width: 40rem) {
+  .facts div {
+    grid-template-columns: 12rem minmax(0, 1fr);
+  }
+}
+
+.facts dt {
+  min-inline-size: 12rem;
+  font-weight: var(--weight-bold);
+}
+
+.facts dd {
+  margin: 0;
+}
+
+.rows {
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  list-style: none;
+}
+
+.rows li {
+  border-block-end: var(--border-width) solid var(--border);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-block-size: var(--target-app);
+  padding: var(--space-3) var(--space-2);
+  color: var(--text);
+  text-decoration: none;
+}
+
+a.row .icon {
+  transform: scaleX(-1);
+}
+
+.row-main {
+  display: grid;
+}
+
+.row-title {
+  font-weight: var(--weight-bold);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-block-end: var(--space-4);
+}
+
+.filters label {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.field-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.empty {
+  padding: var(--space-6);
+  border: var(--border-width-control) dashed var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.table-frame {
+  overflow-x: auto;
+  max-inline-size: 100%;
+}
+
+.chart svg {
+  display: block;
+  max-inline-size: none;
+}
+
+.chart-grid {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.chart-axis {
+  stroke: var(--border-strong);
+  stroke-width: 2;
+}
+
+.chart-line {
+  stroke: var(--accent-mark);
+  stroke-width: 3;
+}
+
+.chart-dot {
+  fill: var(--surface);
+  stroke: var(--accent-mark);
+  stroke-width: 3;
+}
+
+.chart-text {
+  fill: var(--text-muted);
+}
+
+.chart-value {
+  fill: var(--text);
+  font-weight: var(--weight-bold);
+}
+
+.heat-frame {
+  overflow-x: auto;
+}
+
+.heat {
+  display: block;
+  inline-size: calc(var(--whites) * 2.5rem);
+  max-inline-size: none;
+}
+
+.heat-key {
+  stroke: var(--border-strong);
+  stroke-width: 2;
+  fill: var(--surface);
+}
+
+.heat-key[data-step="1"] { fill: var(--scale-1); }
+.heat-key[data-step="2"] { fill: var(--scale-2); }
+.heat-key[data-step="3"] { fill: var(--scale-3); }
+.heat-key[data-step="4"] { fill: var(--scale-4); }
+.heat-key[data-step="5"] { fill: var(--scale-5); }
+
+.heat-white[data-step="0"] {
+  fill: var(--key-white);
+}
+
+.heat-black[data-step="0"] {
+  fill: var(--key-ink);
+}
+
+.heat-chip {
+  fill: var(--surface);
+  stroke: var(--text);
+  stroke-width: 1;
+}
+
+.heat-count {
+  fill: var(--text);
+  font-weight: var(--weight-bold);
+}
+
+.heat-name {
+  fill: var(--text);
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--space-1);
+  max-inline-size: 36rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.day {
+  display: grid;
+  justify-items: center;
+  min-block-size: 4rem;
+  padding: var(--space-1);
+  border: var(--border-width-control) solid var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.day-yes {
+  border-color: var(--text);
+  background: var(--surface-alt);
+  font-weight: var(--weight-bold);
+}
+
+.day-no {
+  border-style: dashed;
+}
+
+.day-weekday,
+.day-number {
+  font-size: var(--size-floor);
+}
+
+.state-line {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.state-line[data-kind="problem"] .icon {
+  color: var(--problem);
+}
+
+.activity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.activity-light {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  border: 3px solid var(--text);
+  border-radius: 50%;
+}
+
+.activity[data-active="true"] .activity-light {
+  background: var(--text);
+}
+
+.distance-sample {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.distance-note {
+  font-size: var(--practice-next-note);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+.stress-lane {
+  block-size: 16rem;
+  background: var(--rail);
+}
+
+.file-button:focus-within {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: var(--focus-gap-width);
+}
+
+/* ---- the practice view ---- */
+
+.shell-practice .shell-main {
+  max-inline-size: none;
+  padding-block: var(--space-3);
+}
+
+.practice {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.practice-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-6);
+}
+
+.practice-title h1 {
+  margin: 0;
+}
+
+.practice-title p {
+  margin: 0;
+}
+
+.badge {
+  margin: 0;
+  padding: var(--space-1) var(--space-3);
+  border: var(--border-width-control) solid var(--text);
+  border-radius: var(--radius);
+  font-weight: var(--weight-bold);
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-inline-size: none;
+  margin: 0;
+  padding: var(--space-3);
+  border: var(--border-width-control) solid var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.guidance {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-6);
+}
+
+.step-now,
+.step-later {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-4);
+}
+
+.step-card {
+  display: grid;
+  justify-items: start;
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width-control) solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.step-big .step-note {
+  font-size: min(var(--practice-next-note), 33dvh);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+.step-small .step-note {
+  font-size: var(--practice-step-note);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+}
+
+.step-then {
+  font-size: var(--practice-support);
+}
+
+.step-done {
+  margin: 0;
+  font-size: var(--practice-step-note);
+  font-weight: var(--weight-bold);
+}
+
+/* the hand badge: a filled disc for the right hand and a filled square for the left, with the letter beside it */
+.hand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--practice-support);
+  font-weight: var(--weight-bold);
+}
+
+.hand-shape {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  background: var(--text);
+}
+
+.hand-badge[data-hand="right"] .hand-shape {
+  border-radius: 50%;
+}
+
+.step-card[data-hand="left"] {
+  border-style: dashed;
+}
+
+.next-line {
+  margin: 0;
+  max-inline-size: none;
+  font-size: var(--practice-support);
+}
+
+.feedback {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: 2.5rem;
+  max-inline-size: none;
+  margin: 0;
+  font-size: var(--practice-support);
+  font-weight: var(--weight-bold);
+}
+
+.feedback[data-kind="wrong"] .icon {
+  color: var(--problem);
+}
+
+.feedback .icon {
+  inline-size: 2rem;
+  block-size: 2rem;
+}
+
+.statusline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--practice-counter);
+}
+
+.statusline p {
+  margin: 0;
+  max-inline-size: none;
+}
+
+.beat-indicator {
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.beat-indicator li {
+  display: grid;
+  place-items: center;
+  inline-size: 3rem;
+  block-size: 3rem;
+  border: var(--border-width-control) solid var(--border-strong);
+  border-radius: var(--radius);
+  font-size: var(--size-floor);
+}
+
+.beat-indicator li[data-active="true"],
+.beat-indicator li[data-count="true"] {
+  border: 4px solid var(--text);
+  background: var(--text);
+  color: var(--canvas);
+  font-weight: var(--weight-bold);
+}
+
+.transport {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--target-gap);
+}
+
+.transport button {
+  min-block-size: var(--practice-transport);
+  font-size: var(--size-body);
+}
+
+.transport-main {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 48rem) {
+  .transport-main {
+    grid-column: auto;
+  }
+}
+
+.setup summary {
+  font-size: var(--size-app-h3);
+}
+
+.setup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  align-items: start;
+  gap: var(--space-6) var(--space-8);
+  margin-block: var(--space-4);
+}
+
+/* a sentence about the setup is read across the page and never squeezed into one cell */
+.setup-grid > p {
+  grid-column: 1 / -1;
+  max-inline-size: var(--measure);
+  margin: 0;
+}
+
+.bars {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.bars input {
+  inline-size: 6rem;
+}
+
+.hint {
+  margin: 0;
+  max-inline-size: none;
+}
+
+.shell[data-controls="left"] .setup-grid {
+  direction: rtl;
+}
+
+.shell[data-controls="left"] .setup-grid > * {
+  direction: ltr;
+}
+
+/* the app asks for less motion on its own as well as through the device setting */
+:root[data-motion="reduce"] *,
+:root[data-motion="reduce"] *::before,
+:root[data-motion="reduce"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+@media (forced-colors: active) {
+  .range-thumb,
+  .switch-track,
+  .day,
+  .step-card {
+    border-color: CanvasText;
+  }
+
+  .hand-shape,
+  .switch-thumb,
+  .activity[data-active="true"] .activity-light {
+    background: CanvasText;
+  }
+
+  .heat-key {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .heat-key[data-step] {
+    fill: Canvas;
+  }
+}
+
+.shell-foot a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-app);
+}
+
+/* a grid item may shrink below its content, so a chart measures the room it really has */
+.stack > *,
+.chart {
+  min-inline-size: 0;
+}
+
+/* holds the place of the first panel on the start view while the record loads, so nothing below it jumps */
+.panel-space {
+  min-block-size: 13rem;
+  margin-block-end: var(--space-6);
+}
+
+/* the guidance area and the keyboard hold their height before the run is built, so nothing shifts when they fill */
+.steps {
+  min-block-size: calc(var(--practice-next-note) + 4rem);
+}
+
+.instrument > div:first-child {
+  min-block-size: 13rem;
+}
+
+.next-line {
+  min-block-size: calc(3 * 1.6 * var(--practice-support));
+}
+
+.dropzone {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: var(--border-width-control) dashed var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.dropzone[data-over="true"] {
+  border-style: solid;
+  border-color: var(--text);
+  background: var(--surface-alt);
+}
+
+.problem-text {
+  color: var(--text);
+  font-weight: var(--weight-bold);
+}
+
+.banners {
+  grid-area: banners;
+  display: grid;
+  gap: var(--space-2);
+  padding-inline: var(--gutter);
+  padding-block-end: var(--space-3);
+}
+
+/* the banners sit after the page, so one that arrives late never pushes the content above it */
+.banners:empty {
+  display: none;
+}
+
+.banners .banner span {
+  flex: 1;
+}
+
+/* the icon keeps its own size, so the words take the rest of the line and read from the start */
+.banners .banner .icon-wrap {
+  flex: none;
+}
+
+.subnav {
+  margin-block-end: var(--space-4);
+}
+
+.activity {
+  margin-block-start: var(--space-3);
+}
+
+/* the "saved for offline use" note floats at the bottom edge, so it never moves the page. it can be dismissed */
+.banner-toast {
+  position: fixed;
+  inset-inline-start: var(--gutter);
+  inset-inline-end: var(--gutter);
+  inset-block-end: var(--space-3);
+  z-index: 20;
+  background: var(--surface);
+  color: var(--text);
+  text-align: start;
+}
+
+@media (min-width: 48rem) {
+  .banner-toast {
+    inset-inline-start: auto;
+    max-inline-size: 30rem;
+  }
+}
+
+.banner-toast span {
+  min-inline-size: 0;
+}
+
+/* the confirmation dialog: a solid scrim, a 2 px border in the text colour and no shadow, as the design system asks */
+dialog.confirm {
+  max-inline-size: min(36rem, calc(100vw - 2rem));
+  padding: var(--space-6);
+  border: var(--border-width-dialog) solid var(--text);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+}
+
+dialog.confirm::backdrop {
+  background: var(--canvas);
+  opacity: 0.85;
+}
+
+/* a new best is marked with a trophy and the words, never with colour alone and it does not move */
+.best-mark {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: var(--border-width-control) solid var(--text);
+  border-radius: var(--radius);
+  font-size: var(--practice-support);
+}
+
+/* a key the engine was not sure about is shown apart: its own icon, its own words and a dashed outline, never a colour alone */
+.feedback[data-kind="unsure"] {
+  padding: var(--space-1) var(--space-3);
+  border: var(--border-width-control) dashed var(--border-strong);
+  border-radius: var(--radius);
+}
+
+
+/* on a phone the three theme choices take the row under the name and share it, wrapping only on the narrowest screens */
+@media (max-width: 40rem) {
+  .shell-top .field {
+    flex: 1 1 100%;
+    margin-block-end: 0;
+  }
+
+  .shell-top .segment {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}
+
+/* the first visit: one question with two answers, then the lights, then the one setting worth asking about */
+.welcome {
+  margin-block-end: var(--space-8);
+}
+
+.welcome > h2 {
+  margin-block-end: var(--space-2);
+}
+
+.choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: var(--space-4);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.choice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  block-size: 100%;
+  min-block-size: var(--target-app);
+  padding: var(--space-4);
+  border: var(--border-width-control) solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.choice:visited {
+  color: var(--text);
+}
+
+.choice .icon-wrap {
+  flex: none;
+  font-size: var(--size-app-h2);
+}
+
+.choice-primary {
+  border-color: var(--text);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.choice-primary:visited {
+  color: var(--on-accent);
+}
+
+.choice-text {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.choice-name {
+  font-size: var(--size-app-h3);
+  font-weight: var(--weight-bold);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .choice:hover {
+    border-color: var(--text);
+  }
+}
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-4) var(--space-6);
+  margin: var(--space-4) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legend li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.legend-mark {
+  flex: none;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+}
+
+.legend-text {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.legend-name {
+  font-weight: var(--weight-bold);
+}
+
+.sig-bed {
+  fill: var(--rail);
+}
+
+.sig-right {
+  fill: var(--light-right);
+}
+
+.sig-left {
+  fill: var(--light-left);
+}
+
+.sig-soon {
+  fill: none;
+  stroke: var(--light-right-soon);
+  stroke-width: 3;
+}
+
+.sig-wrong {
+  fill: none;
+  stroke: var(--light-wrong);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+@media (forced-colors: active) {
+  .choice-primary {
+    border-color: Highlight;
+  }
+
+  .sig-right,
+  .sig-left {
+    fill: Highlight;
+  }
+
+  .sig-soon,
+  .sig-wrong {
+    stroke: Highlight;
+  }
+}
+
+/* while the offline note is on screen the page gains room at its foot, so the last lines can scroll clear of it */
+.shell:has(.banner-toast) {
+  padding-block-end: 7rem;
+}

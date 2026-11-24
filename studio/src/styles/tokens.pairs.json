@@ -1,0 +1,567 @@
+{
+  "$comment": "Every allowed pairing of a foreground token on a background token. The contrast test reads this file and tokens.css. A component may only use a pairing listed here. The spec field holds the figure the specification prints for the dark and light sets. It is checked, never copied into the page.",
+  "sets": [
+    "light",
+    "dark",
+    "light-more",
+    "dark-more"
+  ],
+  "thresholds": {
+    "standard": {
+      "body": 7,
+      "muted": 4.5,
+      "mark": 3
+    },
+    "more": {
+      "body": 7,
+      "muted": 7,
+      "mark": 4.5
+    }
+  },
+  "roles": {
+    "body": "Body text. 7:1 aimed for.",
+    "muted": "Secondary text and short labels. 4.5:1 is the floor.",
+    "mark": "Lines, marks, meaningful borders and focus rings. 3:1.",
+    "decorative": "No minimum. Never the only cue, because it can be missing without loss."
+  },
+  "pairs": [
+    {
+      "id": "text-on-canvas",
+      "fg": "--text",
+      "bg": "--canvas",
+      "role": "body",
+      "use": "Body text",
+      "spec": {
+        "dark": 17.24,
+        "light": 17.96
+      }
+    },
+    {
+      "id": "text-on-surface",
+      "fg": "--text",
+      "bg": "--surface",
+      "role": "body",
+      "use": "Body text",
+      "spec": {
+        "dark": 15.97,
+        "light": 19.26
+      }
+    },
+    {
+      "id": "text-on-surface-alt",
+      "fg": "--text",
+      "bg": "--surface-alt",
+      "role": "body",
+      "use": "Body text",
+      "spec": {
+        "dark": 14.44,
+        "light": 16.25
+      }
+    },
+    {
+      "id": "text-muted-on-canvas",
+      "fg": "--text-muted",
+      "bg": "--canvas",
+      "role": "muted",
+      "use": "Secondary text",
+      "spec": {
+        "dark": 10.35,
+        "light": 8.83
+      }
+    },
+    {
+      "id": "text-muted-on-surface",
+      "fg": "--text-muted",
+      "bg": "--surface",
+      "role": "muted",
+      "use": "Secondary text",
+      "spec": {
+        "dark": 9.59,
+        "light": 9.47
+      }
+    },
+    {
+      "id": "text-muted-on-surface-alt",
+      "fg": "--text-muted",
+      "bg": "--surface-alt",
+      "role": "muted",
+      "use": "Secondary text",
+      "spec": {
+        "dark": 8.67,
+        "light": 7.99
+      }
+    },
+    {
+      "id": "accent-text-on-canvas",
+      "fg": "--accent-text",
+      "bg": "--canvas",
+      "role": "body",
+      "use": "Amber used as text",
+      "spec": {
+        "dark": 10.51,
+        "light": 7.6
+      }
+    },
+    {
+      "id": "accent-text-on-surface",
+      "fg": "--accent-text",
+      "bg": "--surface",
+      "role": "body",
+      "use": "Amber used as text",
+      "spec": {
+        "dark": 9.74,
+        "light": 8.15
+      }
+    },
+    {
+      "id": "accent-text-on-surface-alt",
+      "fg": "--accent-text",
+      "bg": "--surface-alt",
+      "role": "muted",
+      "use": "Amber used as text",
+      "spec": {
+        "dark": 8.81,
+        "light": 6.88
+      }
+    },
+    {
+      "id": "accent-mark-on-canvas",
+      "fg": "--accent-mark",
+      "bg": "--canvas",
+      "role": "mark",
+      "use": "Amber used as a line or mark",
+      "spec": {
+        "dark": 10.51,
+        "light": 4.73
+      }
+    },
+    {
+      "id": "accent-mark-on-surface",
+      "fg": "--accent-mark",
+      "bg": "--surface",
+      "role": "mark",
+      "use": "Amber used as a line or mark",
+      "spec": {
+        "dark": 9.74,
+        "light": 5.07
+      }
+    },
+    {
+      "id": "accent-mark-on-surface-alt",
+      "fg": "--accent-mark",
+      "bg": "--surface-alt",
+      "role": "mark",
+      "use": "Amber used as a line or mark",
+      "spec": {
+        "dark": 8.81,
+        "light": 4.28
+      }
+    },
+    {
+      "id": "problem-on-canvas",
+      "fg": "--problem",
+      "bg": "--canvas",
+      "role": "muted",
+      "use": "Wrong note, error and destructive marks",
+      "spec": {
+        "dark": 7.39,
+        "light": 7.56
+      }
+    },
+    {
+      "id": "problem-on-surface",
+      "fg": "--problem",
+      "bg": "--surface",
+      "role": "muted",
+      "use": "Wrong note, error and destructive marks",
+      "spec": {
+        "dark": 6.84,
+        "light": 8.11
+      }
+    },
+    {
+      "id": "problem-on-surface-alt",
+      "fg": "--problem",
+      "bg": "--surface-alt",
+      "role": "muted",
+      "use": "Wrong note, error and destructive marks",
+      "spec": {
+        "dark": 6.19,
+        "light": 6.84
+      }
+    },
+    {
+      "id": "left-on-canvas",
+      "fg": "--left",
+      "bg": "--canvas",
+      "role": "muted",
+      "use": "Left hand marks",
+      "spec": {
+        "dark": 9.94,
+        "light": 7.7
+      }
+    },
+    {
+      "id": "left-on-surface",
+      "fg": "--left",
+      "bg": "--surface",
+      "role": "muted",
+      "use": "Left hand marks",
+      "spec": {
+        "dark": 9.21,
+        "light": 8.26
+      }
+    },
+    {
+      "id": "left-on-surface-alt",
+      "fg": "--left",
+      "bg": "--surface-alt",
+      "role": "muted",
+      "use": "Left hand marks",
+      "spec": {
+        "dark": 8.33,
+        "light": 6.97
+      }
+    },
+    {
+      "id": "border-strong-on-canvas",
+      "fg": "--border-strong",
+      "bg": "--canvas",
+      "role": "mark",
+      "use": "Control boundary",
+      "spec": {
+        "dark": 5.67,
+        "light": 4.7
+      }
+    },
+    {
+      "id": "border-strong-on-surface",
+      "fg": "--border-strong",
+      "bg": "--surface",
+      "role": "mark",
+      "use": "Control boundary",
+      "spec": {
+        "dark": 5.25,
+        "light": 5.04
+      }
+    },
+    {
+      "id": "border-strong-on-surface-alt",
+      "fg": "--border-strong",
+      "bg": "--surface-alt",
+      "role": "mark",
+      "use": "Control boundary",
+      "spec": {
+        "dark": 4.75,
+        "light": 4.25
+      }
+    },
+    {
+      "id": "border-on-canvas",
+      "fg": "--border",
+      "bg": "--canvas",
+      "role": "decorative",
+      "use": "Panel edge, never the only boundary",
+      "spec": {
+        "dark": 1.72,
+        "light": 1.46
+      }
+    },
+    {
+      "id": "border-on-surface",
+      "fg": "--border",
+      "bg": "--surface",
+      "role": "decorative",
+      "use": "Panel edge, never the only boundary",
+      "spec": {
+        "dark": 1.59,
+        "light": 1.57
+      }
+    },
+    {
+      "id": "border-on-surface-alt",
+      "fg": "--border",
+      "bg": "--surface-alt",
+      "role": "decorative",
+      "use": "Panel edge, never the only boundary",
+      "spec": {
+        "dark": 1.44,
+        "light": 1.32
+      }
+    },
+    {
+      "id": "focus-on-canvas",
+      "fg": "--focus",
+      "bg": "--canvas",
+      "role": "mark",
+      "use": "Focus ring",
+      "spec": {
+        "dark": 17.24,
+        "light": 17.96
+      }
+    },
+    {
+      "id": "focus-on-surface",
+      "fg": "--focus",
+      "bg": "--surface",
+      "role": "mark",
+      "use": "Focus ring",
+      "spec": {
+        "dark": 15.97,
+        "light": 19.26
+      }
+    },
+    {
+      "id": "focus-on-surface-alt",
+      "fg": "--focus",
+      "bg": "--surface-alt",
+      "role": "mark",
+      "use": "Focus ring",
+      "spec": {
+        "dark": 14.44,
+        "light": 16.25
+      }
+    },
+    {
+      "id": "canvas-on-text",
+      "fg": "--canvas",
+      "bg": "--text",
+      "role": "body",
+      "use": "Inverted selection: canvas colour on the text colour",
+      "spec": {
+        "dark": 17.24,
+        "light": 17.96
+      }
+    },
+    {
+      "id": "focus-on-focus-gap",
+      "fg": "--focus",
+      "bg": "--focus-gap",
+      "role": "mark",
+      "use": "Focus ring against its gap",
+      "spec": {
+        "dark": 17.24,
+        "light": 17.96
+      }
+    },
+    {
+      "id": "on-accent-on-accent",
+      "fg": "--on-accent",
+      "bg": "--accent",
+      "role": "body",
+      "use": "Ink text on an amber button",
+      "spec": {
+        "dark": 10.51,
+        "light": 10.51
+      }
+    },
+    {
+      "id": "accent-fill-on-canvas",
+      "fg": "--accent",
+      "bg": "--canvas",
+      "role": "decorative",
+      "use": "Amber fill. On paper it needs the ink outline",
+      "spec": {
+        "dark": 10.51,
+        "light": 1.71
+      }
+    },
+    {
+      "id": "ink-outline-on-canvas",
+      "fg": "--on-accent",
+      "bg": "--canvas",
+      "role": "mark",
+      "use": "Ink outline around an amber fill on paper",
+      "spec": {
+        "light": 17.96
+      },
+      "sets": [
+        "light",
+        "light-more"
+      ]
+    },
+    {
+      "id": "light-right-on-rail",
+      "fg": "--light-right",
+      "bg": "--rail",
+      "role": "mark",
+      "use": "Next note light on the rail",
+      "spec": {
+        "dark": 11.05,
+        "light": 11.05
+      }
+    },
+    {
+      "id": "light-left-on-rail",
+      "fg": "--light-left",
+      "bg": "--rail",
+      "role": "mark",
+      "use": "Next note light on the rail",
+      "spec": {
+        "dark": 10.45,
+        "light": 10.45
+      }
+    },
+    {
+      "id": "light-right-soon-on-rail",
+      "fg": "--light-right-soon",
+      "bg": "--rail",
+      "role": "mark",
+      "use": "Coming up light on the rail",
+      "spec": {
+        "dark": 4.98,
+        "light": 4.98
+      }
+    },
+    {
+      "id": "light-left-soon-on-rail",
+      "fg": "--light-left-soon",
+      "bg": "--rail",
+      "role": "mark",
+      "use": "Coming up light on the rail",
+      "spec": {
+        "dark": 4.82,
+        "light": 4.82
+      }
+    },
+    {
+      "id": "light-wrong-on-rail",
+      "fg": "--light-wrong",
+      "bg": "--rail",
+      "role": "mark",
+      "use": "Wrong note light on the rail",
+      "spec": {
+        "dark": 7.77,
+        "light": 7.77
+      }
+    },
+    {
+      "id": "key-white-on-rail",
+      "fg": "--key-white",
+      "bg": "--rail",
+      "role": "body",
+      "use": "Labels beside the lights on the rail"
+    },
+    {
+      "id": "accent-on-key-white",
+      "fg": "--accent",
+      "bg": "--key-white",
+      "role": "decorative",
+      "use": "Lit amber key beside a white key: colour cannot carry it",
+      "spec": {
+        "dark": 1.64,
+        "light": 1.64
+      }
+    },
+    {
+      "id": "key-ink-on-key-white",
+      "fg": "--key-ink",
+      "bg": "--key-white",
+      "role": "mark",
+      "use": "Ink outline on a lit key",
+      "spec": {
+        "dark": 17.24,
+        "light": 17.24
+      }
+    },
+    {
+      "id": "key-left-fill-on-key-white",
+      "fg": "--key-left-fill",
+      "bg": "--key-white",
+      "role": "mark",
+      "use": "Left hand key fill",
+      "spec": {
+        "dark": 7.39,
+        "light": 7.39
+      }
+    },
+    {
+      "id": "key-wrong-fill-on-key-white",
+      "fg": "--key-wrong-fill",
+      "bg": "--key-white",
+      "role": "mark",
+      "use": "Wrong key fill",
+      "spec": {
+        "dark": 7.26,
+        "light": 7.26
+      }
+    },
+    {
+      "id": "on-key-fill-on-key-left-fill",
+      "fg": "--on-key-fill",
+      "bg": "--key-left-fill",
+      "role": "body",
+      "use": "Label on the left hand fill",
+      "spec": {
+        "dark": 8.26,
+        "light": 8.26
+      }
+    },
+    {
+      "id": "on-key-fill-on-key-wrong-fill",
+      "fg": "--on-key-fill",
+      "bg": "--key-wrong-fill",
+      "role": "body",
+      "use": "Label on the wrong fill",
+      "spec": {
+        "dark": 8.11,
+        "light": 8.11
+      }
+    },
+    {
+      "id": "scale-1-on-surface",
+      "fg": "--scale-1",
+      "bg": "--surface",
+      "role": "decorative",
+      "use": "Chart scale step",
+      "spec": {
+        "dark": 1.35,
+        "light": 1.32
+      }
+    },
+    {
+      "id": "scale-2-on-surface",
+      "fg": "--scale-2",
+      "bg": "--surface",
+      "role": "decorative",
+      "use": "Chart scale step",
+      "spec": {
+        "dark": 2.26,
+        "light": 1.97
+      }
+    },
+    {
+      "id": "scale-3-on-surface",
+      "fg": "--scale-3",
+      "bg": "--surface",
+      "role": "mark",
+      "use": "Chart scale step",
+      "spec": {
+        "dark": 3.77,
+        "light": 3.62
+      }
+    },
+    {
+      "id": "scale-4-on-surface",
+      "fg": "--scale-4",
+      "bg": "--surface",
+      "role": "mark",
+      "use": "Chart scale step",
+      "spec": {
+        "dark": 6.27,
+        "light": 5.93
+      }
+    },
+    {
+      "id": "scale-5-on-surface",
+      "fg": "--scale-5",
+      "bg": "--surface",
+      "role": "mark",
+      "use": "Chart scale step",
+      "spec": {
+        "dark": 9.74,
+        "light": 10.09
+      }
+    }
+  ]
+}
