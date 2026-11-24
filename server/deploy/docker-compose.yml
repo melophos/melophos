@@ -1,11 +1,17 @@
-# Full MELOPHOS server stack. From the monorepo root: `make up`.
-# From this folder: `cp .env.example .env`, edit it, then `docker compose up -d`.
+# full MELOPHOS server stack, from published and signed images pinned by digest.
+#
+# TEMPLATE-NOTE-BEGIN
+# This file is a template until a release fills in the two digests below (deploy/pin-release.sh does it). Until then
+# `docker compose config` stops with a plain message. To build the images yourself instead, use deploy/build-local.sh.
+# TEMPLATE-NOTE-END
+# Install a released version with deploy/install.sh, see docs/self-hosting.md.
 
 name: melophos
 
 services:
   db:
-    image: timescale/timescaledb:latest-pg17
+    # pinned by digest so a rebuild gets the same database. Update the digest on purpose
+    image: timescale/timescaledb:2.32.1-pg17@sha256:2f5e6969faa5cd7f4b075d65f124e30dc50d456b7b807e5c1acd9d51ba7df51c
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -13,73 +19,144 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
       - db-data:/var/lib/postgresql/data
-      - ../db/migrations:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 10s
       retries: 5
 
-  redis:
-    image: redis:8-alpine
-    restart: unless-stopped
-
-  mqtt:
-    image: eclipse-mosquitto:2
-    restart: unless-stopped
-    ports:
-      - "1883:1883"
-    volumes:
-      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
-
-  minio:
-    image: minio/minio:latest
-    restart: unless-stopped
-    command: server /data --console-address ":9001"
+  # one-shot, on every start: makes the owner and application roles and gives each its rights, on a new database
+  # and on one made by an earlier version. Only this service and the database hold the superuser login
+  db-roles:
+    image: "ghcr.io/melophos/melophos-server@${MELOPHOS_SERVER_DIGEST:?no image digest yet: a release fills it in (deploy/pin-release.sh). To build the images yourself run deploy/build-local.sh}" # digest:server
+    restart: "no"
+    healthcheck:
+      disable: true
+    command: ["python", "-m", "app.db", "roles"]
     environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
-    volumes:
-      - minio-data:/data
-
-  server:
-    build: ..
-    restart: unless-stopped
-    env_file: .env
-    ports:
-      - "8000:8000"
+      ROLES_DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      OWNER_ROLE_PASSWORD: ${POSTGRES_OWNER_PASSWORD}
+      APP_ROLE_PASSWORD: ${POSTGRES_APP_PASSWORD}
     depends_on:
       db:
         condition: service_healthy
-      redis:
-        condition: service_started
+
+  # one-shot, on every start: applies the migrations as the owner, which is not a superuser. Only this service
+  # holds the owner's login, so a break-in at the server or the worker cannot rewrite the schema
+  migrate:
+    image: "ghcr.io/melophos/melophos-server@${MELOPHOS_SERVER_DIGEST:?no image digest yet: a release fills it in (deploy/pin-release.sh). To build the images yourself run deploy/build-local.sh}" # digest:server
+    restart: "no"
+    healthcheck:
+      disable: true
+    command: ["python", "-m", "app.db", "migrate"]
+    environment:
+      MIGRATE_DATABASE_URL: postgresql://melophos_owner:${POSTGRES_OWNER_PASSWORD}@db:5432/${POSTGRES_DB}
+    depends_on:
+      db-roles:
+        condition: service_completed_successfully
+
+  mqtt:
+    image: "ghcr.io/melophos/melophos-mqtt@${MELOPHOS_MQTT_DIGEST:?no image digest yet: a release fills it in (deploy/pin-release.sh). To build the images yourself run deploy/build-local.sh}" # digest:mqtt
+    restart: unless-stopped
+    environment:
+      MQTT_ADMIN_USERNAME: ${MQTT_ADMIN_USERNAME}
+      MQTT_ADMIN_PASSWORD: ${MQTT_ADMIN_PASSWORD}
+    healthcheck:
+      # the script reads the password from the environment and not from the command line, see healthcheck.sh
+      test: ["CMD", "/healthcheck.sh"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    ports:
+      # the plain port is for the server and the worker on the private network and is bound to this machine only.
+      # Hubs use TLS on 8883. For development with plain hubs set MQTT_PLAIN_BIND=0.0.0.0 on purpose
+      - "${MQTT_PLAIN_BIND:-127.0.0.1}:${MQTT_PLAIN_PORT:-1883}:1883"
+      - "${MQTT_TLS_PORT:-8883}:8883"
+    volumes:
+      # put server.crt (the full chain) and server.key here to turn TLS on, see self-hosting.md
+      - ./mosquitto/certs:/mosquitto/certs:ro
+      # holds the access rules the server writes, one login per paired hub
+      - mqtt-data:/mosquitto/data
+
+  server:
+    image: "ghcr.io/melophos/melophos-server@${MELOPHOS_SERVER_DIGEST:?no image digest yet: a release fills it in (deploy/pin-release.sh). To build the images yourself run deploy/build-local.sh}" # digest:server
+    restart: unless-stopped
+    environment: &app-env
+      # the limited role: read and write its own tables, nothing else. No owner or superuser login in here
+      DATABASE_URL: postgresql://melophos_app:${POSTGRES_APP_PASSWORD}@db:5432/${POSTGRES_DB}
+      RUN_MIGRATIONS: "false"
+      SECRET_KEY: ${SECRET_KEY}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
+      ALLOW_SIGNUP: ${ALLOW_SIGNUP:-true}
+      TRUSTED_PROXY_HOPS: ${TRUSTED_PROXY_HOPS:-0}
+      TRUSTED_PROXY_CIDRS: ${TRUSTED_PROXY_CIDRS:-}
+      METRICS_TOKEN: ${METRICS_TOKEN:-}
+      ALLOW_STAND_IN_SCORER: ${ALLOW_STAND_IN_SCORER:-false}
+      CLOCK_SYNC: ${CLOCK_SYNC:-auto}
+      MQTT_HOST: mqtt
+      MQTT_INSTANCE: ${MQTT_INSTANCE:-main}
+      INGEST_ENABLED: ${INGEST_ENABLED:-true}
+      MQTT_PORT: "1883"
+      MQTT_USERNAME: ${MQTT_USERNAME}
+      MQTT_PASSWORD: ${MQTT_PASSWORD}
+      MQTT_ADMIN_USERNAME: ${MQTT_ADMIN_USERNAME}
+      MQTT_ADMIN_PASSWORD: ${MQTT_ADMIN_PASSWORD}
+      SESSION_WEBHOOK_URL: ${SESSION_WEBHOOK_URL:-}
+      SESSION_WEBHOOK_SECRET: ${SESSION_WEBHOOK_SECRET:-}
+      SPOTIFY_CLIENT_ID: ${SPOTIFY_CLIENT_ID:-}
+      SPOTIFY_REDIRECT_URI: ${SPOTIFY_REDIRECT_URI:-}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/ready', timeout=2).status == 200 else 1)"]
+      interval: 15s
+      timeout: 4s
+      retries: 5
+      start_period: 30s
+    ports:
+      # on this machine only. Put a reverse proxy with TLS in front and let that face the network
+      - "${API_BIND:-127.0.0.1}:${API_PORT:-8000}:8000"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
       mqtt:
         condition: service_started
 
   worker:
-    build: ..
+    image: "ghcr.io/melophos/melophos-server@${MELOPHOS_SERVER_DIGEST:?no image digest yet: a release fills it in (deploy/pin-release.sh). To build the images yourself run deploy/build-local.sh}" # digest:server
     restart: unless-stopped
     command: ["python", "-m", "worker.main"]
-    env_file: .env
+    healthcheck:
+      # every loop has gone round in the last minute. The worker serves no port, so it cannot be asked over HTTP
+      test: ["CMD", "python", "-c", "import sys; from worker.main import worker_is_alive; sys.exit(0 if worker_is_alive() else 1)"]
+      interval: 20s
+      timeout: 4s
+      retries: 5
+      start_period: 40s
+    environment: *app-env
     depends_on:
-      - redis
-      - minio
+      migrate:
+        condition: service_completed_successfully
 
   prometheus:
-    image: prom/prometheus:latest
+    image: prom/prometheus:v3.16.0@sha256:e04987641b57704f408e31f6373ba4138ecf27cb4a165d24aabb6c38fddd0f06
     profiles: ["monitoring"]
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      # the same token as METRICS_TOKEN, in a file only you can read
+      - ./monitoring/metrics_token:/etc/prometheus/metrics_token:ro
     ports:
-      - "9090:9090"
+      - "127.0.0.1:9090:9090"
 
   grafana:
-    image: grafana/grafana:latest
+    image: grafana/grafana:13.3.1@sha256:0615ec4fbd4072004b7d86b46ded63013a74b7d6eb1119273dd89e8fa25c13cf
     profiles: ["monitoring"]
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
+    environment:
+      # there is no default password: the stack will not start the monitoring profile without one
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?set GRAFANA_ADMIN_PASSWORD in .env}
+      GF_USERS_ALLOW_SIGN_UP: "false"
     depends_on:
       - prometheus
 
 volumes:
   db-data:
-  minio-data:
+  mqtt-data:

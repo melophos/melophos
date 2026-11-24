@@ -29,8 +29,8 @@ def test_guitar_profile_is_supported():
 
 
 def test_session_shape_matches_the_api():
-    session = build_session(PIANO_61, "sim-hub", seed=5)
-    assert set(session) == {"device_id", "profile_id", "started_at", "mode", "events"}
+    session = build_session(PIANO_61, seed=5)
+    assert set(session) == {"profile_id", "started_at", "mode", "events"}
 
 
 def test_dry_run_prints_json(tmp_path, capsys):

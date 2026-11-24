@@ -11,8 +11,15 @@ def test_spotify_url_requests_only_listening_scopes():
 
 
 def test_spotify_disabled_without_settings(client, monkeypatch):
+    from .helpers import sign_up
+
     monkeypatch.delenv("SPOTIFY_CLIENT_ID", raising=False)
-    assert client.get("/api/v1/integrations/spotify/authorise").status_code == 503
+    person = sign_up(client)
+    assert client.get("/api/v1/integrations/spotify/authorise", headers=person.headers).status_code == 503
+
+
+def test_spotify_linking_needs_an_account(client):
+    assert client.get("/api/v1/integrations/spotify/authorise").status_code == 401
 
 
 def test_wled_same_pitch_class_same_colour():
