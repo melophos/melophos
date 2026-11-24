@@ -1,0 +1,14 @@
+# 4 MB layout shared by both board environments. Two app slots leave room for
+# a Wi-Fi update with rollback. profiles holds the 20 sectors ProfileStore
+# uses and state holds the small counters that must survive power cuts (the
+# boot counter, the update trial record and the version floor, two sectors each).
+# outbox keeps the last session across a power cut (four sectors). Nothing here
+# has booted on a board yet.
+# Name,     Type, SubType, Offset,   Size
+nvs,        data, nvs,     0x9000,   0x5000
+otadata,    data, ota,     0xe000,   0x2000
+app0,       app,  ota_0,   0x10000,  0x1E0000
+app1,       app,  ota_1,   0x1F0000, 0x1E0000
+profiles,   data, 0x40,    0x3D0000, 0x14000
+state,      data, 0x41,    0x3E4000, 0x6000
+outbox,     data, 0x42,    0x3EA000, 0x4000
