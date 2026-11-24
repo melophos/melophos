@@ -4,7 +4,7 @@ Short records of the choices that shape MELOPHOS, why they were made and what wo
 
 ## ADR 1: ESP32-S3 for the hub
 
-**Decision.** The hub runs on an ESP32-S3.
+**Decision.** The hub is designed to run on an ESP32-S3.
 
 **Why.** It is the one widely available chip with a USB OTG host port (to read and power a USB-MIDI keyboard), Bluetooth LE (for Bluetooth MIDI) and Wi-Fi in a single pre-certified module with its antenna.
 

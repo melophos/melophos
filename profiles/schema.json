@@ -7,8 +7,8 @@
   "required": ["id", "name", "type", "leds"],
   "properties": {
     "$schema": { "type": "string" },
-    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
-    "name": { "type": "string", "minLength": 1 },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$", "maxLength": 32 },
+    "name": { "type": "string", "minLength": 1, "maxLength": 64 },
     "type": { "enum": ["keyboard", "fretboard"] },
     "notes": {
       "type": "object",
@@ -22,7 +22,7 @@
     "geometry": {
       "type": "object",
       "properties": {
-        "white_key_mm": { "type": "number", "exclusiveMinimum": 0 }
+        "white_key_mm": { "type": "number", "minimum": 5, "maximum": 50 }
       },
       "additionalProperties": false
     },
@@ -30,7 +30,8 @@
       "type": "array",
       "description": "Open-string MIDI notes, lowest string first.",
       "items": { "$ref": "#/$defs/midiNote" },
-      "minItems": 1
+      "minItems": 1,
+      "maxItems": 8
     },
     "frets": { "type": "integer", "minimum": 1, "maximum": 36 },
     "leds": {
@@ -38,8 +39,8 @@
       "required": ["layout"],
       "properties": {
         "layout": { "enum": ["per-key", "strip", "grid"] },
-        "density_per_m": { "type": "number", "exclusiveMinimum": 0 },
-        "offset": { "type": "integer" },
+        "density_per_m": { "type": "number", "minimum": 10, "maximum": 300 },
+        "offset": { "type": "integer", "minimum": 0, "maximum": 32 },
         "reversed": { "type": "boolean" },
         "serpentine": { "type": "boolean" }
       },

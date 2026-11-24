@@ -1,0 +1,1 @@
+{ "id": "Bad_ID", "name": "Upper case and underscore", "type": "keyboard", "notes": { "lowest": 21, "highest": 108 }, "geometry": { "white_key_mm": 23.5 }, "leds": { "layout": "per-key" } }

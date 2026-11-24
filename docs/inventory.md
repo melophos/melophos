@@ -6,7 +6,7 @@ What is already on the bench for building the prototype and what still needs buy
 
 | Part | Quantity | Used for |
 | --- | --- | --- |
-| Gear4music VISIONKEY-100, 88 keys | 1 | Test instrument: 88 keys, 1234 mm wide, powered over USB-C at 5 V. MIDI over USB is still to be confirmed |
+| Gear4music VISIONKEY-100, 88 keys | 1 | Test instrument: 88 keys, 1234 mm wide, powered over USB-C at 5 V. Its USB-C port is a class-compliant USB MIDI device that sends notes with velocity (checked on 24 November 2026, see below). White key pitch still to be measured |
 | ESP32 development board (Wi-Fi and Bluetooth) | 3 | Early Bluetooth MIDI and LED bring-up. It has no USB host, so USB-MIDI waits for the ESP32-S3 |
 | WS2812B strip, 60 LED/m, 1 m | 1 | First LED tests over part of the keyboard. Too sparse for one LED per key |
 | GY-MAX4466 microphone amplifier | 2 | Early tests of audio note detection |
@@ -40,3 +40,9 @@ What is already on the bench for building the prototype and what still needs buy
 
 > [!TIP]
 > The keyboard's USB port may only supply power. Before buying USB host parts in quantity, connect it to a computer and check whether it appears as a MIDI device (on macOS: Audio MIDI Setup, Window, Show MIDI Studio).
+
+## The test keyboard's USB port
+
+Checked on 24 November 2026 with the keyboard connected to a Mac by one USB-C cable and no adapter. The keyboard took its power from the cable and presented a standard USB MIDI device: audio class with a MIDI streaming interface, so no driver is needed and a USB host such as the hub's can read it. It reports the product name "USB MIDI", the manufacturer "Kalezo", vendor 0x2485, product 0x4330, at full speed (12 Mb/s). macOS listed it as an online MIDI device with one entity.
+
+Note messages, checked the same day by listening on the Mac for 90 seconds while the keys were played: 40 key presses arrived on channel 1 as standard note-on messages with velocities from 21 to 95, so the keys are velocity sensitive. Releases arrive as note-on with velocity 0, the usual running form. Notes from A#0 to F5 were seen. One thing to look at again on the hub: the first group of messages arrived in a single burst, including four releases whose presses never arrived, so the first presses after the keyboard wakes may be held back or lost. The retailer's page lists no MIDI at all, so this is the evidence that it sends MIDI over USB.

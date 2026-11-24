@@ -1,0 +1,1 @@
+{ "id": "neg-offset", "name": "Negative offset", "type": "keyboard", "notes": { "lowest": 21, "highest": 108 }, "geometry": { "white_key_mm": 23.5 }, "leds": { "layout": "per-key", "offset": -3 } }

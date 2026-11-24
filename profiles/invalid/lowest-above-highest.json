@@ -1,0 +1,1 @@
+{ "id": "flipped", "name": "Lowest above highest", "type": "keyboard", "notes": { "lowest": 90, "highest": 40 }, "geometry": { "white_key_mm": 23.5 }, "leds": { "layout": "per-key" } }

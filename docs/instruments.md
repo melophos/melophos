@@ -6,11 +6,11 @@ Every instrument is described by a profile in [`profiles/`](../profiles/). The p
 
 ### Octave LED bars (recommended)
 
-Each octave bar carries 12 LEDs placed at real key spacing, with black-key LEDs set back to line up with the black keys. Bars snap together and short end bars cover the keys left over at each end, so any keyboard from 25 to 88 keys is covered. The profile uses `"layout": "per-key"` and every key gets exactly one LED.
+Each octave bar is designed to carry 12 LEDs placed at real key spacing, with black-key LEDs set back to line up with the black keys. The bars are designed to daisy-chain end to end through edge connectors, with short end bars for the keys left over at each end of a 61, 76 or 88 key keyboard. No bar has been made yet. The profile uses `"layout": "per-key"` and every key gets exactly one LED.
 
 ### LED strip
 
-A plain WS2812B strip also works. The profile uses `"layout": "strip"` with the strip's `density_per_m`. The hub computes each key's centre from the white-key width to pick the nearest LED. At 144 LEDs per metre an 88-key keyboard needs 176 LEDs, which is a 2 m strip cut after the 176th LED.
+A plain WS2812B strip is designed to work too, through a profile that picks the nearest light for each key. It has not been tried on a real keyboard. The profile uses `"layout": "strip"` with the strip's `density_per_m`. The hub computes each key's centre from the white-key width to pick the nearest LED. At 144 LEDs per metre an 88-key keyboard needs 176 LEDs, which is a 2 m strip cut after the 176th LED.
 
 ### Lining the lights up
 
@@ -29,4 +29,4 @@ A note appears at several places on a guitar neck. Guided songs carry the intend
 
 ## Adding an instrument
 
-See [CONTRIBUTING.md](../CONTRIBUTING.md) and [profiles/README.md](../profiles/README.md). A new profile is the easiest first contribution.
+See [CONTRIBUTING.md](../CONTRIBUTING.md) and [profiles/README.md](../profiles/README.md). A new profile is one JSON file, which makes it a small first contribution.
