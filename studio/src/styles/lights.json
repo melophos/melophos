@@ -1,0 +1,219 @@
+{
+  "$comment": "The role map for the lights. Every light colour has a shape and a word, so colour is never the only cue. The led field is the nominal drive value from the specification, tuned by eye on the real diffuser later. firmwareCurrent records what firmware/lib/practice/render.cpp holds today. A test fails when the firmware changes without this file, so the two cannot drift unseen. ledPercent is the brightness step the hub uses for the role (the upcoming light is 20 to 40 per cent, shown here as 30). The left hand is dimmer on the bar as a second signal and on screen as well.",
+  "roles": [
+    {
+      "id": "next-right",
+      "label": "Next note, right hand",
+      "token": "--light-right",
+      "shape": "Large filled disc",
+      "lane": "Solid bar",
+      "word": "R and a finger number when known",
+      "led": [
+        255,
+        150,
+        0
+      ],
+      "timing": "Steady",
+      "ledPercent": 100
+    },
+    {
+      "id": "next-left",
+      "label": "Next note, left hand",
+      "token": "--light-left",
+      "shape": "Large filled square",
+      "lane": "Hatched bar",
+      "word": "L and a finger number when known",
+      "led": [
+        0,
+        110,
+        255
+      ],
+      "timing": "Steady",
+      "ledPercent": 70
+    },
+    {
+      "id": "soon-right",
+      "label": "Coming up, right hand",
+      "token": "--light-right-soon",
+      "shape": "Small ring",
+      "lane": "Solid bar, smaller",
+      "word": "The note name on the step card",
+      "led": null,
+      "ledNote": "The same hue at about 12 per cent, gamma corrected",
+      "timing": "Steady",
+      "ledPercent": 30
+    },
+    {
+      "id": "soon-left",
+      "label": "Coming up, left hand",
+      "token": "--light-left-soon",
+      "shape": "Small hollow square",
+      "lane": "Hatched bar, smaller",
+      "word": "The note name on the step card",
+      "led": null,
+      "ledNote": "The same hue at about 12 per cent, gamma corrected",
+      "timing": "Steady",
+      "ledPercent": 30
+    },
+    {
+      "id": "wrong",
+      "label": "Wrong note",
+      "token": "--light-wrong",
+      "shape": "A cross on the pressed key",
+      "lane": "Not shown",
+      "word": "The words wrong note",
+      "led": [
+        255,
+        0,
+        160
+      ],
+      "timing": "Two blinks inside one second then steady. Steady only under the light sensitivity setting",
+      "ledPercent": 100
+    },
+    {
+      "id": "right",
+      "label": "Right note",
+      "token": null,
+      "shape": "The light goes out and the next one comes on",
+      "lane": "Not shown",
+      "word": "A tick on the step card",
+      "led": null,
+      "ledNote": "Off",
+      "timing": "None",
+      "ledPercent": 0
+    },
+    {
+      "id": "played",
+      "label": "Played, in free play",
+      "token": "--light-right",
+      "shape": "Filled key with an ink outline",
+      "lane": "Not shown",
+      "word": "The note name on the key",
+      "led": [
+        255,
+        150,
+        0
+      ],
+      "timing": "While held",
+      "ledPercent": 55
+    }
+  ],
+  "fills": [
+    {
+      "id": "key-left-fill",
+      "token": "--key-left-fill",
+      "shape": "Filled key with an ink outline and the marker square",
+      "word": "L"
+    },
+    {
+      "id": "key-wrong-fill",
+      "token": "--key-wrong-fill",
+      "shape": "Filled key with an ink outline and a cross",
+      "word": "The words wrong note"
+    }
+  ],
+  "firmwareCurrent": {
+    "GuideRight": [
+      255,
+      150,
+      0
+    ],
+    "GuideLeft": [
+      0,
+      110,
+      255
+    ],
+    "Wrong": [
+      255,
+      0,
+      160
+    ],
+    "Played": [
+      255,
+      150,
+      0
+    ]
+  },
+  "separation": {
+    "minimum": 20,
+    "screen": [
+      "next-right",
+      "next-left",
+      "soon-right",
+      "soon-left",
+      "wrong"
+    ],
+    "led": [
+      "next-right",
+      "next-left",
+      "wrong"
+    ]
+  },
+  "reference": [
+    {
+      "name": "Amber and blue, the hands, screen",
+      "a": "#ffb000",
+      "b": "#7cc0ff",
+      "spec": {
+        "normal": 120.4,
+        "protan": 109.2,
+        "deutan": 119.5,
+        "tritan": 80.3
+      },
+      "luminance": 1.06
+    },
+    {
+      "name": "Amber and rose, next and wrong, screen",
+      "a": "#ffb000",
+      "b": "#ff6fa3",
+      "spec": {
+        "normal": 91.6,
+        "protan": 88.8,
+        "deutan": 73.8,
+        "tritan": 27.5
+      }
+    },
+    {
+      "name": "Blue and rose, screen",
+      "a": "#7cc0ff",
+      "b": "#ff6fa3",
+      "spec": {
+        "normal": 74.8,
+        "protan": 28.4,
+        "deutan": 46.6,
+        "tritan": 103.0
+      }
+    },
+    {
+      "name": "Amber and pure red, LED",
+      "a": "#ff9600",
+      "b": "#ff0000",
+      "spec": {
+        "normal": 52.6,
+        "protan": 33.8,
+        "deutan": 19.6,
+        "tritan": 53.5
+      },
+      "expect": "fails under deuteranopia"
+    },
+    {
+      "name": "Amber and rose-magenta, LED",
+      "a": "#ff9600",
+      "b": "#ff00a0",
+      "spec": {
+        "normal": 107.1,
+        "protan": 104.7,
+        "deutan": 81.6,
+        "tritan": 35.6
+      }
+    },
+    {
+      "name": "Blue and rose-magenta, LED",
+      "a": "#006eff",
+      "b": "#ff00a0",
+      "spec": {
+        "protan": 40.3
+      }
+    }
+  ]
+}

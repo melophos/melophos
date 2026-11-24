@@ -1,0 +1,20 @@
+{
+  "$comment": "The characters the product needs. tests/fonts.test.ts checks every one against the font files and against the unicode-range in fonts.css. Ranges are inclusive hexadecimal code points.",
+  "text": {
+    "ranges": [
+      ["0020", "007E"],
+      ["00A1", "00B4"],
+      ["00B6", "00FF"]
+    ],
+    "singles": ["2018", "2019", "201C", "201D", "2026", "2022", "2212", "20AC"],
+    "why": "Latin 1 apart from the micro sign U+00B5, which neither font has and the product does not use. Note names, digits and finger numbers, the interface words in English and the accented letters of German and solfège note names, curly quotes, a true minus for tempo and the euro sign for the hardware page"
+  },
+  "music": {
+    "singles": ["266D", "266E", "266F"],
+    "why": "The flat, natural and sharp signs. They are read aloud as sharp and flat, never as a symbol, but they must show as the real signs"
+  },
+  "features": {
+    "sans": ["tnum"],
+    "why": "Tabular figures keep counters and timings from shifting as they change"
+  }
+}

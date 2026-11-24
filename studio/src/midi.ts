@@ -14,9 +14,25 @@ export function parseNoteMessage(data: Uint8Array): NoteMessage | null {
   return null;
 }
 
+export interface ControlMessage {
+  controller: number;
+  value: number;
+  channel: number;
+}
+
+// the sustain pedal is controller 64. a value of 64 or more is down
+export const SUSTAIN_CONTROLLER = 64;
+
+export function parseControlMessage(data: Uint8Array): ControlMessage | null {
+  if (data.length < 3) return null;
+  const [status = 0, controller = 0, value = 0] = data;
+  if ((status & 0xf0) !== 0xb0) return null;
+  return { controller, value, channel: status & 0x0f };
+}
+
 export async function connectMidi(onNote: (message: NoteMessage) => void): Promise<string[]> {
   if (!("requestMIDIAccess" in navigator)) {
-    throw new Error("This browser has no WebMIDI. Use Chrome or Edge.");
+    throw new Error("This browser cannot reach MIDI devices. Use Chrome, Edge or desktop Firefox.");
   }
   const access = await navigator.requestMIDIAccess();
   const names: string[] = [];

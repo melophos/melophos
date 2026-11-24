@@ -1,0 +1,19 @@
+{
+  "name": "MELOPHOS Studio",
+  "short_name": "Studio",
+  "description": "Light-guided piano practice. It works with no hub, no account and no network.",
+  "lang": "en-GB",
+  "start_url": "./#/",
+  "scope": "./",
+  "id": "./",
+  "display": "standalone",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "landscape",
+  "background_color": "#0E0E12",
+  "theme_color": "#0E0E12",
+  "icons": [
+    { "src": "melophos-mark-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "melophos-mark-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "melophos-mark.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

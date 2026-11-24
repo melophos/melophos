@@ -1,0 +1,383 @@
+/*
+  design tokens for MELOPHOS Studio and the public site.
+  every colour, size, space, radius and duration is a custom property here and nowhere else.
+
+  how this file is read:
+  - the first :root block holds everything that does not change with the theme.
+  - each block marked "@set" holds one full colour set: light, dark and the two high contrast sets.
+    a set appears more than once because the system setting and the data-theme and data-contrast
+    attributes must each select it. tests/contrast.test.ts fails when two blocks of one set differ.
+  - tokens.pairs.json lists every foreground and background pairing a component may use.
+  - the contrast sets are not in the specification. they are one proposal, measured by the same test.
+  - the light roles use the ink rail in every theme, so amber keeps 11:1 even on paper.
+  - src/styles/lights.json is the role map for the lights. It holds the LED drive values that
+    firmware/lib/practice/render.cpp has to follow.
+
+  provisional decisions baked in here: D2 and D3 (typeface names), D4 (light colours and hands),
+  D10 (system theme with an override). each is one block below.
+*/
+
+:root {
+  /* type: D2 and D3. the names must match src/styles/fonts/fonts.css */
+  --font-sans: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible Next Fallback", Verdana, system-ui, sans-serif;
+  --font-mono: "Atkinson Hyperlegible Mono", "Atkinson Hyperlegible Mono Fallback", "Courier New", ui-monospace, monospace;
+
+  /* type scale, in rem so the player's text setting always wins. nothing is smaller than the floor */
+  --size-floor: 1rem;
+  --size-body: 1.125rem;
+  --size-lead: 1.375rem;
+  --size-code: 1rem;
+  --size-h3: 1.375rem;
+  --size-h2: 1.75rem;
+  --size-h1: 2.5rem;
+  --size-app-h3: 1.25rem;
+  --size-app-h2: 1.5rem;
+  --size-app-h1: 1.75rem;
+  --leading-body: 1.6;
+  --leading-display: 1.2;
+  --weight-regular: 400;
+  --weight-bold: 700;
+  --measure: 68ch;
+
+  /* space, a 4 px grid in rem */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* shape: flat, no shadow carries meaning */
+  --radius: 0.5rem;
+  --radius-key: 0 0 0.25rem 0.25rem;
+  --border-width: 1px;
+  --border-width-control: 2px;
+  --border-width-dialog: 2px;
+
+  /* focus: a ring in the text colour with a gap in the canvas colour. never amber */
+  --focus-width: 3px;
+  --focus-gap-width: 2px;
+
+  /* targets */
+  --target-site: 2.75rem;
+  --target-app: 3rem;
+  --target-gap: 0.5rem;
+
+  /* layout */
+  --page-max: 75rem;
+  --column-max: 45rem;
+  --gutter: 1rem;
+
+  /* motion: feedback is instant, these are for dialogs, toasts and hover only */
+  --duration-in: 200ms;
+  --duration-out: 130ms;
+  --duration-hover: 150ms;
+
+  /* practice view, Near. the Stand and Far values follow at the end of the file */
+  --distance-factor: 1;
+  --practice-support: 1.25rem;
+  --practice-counter: 1.75rem;
+  --practice-step-note: 3rem;
+  --practice-next-note: 6rem;
+  --practice-transport: 4rem;
+
+  /* the rail is ink in every theme, because the real bar is. these never change with the theme */
+  --rail: #060608;
+
+  /* lights on the rail: D4. each has a shape and a word in lights.json */
+  --light-right: #ffb000;
+  --light-left: #7cc0ff;
+  --light-right-soon: #a87400;
+  --light-left-soon: #3f7fbf;
+  --light-wrong: #ff6fa3;
+
+  /* keys: a lit key always has an ink outline and a marker shape, because the fills are close to white keys */
+  --key-white: #f2f2f5;
+  --key-ink: #0e0e12;
+  --key-left-fill: #0a4e96;
+  --key-wrong-fill: #9b1150;
+  --on-key-fill: #ffffff;
+}
+
+/* @set light */
+:root {
+  color-scheme: light;
+  --weight-body: 400;
+  --canvas: #f7f7f5;
+  --surface: #ffffff;
+  --surface-alt: #ecece7;
+  --text: #0e0e12;
+  --text-muted: #45454f;
+  --border: #cfcfc8;
+  --border-strong: #6e6e78;
+  --accent: #ffb000;
+  --on-accent: #0e0e12;
+  --accent-mark: #996300;
+  --accent-text: #6f4700;
+  --problem: #9b1150;
+  --left: #0a4e96;
+  --focus: #0e0e12;
+  --focus-gap: #f7f7f5;
+  --scale-1: #f3dfa8;
+  --scale-2: #e0b24a;
+  --scale-3: #b57b00;
+  --scale-4: #8a5a00;
+  --scale-5: #5c3b00;
+}
+
+/* @set dark */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --weight-body: 450;
+    --canvas: #0e0e12;
+    --surface: #17171d;
+    --surface-alt: #20202a;
+    --text: #f2f2f5;
+    --text-muted: #bdbdc9;
+    --border: #3a3a47;
+    --border-strong: #8a8a9a;
+    --accent: #ffb000;
+    --on-accent: #0e0e12;
+    --accent-mark: #ffb000;
+    --accent-text: #ffb000;
+    --problem: #ff6fa3;
+    --left: #7cc0ff;
+    --focus: #f2f2f5;
+    --focus-gap: #0e0e12;
+    --scale-1: #3d2e0a;
+    --scale-2: #6b4c08;
+    --scale-3: #9a6a00;
+    --scale-4: #cc8d00;
+    --scale-5: #ffb000;
+  }
+}
+
+/* @set dark */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --weight-body: 450;
+  --canvas: #0e0e12;
+  --surface: #17171d;
+  --surface-alt: #20202a;
+  --text: #f2f2f5;
+  --text-muted: #bdbdc9;
+  --border: #3a3a47;
+  --border-strong: #8a8a9a;
+  --accent: #ffb000;
+  --on-accent: #0e0e12;
+  --accent-mark: #ffb000;
+  --accent-text: #ffb000;
+  --problem: #ff6fa3;
+  --left: #7cc0ff;
+  --focus: #f2f2f5;
+  --focus-gap: #0e0e12;
+  --scale-1: #3d2e0a;
+  --scale-2: #6b4c08;
+  --scale-3: #9a6a00;
+  --scale-4: #cc8d00;
+  --scale-5: #ffb000;
+}
+
+/* @set light-more */
+@media (prefers-contrast: more) {
+  :root:not([data-theme]),
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --weight-body: 400;
+    --canvas: #ffffff;
+    --surface: #ffffff;
+    --surface-alt: #f0f0ec;
+    --text: #000000;
+    --text-muted: #2b2b33;
+    --border: #6e6e78;
+    --border-strong: #2b2b33;
+    --accent: #ffb000;
+    --on-accent: #000000;
+    --accent-mark: #7a4a00;
+    --accent-text: #5c3a00;
+    --problem: #850d40;
+    --left: #073f7c;
+    --focus: #000000;
+    --focus-gap: #ffffff;
+    --scale-1: #f3dfa8;
+    --scale-2: #d4a030;
+    --scale-3: #8f5c00;
+    --scale-4: #6b4300;
+    --scale-5: #3f2700;
+  }
+}
+
+/* @set light-more */
+:root[data-contrast="more"]:not([data-theme="dark"]) {
+  color-scheme: light;
+  --weight-body: 400;
+  --canvas: #ffffff;
+  --surface: #ffffff;
+  --surface-alt: #f0f0ec;
+  --text: #000000;
+  --text-muted: #2b2b33;
+  --border: #6e6e78;
+  --border-strong: #2b2b33;
+  --accent: #ffb000;
+  --on-accent: #000000;
+  --accent-mark: #7a4a00;
+  --accent-text: #5c3a00;
+  --problem: #850d40;
+  --left: #073f7c;
+  --focus: #000000;
+  --focus-gap: #ffffff;
+  --scale-1: #f3dfa8;
+  --scale-2: #d4a030;
+  --scale-3: #8f5c00;
+  --scale-4: #6b4300;
+  --scale-5: #3f2700;
+}
+
+/* @set dark-more */
+@media (prefers-color-scheme: dark) and (prefers-contrast: more) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --weight-body: 450;
+    --canvas: #000000;
+    --surface: #08080b;
+    --surface-alt: #121217;
+    --text: #ffffff;
+    --text-muted: #e2e2ea;
+    --border: #8a8a9a;
+    --border-strong: #c4c4d0;
+    --accent: #ffb000;
+    --on-accent: #000000;
+    --accent-mark: #ffb000;
+    --accent-text: #ffb000;
+    --problem: #ff8db8;
+    --left: #9dd0ff;
+    --focus: #ffffff;
+    --focus-gap: #000000;
+    --scale-1: #3d2e0a;
+    --scale-2: #7a5800;
+    --scale-3: #b07800;
+    --scale-4: #d99600;
+    --scale-5: #ffb000;
+  }
+}
+
+/* @set dark-more */
+@media (prefers-contrast: more) {
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --weight-body: 450;
+    --canvas: #000000;
+    --surface: #08080b;
+    --surface-alt: #121217;
+    --text: #ffffff;
+    --text-muted: #e2e2ea;
+    --border: #8a8a9a;
+    --border-strong: #c4c4d0;
+    --accent: #ffb000;
+    --on-accent: #000000;
+    --accent-mark: #ffb000;
+    --accent-text: #ffb000;
+    --problem: #ff8db8;
+    --left: #9dd0ff;
+    --focus: #ffffff;
+    --focus-gap: #000000;
+    --scale-1: #3d2e0a;
+    --scale-2: #7a5800;
+    --scale-3: #b07800;
+    --scale-4: #d99600;
+    --scale-5: #ffb000;
+  }
+}
+
+/* @set dark-more */
+@media (prefers-color-scheme: dark) {
+  :root[data-contrast="more"]:not([data-theme]) {
+    color-scheme: dark;
+    --weight-body: 450;
+    --canvas: #000000;
+    --surface: #08080b;
+    --surface-alt: #121217;
+    --text: #ffffff;
+    --text-muted: #e2e2ea;
+    --border: #8a8a9a;
+    --border-strong: #c4c4d0;
+    --accent: #ffb000;
+    --on-accent: #000000;
+    --accent-mark: #ffb000;
+    --accent-text: #ffb000;
+    --problem: #ff8db8;
+    --left: #9dd0ff;
+    --focus: #ffffff;
+    --focus-gap: #000000;
+    --scale-1: #3d2e0a;
+    --scale-2: #7a5800;
+    --scale-3: #b07800;
+    --scale-4: #d99600;
+    --scale-5: #ffb000;
+  }
+}
+
+/* @set dark-more */
+:root[data-contrast="more"][data-theme="dark"] {
+  color-scheme: dark;
+  --weight-body: 450;
+  --canvas: #000000;
+  --surface: #08080b;
+  --surface-alt: #121217;
+  --text: #ffffff;
+  --text-muted: #e2e2ea;
+  --border: #8a8a9a;
+  --border-strong: #c4c4d0;
+  --accent: #ffb000;
+  --on-accent: #000000;
+  --accent-mark: #ffb000;
+  --accent-text: #ffb000;
+  --problem: #ff8db8;
+  --left: #9dd0ff;
+  --focus: #ffffff;
+  --focus-gap: #000000;
+  --scale-1: #3d2e0a;
+  --scale-2: #7a5800;
+  --scale-3: #b07800;
+  --scale-4: #d99600;
+  --scale-5: #ffb000;
+}
+
+/* the page title drops a step on a phone, as the specification asks */
+@media (max-width: 30rem) {
+  :root {
+    --size-h1: 2rem;
+  }
+}
+
+/* distance setting for the practice view: type, lights and targets step up together */
+:root[data-distance="stand"] {
+  --distance-factor: 1.5;
+  --practice-support: 1.875rem;
+  --practice-counter: 2.625rem;
+  --practice-step-note: 4.5rem;
+  --practice-next-note: 9rem;
+  --practice-transport: 5rem;
+}
+
+:root[data-distance="far"] {
+  --distance-factor: 2;
+  --practice-support: 2.5rem;
+  --practice-counter: 3.5rem;
+  --practice-step-note: 6rem;
+  --practice-next-note: 12rem;
+  --practice-transport: 6rem;
+}
+
+/* no motion at all when the player asks for less */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-in: 0s;
+    --duration-out: 0s;
+    --duration-hover: 0s;
+  }
+}
