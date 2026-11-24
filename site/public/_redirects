@@ -1,0 +1,3 @@
+# the Try it button points here. the Studio routes on the address hash and its practice view with a simulated player is
+# #/try (studio/src/app/App.tsx). tests/headers.test.ts checks that route still exists in the Studio
+/try  https://app.melophos.com/#/try  302
