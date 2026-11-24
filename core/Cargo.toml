@@ -2,13 +2,18 @@
 name = "melophos-core"
 version = "0.1.0"
 edition = "2021"
-rust-version = "1.80"
+rust-version = "1.85"
 description = "MELOPHOS scoring engine: aligns played notes with expected notes and scores accuracy and timing"
 license = "AGPL-3.0-or-later"
 repository = "https://github.com/melophos/melophos"
 readme = "README.md"
 keywords = ["music", "midi", "practice", "scoring"]
 categories = ["multimedia::audio"]
+
+[workspace]
+# the binding crates are separate so the engine itself keeps `unsafe_code = "forbid"`:
+# the macros that generate the glue write unsafe code and cannot live in this crate
+members = [".", "wasm", "python"]
 
 [lib]
 path = "src/lib.rs"
@@ -19,3 +24,17 @@ missing_docs = "warn"
 
 [lints.clippy]
 pedantic = { level = "warn", priority = -1 }
+
+[dev-dependencies]
+serde_json = "1"
+proptest = "1"
+
+# the WebAssembly build: small and without unwinding. `cargo test` and `cargo build`
+# never use it, only the wasm build script does.
+[profile.wasm]
+inherits = "release"
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
