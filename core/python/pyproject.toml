@@ -1,0 +1,31 @@
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+name = "melophos-core"
+version = "0.1.0"
+description = "The MELOPHOS scoring engine for Python"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "AGPL-3.0-or-later"
+license-files = ["LICENSE"]
+classifiers = [
+  "Programming Language :: Rust",
+  "Programming Language :: Python :: 3",
+  "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.maturin]
+python-source = "python"
+module-name = "melophos_core._native"
+# only maturin needs the extension-module feature: it stops the module linking to libpython
+features = ["pyo3/extension-module"]
+# the wheel is built from the crate and the fixtures only: nothing else is packed
+strip = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

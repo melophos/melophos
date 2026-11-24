@@ -1,0 +1,26 @@
+[package]
+name = "melophos-core-python"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+description = "Python bindings for the MELOPHOS scoring engine"
+license = "AGPL-3.0-or-later"
+repository = "https://github.com/melophos/melophos"
+publish = false
+
+[lib]
+name = "_native"
+crate-type = ["cdylib"]
+
+[dependencies]
+melophos-core = { path = ".." }
+# abi3 builds one wheel per platform that runs on every Python from 3.9. The
+# extension-module feature is added by maturin (see pyproject.toml) so that
+# `cargo clippy` and `cargo check` work without a Python library to link.
+pyo3 = { version = "0.30", features = ["abi3-py39"] }
+
+[lints.rust]
+missing_docs = "warn"
+
+[lints.clippy]
+pedantic = { level = "warn", priority = -1 }
