@@ -1,0 +1,9 @@
+# the compiler every build of the engine uses. The WebAssembly module is
+# byte-for-byte reproducible only with this exact version (see wasm/README.md),
+# so wasm/build.sh refuses any other. The lowest versions that still compile are
+# in README.md: they are for using the crate, not for building the release.
+[toolchain]
+channel = "1.99.1"
+components = ["rustfmt", "clippy"]
+targets = ["wasm32-unknown-unknown"]
+profile = "minimal"
