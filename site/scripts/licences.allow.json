@@ -1,0 +1,126 @@
+[
+  {
+    "package": "@img/sharp-libvips-darwin-arm64",
+    "licence": "LGPL-3.0-or-later",
+    "reason": "LGPL library that sharp loads as a separate binary when the Next.js image tool resizes images. This site turns that tool off, the binary is never part of the output and nothing is distributed with it. Build time only",
+    "optional": true
+  },
+  {
+    "package": "@img/sharp-libvips-darwin-x64",
+    "licence": "LGPL-3.0-or-later",
+    "reason": "LGPL library that sharp loads as a separate binary when the Next.js image tool resizes images. This site turns that tool off, the binary is never part of the output and nothing is distributed with it. Build time only",
+    "optional": true
+  },
+  {
+    "package": "@img/sharp-libvips-linux-arm64",
+    "licence": "LGPL-3.0-or-later",
+    "reason": "LGPL library that sharp loads as a separate binary when the Next.js image tool resizes images. This site turns that tool off, the binary is never part of the output and nothing is distributed with it. Build time only",
+    "optional": true
+  },
+  {
+    "package": "@img/sharp-libvips-linux-x64",
+    "licence": "LGPL-3.0-or-later",
+    "reason": "LGPL library that sharp loads as a separate binary when the Next.js image tool resizes images. This site turns that tool off, the binary is never part of the output and nothing is distributed with it. Build time only",
+    "optional": true
+  },
+  {
+    "package": "@isaacs/nonrecursive-glob-match",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "argparse",
+    "licence": "PSF-2.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "caniuse-lite",
+    "licence": "CC-BY-4.0",
+    "reason": "Browser support data that Next.js reads while it builds. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "chownr",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "common-ancestor-path",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "glob",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "graceful-fs",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "isexe",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "lru-cache",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "minimatch",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "minipass",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "minipass-flush",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "path-scurry",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "sentry",
+    "licence": "Apache*",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "spdx-exceptions",
+    "licence": "CC-BY-3.0",
+    "reason": "Data file or list of names with a Creative Commons or public domain licence. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "spdx-license-ids",
+    "licence": "CC0-1.0",
+    "reason": "Data file or list of names with a Creative Commons or public domain licence. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "spdx-ranges",
+    "licence": "(MIT AND CC-BY-3.0)",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "tar",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "tslib",
+    "licence": "0BSD",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  },
+  {
+    "package": "yallist",
+    "licence": "BlueOak-1.0.0",
+    "reason": "Permissive licence compatible with AGPL-3.0-or-later. Build time only and never shipped to visitors"
+  }
+]

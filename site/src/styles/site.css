@@ -1,0 +1,1152 @@
+/*
+  the site's own styles. every colour, size, space and duration comes from the shared tokens and base styles
+  in studio/src/styles, so this file holds no colour and no pixel size of its own.
+  the recurring shape is the rail: an ink strip with one lit disc. it marks the current page in the navigation
+  and it is the light bar over the keyboard figure.
+*/
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+  padding-block: var(--space-8) var(--space-16);
+}
+
+.wrap {
+  inline-size: 100%;
+  max-inline-size: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@media (min-width: 48rem) {
+  .wrap {
+    padding-inline: var(--space-8);
+  }
+}
+
+/* header */
+.site-header {
+  border-block-end: var(--border-width) solid var(--border);
+}
+
+.site-header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding-block: var(--space-3);
+}
+
+@media (min-width: 60rem) {
+  .site-header .wrap {
+    gap: var(--space-2) var(--space-6);
+  }
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-site);
+}
+
+.brand img {
+  display: block;
+  block-size: 2.5rem;
+  inline-size: auto;
+}
+
+@media (min-width: 48rem) {
+  .brand img {
+    block-size: 3.5rem;
+  }
+}
+
+.wordmark-dark {
+  display: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .wordmark-light {
+    display: none !important;
+  }
+
+  :root:not([data-theme="light"]) .wordmark-dark {
+    display: block !important;
+  }
+}
+
+:root[data-theme="dark"] .wordmark-light {
+  display: none !important;
+}
+
+:root[data-theme="dark"] .wordmark-dark {
+  display: block !important;
+}
+
+.site-nav {
+  display: none;
+  flex: 1 1 auto;
+}
+
+@media (min-width: 60rem) {
+  .site-nav {
+    display: block;
+  }
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-site);
+  padding-inline: var(--space-1);
+  border-block-start: 0.375rem solid var(--rail);
+  color: var(--text);
+}
+
+/* the lit disc on the rail names the current page. the bold weight and aria-current say it too */
+.site-nav a[aria-current="page"] {
+  font-weight: var(--weight-bold);
+}
+
+.site-nav a[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -0.5625rem;
+  inset-inline-start: 50%;
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  margin-inline-start: -0.375rem;
+  border-radius: 50%;
+  background: var(--light-right);
+}
+
+/* footer */
+.site-footer {
+  margin-block-start: auto;
+  padding-block: var(--space-8);
+  border-block-start: var(--border-width) solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.site-footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-6);
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer li a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-site);
+}
+
+.site-footer .fine {
+  margin-block-end: 0;
+  color: var(--text);
+}
+
+.theme-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin-block-end: var(--space-6);
+}
+
+.theme-toggle .options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--target-gap);
+}
+
+/* page titles and the lead paragraph */
+.page-title {
+  margin-block-end: var(--space-4);
+}
+
+.lead {
+  font-size: var(--size-lead);
+  line-height: var(--leading-display);
+  max-inline-size: 36ch;
+}
+
+.lead-wide {
+  max-inline-size: 48ch;
+}
+
+.prose {
+  max-inline-size: none;
+}
+
+.prose > :not(.table-scroll) {
+  max-inline-size: var(--column-max);
+}
+
+.prose > h2,
+.section > h2 {
+  margin-block-start: var(--space-12);
+}
+
+.section {
+  margin-block-start: var(--space-12);
+}
+
+.section > h2 {
+  margin-block-start: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  align-items: center;
+  margin-block: var(--space-6);
+}
+
+/* the home page opens on the left: a name, one sentence and the one action */
+.opening {
+  display: grid;
+  gap: var(--space-6);
+  margin-block-end: var(--space-8);
+}
+
+.status-line {
+  max-inline-size: var(--column-max);
+  padding-inline-start: var(--space-4);
+  border-inline-start: 0.375rem solid var(--border-strong);
+}
+
+/* the keyboard figure */
+.keyboard-figure {
+  margin-block: var(--space-8);
+}
+
+.keyboard-figure .frame {
+  overflow-x: auto;
+  border: var(--border-width-control) solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--canvas);
+}
+
+.keyboard-figure .frame svg {
+  display: block;
+  inline-size: 100%;
+  min-inline-size: 78rem;
+  block-size: auto;
+}
+
+.keyboard-figure .rail {
+  fill: var(--rail);
+}
+
+.keyboard-figure .led {
+  fill: var(--border-strong);
+}
+
+.keyboard-figure .key-white {
+  fill: var(--key-white);
+  stroke: var(--key-ink);
+  stroke-width: 1;
+}
+
+.keyboard-figure .key-black {
+  fill: var(--key-ink);
+  stroke: var(--key-ink);
+  stroke-width: 1;
+}
+
+.keyboard-figure .key.is-lit {
+  fill: var(--light-right);
+  stroke: var(--key-ink);
+  stroke-width: 3;
+}
+
+.keyboard-figure .next {
+  fill: var(--light-right);
+}
+
+.keyboard-figure .soon {
+  fill: none;
+  stroke: var(--light-right-soon);
+  stroke-width: 3;
+}
+
+.keyboard-figure .key-marker {
+  fill: var(--key-ink);
+}
+
+.keyboard-figure .c-label {
+  fill: var(--key-ink);
+  font-size: var(--size-floor);
+  font-weight: var(--weight-bold);
+}
+
+.keyboard-figure .lit-label {
+  fill: var(--text);
+  font-size: var(--size-h3);
+  font-weight: var(--weight-bold);
+}
+
+.figure-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-6);
+  margin-block-start: var(--space-4);
+}
+
+.figure-controls p {
+  margin: 0;
+}
+
+figcaption {
+  max-inline-size: var(--column-max);
+  margin-block-start: var(--space-3);
+  color: var(--text);
+}
+
+@media (forced-colors: active) {
+  .keyboard-figure .rail {
+    fill: CanvasText;
+  }
+
+  .keyboard-figure .led {
+    fill: Canvas;
+  }
+
+  .keyboard-figure .key-white {
+    fill: Canvas;
+    stroke: CanvasText;
+  }
+
+  .keyboard-figure .key-black {
+    fill: CanvasText;
+    stroke: CanvasText;
+  }
+
+  .keyboard-figure .key.is-lit {
+    fill: Highlight;
+    stroke: CanvasText;
+  }
+
+  .keyboard-figure .next {
+    fill: Highlight;
+  }
+
+  .keyboard-figure .soon {
+    stroke: Highlight;
+  }
+
+  .keyboard-figure .key-marker,
+  .keyboard-figure .c-label,
+  .keyboard-figure .lit-label {
+    fill: CanvasText;
+  }
+
+  .site-nav a[aria-current="page"]::before {
+    background: Highlight;
+  }
+}
+
+/* rows for lists: a name, a status word and a sentence */
+.rows {
+  margin: 0 0 var(--space-8);
+  padding: 0;
+  list-style: none;
+  border-block-start: var(--border-width) solid var(--border);
+}
+
+.row {
+  display: grid;
+  gap: var(--space-2) var(--space-6);
+  padding-block: var(--space-4);
+  border-block-end: var(--border-width) solid var(--border);
+}
+
+.row > * {
+  min-inline-size: 0;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+/* the name and the status stack in the first column and the sentence sits beside them. the columns are shares of the
+   row and not fixed widths, so a long status word wraps inside its column and can never print over the sentence */
+.row-part .who p {
+  margin: 0 0 var(--space-2);
+}
+
+.row .name {
+  font-weight: var(--weight-bold);
+}
+
+@media (min-width: 48rem) {
+  .row-part {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr);
+  }
+
+  .row-wide {
+    grid-template-columns: 12rem minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 48rem) {
+  .row-status {
+    grid-template-columns: 18rem minmax(0, 1fr);
+  }
+}
+
+.row .detail p {
+  margin-block-end: var(--space-2);
+}
+
+.row .detail p:last-child {
+  margin-block-end: 0;
+}
+
+/* status words: the word is always there and the shape differs for each */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--weight-bold);
+}
+
+.status-mark {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  flex: none;
+  color: var(--text);
+}
+
+.status-mark .fill {
+  fill: var(--accent-mark);
+}
+
+.status-mark .hollow {
+  fill: none;
+}
+
+.status-mark .line {
+  stroke: currentcolor;
+  stroke-width: 2;
+}
+
+.status-mark .dash {
+  stroke-dasharray: 3 2.5;
+}
+
+/* tables and diagrams */
+.table-scroll {
+  max-inline-size: 100%;
+  margin-block-end: var(--space-6);
+  overflow-x: auto;
+}
+
+.table-scroll table {
+  min-inline-size: 36rem;
+}
+
+.table-scroll th {
+  background: var(--surface-alt);
+  color: var(--text);
+}
+
+.diagram {
+  margin-block: var(--space-6);
+}
+
+.diagram figcaption {
+  margin-block: 0 var(--space-2);
+  font-weight: var(--weight-bold);
+}
+
+.how-figure {
+  margin-block: var(--space-8);
+}
+
+.how-figure svg {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+.how-figure .frame {
+  overflow-x: auto;
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.how-figure .frame svg {
+  min-inline-size: 44rem;
+}
+
+.d-box {
+  fill: var(--surface-alt);
+  stroke: var(--border-strong);
+  stroke-width: 2;
+}
+
+.d-box-rail {
+  fill: var(--rail);
+  stroke: var(--border-strong);
+  stroke-width: 2;
+}
+
+.d-text {
+  fill: var(--text);
+  font-size: var(--size-floor);
+}
+
+.d-text-bold {
+  fill: var(--text);
+  font-size: var(--size-floor);
+  font-weight: var(--weight-bold);
+}
+
+.d-text-rail {
+  fill: var(--key-white);
+  font-size: var(--size-floor);
+  font-weight: var(--weight-bold);
+}
+
+.d-line {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 2;
+}
+
+.d-arrow {
+  fill: var(--text);
+}
+
+.d-dash {
+  stroke-dasharray: 6 4;
+}
+
+.d-light {
+  fill: var(--light-right);
+}
+
+/* callouts carry a word and a mark, never colour alone */
+.callout {
+  max-inline-size: var(--column-max);
+  margin-block: var(--space-6);
+  padding: var(--space-4);
+  border: var(--border-width-control) solid var(--border-strong);
+  border-inline-start-width: 0.5rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.callout > :last-child {
+  margin-block-end: 0;
+}
+
+.callout-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-block-end: var(--space-2);
+  font-weight: var(--weight-bold);
+}
+
+.callout[data-kind="warning"],
+.callout[data-kind="caution"] {
+  border-style: dashed;
+  border-inline-style: solid;
+}
+
+.callout code,
+.callout kbd {
+  background: var(--surface-alt);
+}
+
+/* headings in documents: a link to the section sits beside the words */
+.anchor {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: var(--target-site);
+  min-block-size: var(--target-site);
+  margin-block: calc(var(--target-site) / -2);
+  text-decoration: none;
+  color: var(--text-muted);
+}
+
+.anchor:visited {
+  color: var(--text-muted);
+}
+
+.ext-mark,
+a svg.icon {
+  display: inline-block;
+}
+
+a svg.icon {
+  inline-size: 1em;
+  block-size: 1em;
+  vertical-align: -0.125em;
+  margin-inline-start: 0.25em;
+}
+
+.callout-title svg.icon {
+  margin: 0;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}
+
+/* documents: the text and, on a wide screen, the contents beside it */
+.doc-layout {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.doc-layout > *,
+.prose,
+.release {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 64rem) {
+  .doc-layout {
+    grid-template-columns: minmax(0, var(--column-max)) 16rem;
+    justify-content: space-between;
+  }
+
+  .doc-layout .contents {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    position: sticky;
+    inset-block-start: var(--space-4);
+  }
+
+  .doc-layout .doc-body {
+    grid-column: 1;
+    grid-row: 1;
+    min-inline-size: 0;
+  }
+}
+
+.contents {
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.contents h2 {
+  margin-block: 0 var(--space-2);
+  font-size: var(--size-body);
+}
+
+.contents ol,
+.contents ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contents a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-site);
+}
+
+.contents .sub a {
+  padding-inline-start: var(--space-4);
+}
+
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-start: var(--space-12);
+  padding-block-start: var(--space-6);
+  border-block-start: var(--border-width) solid var(--border);
+}
+
+.pager a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-site);
+}
+
+.edit-link {
+  margin-block-start: var(--space-6);
+}
+
+/* the changelog and the roadmap */
+.release {
+  margin-block-start: var(--space-12);
+}
+
+.release > h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+}
+
+.release h3,
+.release h4 {
+  margin-block-start: var(--space-6);
+}
+
+.release ul {
+  max-inline-size: var(--column-max);
+  padding-inline-start: var(--space-6);
+}
+
+.release li {
+  margin-block-end: var(--space-3);
+}
+
+.release li p {
+  margin: 0;
+}
+
+.group-name {
+  margin-block: var(--space-6) var(--space-2);
+}
+
+/* the not-found page and small helpers */
+.link-list {
+  padding: 0;
+  list-style: none;
+}
+
+.link-list a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-site);
+}
+
+.placeholder {
+  padding: var(--space-1) var(--space-2);
+  border: var(--border-width-control) dashed var(--problem);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: var(--weight-bold);
+}
+
+.note-signed {
+  max-inline-size: var(--column-max);
+  padding: var(--space-6);
+  border: var(--border-width-control) solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.note-signed p {
+  max-inline-size: 60ch;
+}
+
+.note-signed .signature {
+  margin-block-end: 0;
+  font-weight: var(--weight-bold);
+}
+
+dl.facts {
+  display: grid;
+  gap: var(--space-1) var(--space-6);
+  max-inline-size: var(--column-max);
+}
+
+dl.facts dt {
+  font-weight: var(--weight-bold);
+}
+
+dl.facts dd {
+  margin: 0 0 var(--space-3);
+}
+
+@media (min-width: 40rem) {
+  dl.facts {
+    grid-template-columns: 11rem minmax(0, 1fr);
+  }
+
+  dl.facts dd {
+    margin: 0;
+  }
+}
+
+.actions a:not(.button) {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-site);
+}
+
+.contents a,
+.link-list a,
+.site-footer li a {
+  min-inline-size: var(--target-site);
+}
+
+/* visually hidden text inside a scrolling region must be clipped by it, so the page never scrolls sideways */
+.table-scroll,
+.frame,
+pre {
+  position: relative;
+}
+
+.table-scroll,
+.table-scroll * {
+  overflow-wrap: normal;
+}
+
+/* the wrappers the framework needs around markup drawn at build time take no space of their own, so the rendered
+   blocks and icons sit in the page as if written straight into it */
+.md,
+.icon-host {
+  display: contents;
+}
+
+/* the menu on a narrow screen: a disclosure that works with scripts off. the wide screen shows the links in the bar */
+.site-header .button {
+  margin-inline-start: auto;
+}
+
+.menu > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: var(--target-site);
+  padding-inline: var(--space-3);
+  border: var(--border-width-control) solid var(--border-strong);
+  border-radius: var(--radius);
+  font-weight: var(--weight-bold);
+  list-style: none;
+  cursor: pointer;
+}
+
+.menu > summary::-webkit-details-marker {
+  display: none;
+}
+
+.menu[open] > summary {
+  background: var(--surface-alt);
+  color: var(--text);
+}
+
+/* a closed disclosure keeps its panel out of the layout in every browser, not only in those that hide it themselves */
+.menu:not([open]) > .menu-panel {
+  display: none;
+}
+
+.menu-panel {
+  position: absolute;
+  inset-inline: 0;
+  z-index: 2;
+  padding: var(--space-4) var(--gutter) var(--space-6);
+  border-block-end: var(--border-width-control) solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+}
+
+.menu-panel ul {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu-panel a {
+  display: flex;
+  align-items: center;
+  min-block-size: var(--target-site);
+  font-size: var(--size-lead);
+}
+
+.menu-panel a[aria-current="page"] {
+  font-weight: var(--weight-bold);
+}
+
+.menu-panel a[aria-current="page"]::after {
+  content: "";
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  margin-inline-start: var(--space-3);
+  border-radius: 50%;
+  background: var(--light-right);
+  outline: var(--border-width-control) solid var(--key-ink);
+}
+
+.site-header {
+  position: relative;
+}
+
+@media (min-width: 60rem) {
+  .menu {
+    display: none;
+  }
+}
+
+/* the stage: the home page opens on ink, because the bar of lights is ink in every theme. the words and the keyboard
+   drawing sit on it together, so the first thing seen is a light on a key */
+.stage {
+  --focus: var(--key-white);
+  --focus-gap: var(--rail);
+  margin-block: calc(var(--space-8) * -1) var(--space-12);
+  padding-block: var(--space-12) var(--space-8);
+  background: var(--rail);
+  color: var(--key-white);
+}
+
+.stage a:not(.button) {
+  color: var(--key-white);
+}
+
+.stage .stage-title {
+  max-inline-size: 14ch;
+  margin-block-end: var(--space-6);
+  font-size: 2.75rem;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.stage .lead {
+  max-inline-size: 40ch;
+  color: var(--key-white);
+}
+
+.stage .keyboard-figure .frame {
+  border-color: var(--border-strong);
+  background: var(--rail);
+}
+
+.stage figcaption,
+.stage .figure-controls p {
+  color: var(--key-white);
+}
+
+/* the name of the lit key sits under the keys, on the ink of the frame */
+.stage .keyboard-figure .lit-label {
+  fill: var(--key-white);
+}
+
+@media (min-width: 48rem) {
+  .stage .stage-title {
+    font-size: 3.75rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  .stage .stage-title {
+    font-size: 4.5rem;
+  }
+}
+
+/* the status straight after the stage: what is true today, before any promise */
+.status-line {
+  margin-block-end: var(--space-12);
+}
+
+/* who it is for and what it gives: rows with a name and a sentence */
+.split {
+  display: grid;
+  gap: var(--space-8);
+}
+
+@media (min-width: 64rem) {
+  .split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-12);
+  }
+}
+
+.split > section {
+  min-inline-size: 0;
+}
+
+/* the questions: each answer is open and in the page, so find in page and a screen reader reach every word */
+.faq {
+  max-inline-size: var(--column-max);
+  margin: 0;
+  border-block-start: var(--border-width) solid var(--border);
+}
+
+.faq dt {
+  padding-block-start: var(--space-6);
+  font-size: var(--size-h3);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-display);
+}
+
+.faq dd {
+  margin: var(--space-2) 0 0;
+  padding-block-end: var(--space-6);
+  border-block-end: var(--border-width) solid var(--border);
+}
+
+.faq dd p:last-child {
+  margin-block-end: 0;
+}
+
+/* the closing step on the home page */
+.next-step {
+  display: grid;
+  gap: var(--space-4);
+  margin-block-start: var(--space-16);
+  padding-block: var(--space-8);
+  border-block-start: var(--border-width-control) solid var(--border-strong);
+}
+
+.next-step h2 {
+  margin: 0;
+}
+
+/* the Studio's own keyboard and falling notes, as one still picture */
+.studio-moment {
+  margin-block: var(--space-6);
+  border: var(--border-width-control) solid var(--border-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.studio-moment-host .kb-slot {
+  block-size: 14rem;
+}
+
+/* the trail above a document's title */
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
+  margin: 0 0 var(--space-2);
+  padding: 0;
+  list-style: none;
+}
+
+.crumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.crumbs li + li::before {
+  content: "/";
+  color: var(--text-muted);
+}
+
+.crumbs a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-site);
+}
+
+/* the light language: each signal drawn beside its name, with the shape the rail uses */
+.signal {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.signal svg {
+  inline-size: 2rem;
+  block-size: 2rem;
+  flex: none;
+}
+
+.signal .bed {
+  fill: var(--rail);
+}
+
+.signal .right {
+  fill: var(--light-right);
+}
+
+.signal .left {
+  fill: var(--light-left);
+}
+
+.signal .right-soon {
+  fill: none;
+  stroke: var(--light-right-soon);
+  stroke-width: 3;
+}
+
+.signal .left-soon {
+  fill: none;
+  stroke: var(--light-left-soon);
+  stroke-width: 3;
+}
+
+.signal .wrong {
+  fill: none;
+  stroke: var(--light-wrong);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+/* legal pages: a point a lawyer still has to read is marked with a word and a dashed edge, never colour alone */
+.review {
+  max-inline-size: var(--column-max);
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width-control) dashed var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.review strong:first-child {
+  margin-inline-end: var(--space-2);
+}
+
+@media (forced-colors: active) {
+  .stage {
+    border-block: var(--border-width-control) solid CanvasText;
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  .stage .lead,
+  .stage figcaption,
+  .stage .figure-controls p,
+  .stage a:not(.button) {
+    color: CanvasText;
+  }
+
+  .stage a:not(.button) {
+    color: LinkText;
+  }
+
+  .signal .right,
+  .signal .left {
+    fill: Highlight;
+  }
+
+  .signal .right-soon,
+  .signal .left-soon,
+  .signal .wrong {
+    stroke: Highlight;
+  }
+
+  .menu-panel a[aria-current="page"]::after {
+    background: Highlight;
+  }
+}
