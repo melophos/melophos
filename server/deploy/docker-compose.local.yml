@@ -1,0 +1,24 @@
+# builds the images on this machine instead of pulling the published ones. Use it through build-local.sh, which
+# prepares a clean copy of the scoring engine's source and sets the variables below.
+#
+#   ./build-local.sh               builds and starts the stack
+#   ./build-local.sh down          any other docker compose command works the same way
+
+services:
+  server:
+    build:
+      context: ..
+      additional_contexts:
+        core: ${MELOPHOS_CORE_DIR:?run deploy/build-local.sh, it sets this}
+      args:
+        BUILD_EPOCH: ${BUILD_EPOCH:-}
+    image: melophos-server:local
+  worker:
+    image: melophos-server:local
+  db-roles:
+    image: melophos-server:local
+  migrate:
+    image: melophos-server:local
+  mqtt:
+    build: ./mosquitto
+    image: melophos-mqtt:local
