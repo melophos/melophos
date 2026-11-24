@@ -1,0 +1,6 @@
+Contact: mailto:security@melophos.com
+Contact: https://github.com/melophos/melophos/security/advisories/new
+Expires: 2027-11-22T00:00:00.000Z
+Policy: https://github.com/melophos/melophos/blob/main/SECURITY.md
+Preferred-Languages: en
+Canonical: https://melophos.com/.well-known/security.txt

@@ -1,0 +1,9 @@
+# build output and local test results. the export in out/ is what the host serves
+/out/
+/.next/
+/node_modules/
+/test-results/
+/playwright-report/
+/.lighthouseci/
+next-env.d.ts
+*.tsbuildinfo
