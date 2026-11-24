@@ -13,15 +13,22 @@ pip install -e .
 
 ## Simulator
 
-Plays a C major scale up and down twice with human-like timing and velocity, then sends it to the server as a practice session:
+Plays a C major scale up and down twice with human-like timing and velocity. A hub has an identity, so pair the simulator once first.
+
+```bash
+melophos-sim --pair --server http://localhost:8000
+```
+
+It prints a pairing code. Type the code into the Studio signed in to your account. The simulator then saves its credential to `~/.melophos-sim.json` (owner-only) and reuses it. Then play a session over HTTP or over MQTT:
 
 ```bash
 melophos-sim --profile piano-88.json --server http://localhost:8000
-melophos-sim --profile piano-88.json --dry-run        # print the session instead of sending it
-melophos-sim --profile piano-88.json --seed 42        # the same session every run
+melophos-sim --profile piano-88.json --mqtt localhost:1883     # status, notes every 250 ms, then the session
+melophos-sim --profile piano-88.json --dry-run                 # print the session instead of sending it
+melophos-sim --profile piano-88.json --seed 42                 # the same session every run
 ```
 
-Profiles come from [melophos/profiles](https://github.com/melophos/profiles).
+In MQTT mode each run counts as a new power-up, so its message counters start again and the server accepts it. Profiles come from [melophos/profiles](https://github.com/melophos/profiles).
 
 ## Client
 
@@ -29,11 +36,13 @@ Profiles come from [melophos/profiles](https://github.com/melophos/profiles).
 from melophos_client import Client
 
 client = Client("http://localhost:8000")
-print(client.health())
-for session in client.sessions(device_id="sim-hub"):
+client.sign_in("me@example.com", "my long password")
+for session in client.iter_sessions():
     print(session["started_at"], session["summary"]["notes_played"])
 client.close()
 ```
+
+A hub's calls use `Client(url, device_id=..., device_secret=...)` instead. `start_pairing()` gets an identity and a code, `claim(code)` is the owner's side and `post_session()` stores a session.
 
 ## Checks
 

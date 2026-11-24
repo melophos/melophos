@@ -3,6 +3,9 @@ global:
 
 scrape_configs:
   - job_name: melophos-server
-    metrics_path: /metrics
+    metrics_path: /metrics/
+    authorization:
+      type: Bearer
+      credentials_file: /etc/prometheus/metrics_token
     static_configs:
       - targets: ["server:8000"]

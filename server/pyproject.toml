@@ -10,12 +10,16 @@ dependencies = [
     "uvicorn[standard]>=0.37",
     "pydantic>=2.11",
     "prometheus-client>=0.23",
+    "psycopg[binary,pool]>=3.2",
+    "argon2-cffi>=23.1",
+    "cryptography>=45",
+    "paho-mqtt>=2.1",
+    "httpx>=0.28",
 ]
 
 [project.optional-dependencies]
 dev = [
     "pytest>=8.4",
-    "httpx>=0.28",
     "jsonschema>=4.25",
     "ruff>=0.14",
     "mypy>=1.18",
@@ -34,11 +38,21 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM"]
+# the formatter wraps code at 110, long strings and comments are left to the writer
+ignore = ["E501"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = [
+    "no_clean: leave the tables alone, the test makes its own database",
+    "slow: takes more than a few seconds",
+]
 
 [tool.mypy]
 strict = true
 python_version = "3.12"
 packages = ["app", "worker"]
+
+[tool.ruff.lint.per-file-ignores]
+# test data and SQL strings read better on one line
+"tests/*" = ["E501"]
