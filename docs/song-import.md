@@ -2,21 +2,21 @@
 
 A song in MELOPHOS is a list of timed notes, optionally split by hand. Songs come from three kinds of source.
 
-| Source | How it is read | Quality |
+| Source | How it is read | Status |
 | --- | --- | --- |
-| MIDI file | Parsed directly | Exact |
-| Audio (WAV, MP3, FLAC) | Polyphonic transcription with a machine-learning model such as Basic Pitch or Transkun, optionally after separating the instruments | Good for piano and clean recordings, rougher for dense mixes |
-| Tutorial video with falling notes | Computer vision reads which keys light up in each frame | Very good when the video shows a clean keyboard |
+| MIDI file | Parsed by the server, which keeps the notes in its song library | Built on the server. The Studio cannot import a file yet |
+| Audio (WAV, MP3, FLAC) | Polyphonic transcription with a machine-learning model, optionally after separating the instruments | Planned. Not built. Accuracy will be measured on a test set and published with the importer |
+| Tutorial video with falling notes | Computer vision reads which keys light up in each frame | Planned. Not built. Accuracy will be measured on a test set and published with the importer |
 
-Imports run in the worker, away from the request path. The Studio shows their progress.
+The server reads a MIDI file within limits on its size and its number of notes and rejects a malformed file with a reason.
 
 > [!WARNING]
-> Only import material you have the right to use. MELOPHOS does not download from streaming or video sites and never shares imported songs publicly unless the owner marks them public. Transcriptions of copyrighted music are for personal practice only.
+> Only import material you have the right to use. MELOPHOS does not download from streaming or video sites. Transcriptions of copyrighted music are for personal practice only.
 
 ## Splitting hands
 
-MIDI files from notation software often carry each hand on its own track or channel, which maps straight to left and right. Transcribed audio and video have no hands, so the importer splits by pitch around a moving boundary and the Studio lets the player correct it.
+MIDI files from notation software often carry each hand on its own track or channel, which maps straight to left and right. The server's reader looks for track names that say which hand a track is. It falls back to the pitch of each track or channel and then to a moving boundary in pitch. Hands that overlap are the weak case and the Studio has no way yet to correct a split.
 
-## Public domain library
+## Built-in pieces
 
-A small starter library of public domain pieces (Bach, Satie, Chopin, Joplin) ships with the server so a new install has something to practise on day one.
+The Studio carries a few public-domain melodies so that a new install has something to practise on. A starter library on the server is planned.

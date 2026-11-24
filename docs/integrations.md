@@ -23,7 +23,7 @@ Hubs publish to MQTT, which Home Assistant can subscribe to directly. Automation
 
 ## Webhooks
 
-When `SESSION_WEBHOOK_URL` is set, the server posts every finished session summary to it as JSON:
+Each account can register webhook endpoints in the Studio or through `POST /api/v1/webhooks`. When `SESSION_WEBHOOK_URL` and `SESSION_WEBHOOK_SECRET` are set the server also posts every finished session on the server to that one address. Each delivery is JSON:
 
 ```json
 {
@@ -32,8 +32,16 @@ When `SESSION_WEBHOOK_URL` is set, the server posts every finished session summa
   "device_id": "hub-01",
   "profile_id": "piano-88",
   "started_at": "2026-09-30T18:00:00+00:00",
-  "summary": { "duration_ms": 1800000, "notes_played": 2140, "unique_notes": 41 }
+  "summary": {
+    "duration_ms": 1800000,
+    "notes_played": 2140,
+    "unique_notes": 41,
+    "most_played_note": 60,
+    "mean_velocity": 72.4,
+    "notes_per_minute": 71.3
+  }
 }
 ```
 
+Each delivery is signed with a secret that belongs to the endpoint, so a receiver can tell it came from the server and was not changed or replayed. The headers, the rule for checking a signature and a worked example are in the [server README](https://github.com/melophos/server#webhooks). A failed delivery is tried up to 6 times with growing waits and an endpoint that keeps failing is switched off and says so. Addresses must be `https` and public: the server refuses any that point at the local network.
 This is the simplest way to show practice on an external dashboard, a personal site or a chat channel.

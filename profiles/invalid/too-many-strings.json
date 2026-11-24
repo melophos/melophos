@@ -1,0 +1,1 @@
+{ "id": "nine-strings", "name": "Nine strings", "type": "fretboard", "strings": [40, 45, 50, 55, 59, 64, 67, 71, 74], "frets": 12, "leds": { "layout": "grid" } }

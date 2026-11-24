@@ -1,0 +1,1 @@
+{ "id": "drum", "name": "Not an instrument we know", "type": "drums", "leds": { "layout": "per-key" } }

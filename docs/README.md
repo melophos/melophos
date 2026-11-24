@@ -19,9 +19,12 @@
 | [instruments.md](instruments.md) | Instrument profiles and lining LEDs up with keys |
 | [accessibility.md](accessibility.md) | Design choices for low vision, monocular vision, colour blindness and hearing loss |
 | [integrations.md](integrations.md) | Spotify, WLED, Home Assistant and webhooks |
+| [scoring.md](scoring.md) | How the scoring engine follows a performance, tracks tempo and stays bounded |
+| [scoring-design.md](scoring-design.md) | Why the score follower is built as it is, what was turned down and how it comes to say it is not sure |
 | [song-import.md](song-import.md) | Importing MIDI, audio and tutorial videos |
 | [self-hosting.md](self-hosting.md) | Running the server stack with Docker Compose |
 | [repositories.md](repositories.md) | The monorepo and the published component repositories |
 | [decisions.md](decisions.md) | Architecture decision records |
+| [community-privacy.md](community-privacy.md) | What the community server and its bot hold, for how long and how to ask for removal |
 | [inventory.md](inventory.md) | Parts on hand for the prototype and parts still to buy |
 | [assets/brand](../assets/brand/) | Logo files, colours and usage, in the monorepo |

@@ -1,0 +1,1 @@
+{ "id": "no-density", "name": "Strip with no density", "type": "keyboard", "notes": { "lowest": 21, "highest": 108 }, "geometry": { "white_key_mm": 23.5 }, "leds": { "layout": "strip" } }

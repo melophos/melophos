@@ -1,0 +1,1 @@
+{ "id": "huge-keys", "name": "White keys 900 mm wide", "type": "keyboard", "notes": { "lowest": 21, "highest": 108 }, "geometry": { "white_key_mm": 900 }, "leds": { "layout": "per-key" } }
