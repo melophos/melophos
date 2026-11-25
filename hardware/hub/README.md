@@ -30,7 +30,7 @@ The hub reads notes from the instrument, drives the light bars and talks to the 
 
 - The schematic passes the electrical rules check and the board passes the design rules check with nothing left unconnected.
 - The power input was simulated in LTspice across 16 cases of lead length and capacitor resistance. That run found that a live swap from a 5 V to a 12 V supply could overstress one transistor and that the plug-in surge could reach 17.8 A. Both were fixed. The worst plug-in surge is now 4.62 A and the first LED on a bar never sees more than 5.045 V, under its 5.3 V limit.
-- Before a board is first powered, the firmware gains a hold that keeps every LED output off for 0.5 s after power-on, twice the longest time the simulation shows the supply needs to settle.
+- The firmware keeps every LED output off for 0.5 s after power-on, twice the longest time the simulation shows the 5 V switch needs to turn fully on.
 
 ## Pictures
 

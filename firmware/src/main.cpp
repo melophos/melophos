@@ -269,6 +269,7 @@ void setup() {
     // a build that claims the spare header would set up GPIO 39, 41 and 42 here. None does today
 #endif
     guard.setLayout(MAX_KEY_LEDS, LAYOUT_FRET_LEDS, LAYOUT_AUX_LEDS);  // one frame over every output
+    guard.setPowerOnHold(OutputGuard::kPowerOnHoldMs);  // every output dark until the 5 V switch is fully on
     // then every LED output goes dark at its maximum length, before anything else and before any storage is read
     // (a flash scan or erase can take a while)
     leds.begin();
