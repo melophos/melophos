@@ -72,6 +72,10 @@ class DynsecBroker:
         done = threading.Event()
         subscribed = threading.Event()
         answer: dict[str, object] = {}
+        # every admin client hears every reply on the one response topic, so each command carries a tag of its own
+        # and only a reply that carries all of ours is taken. Without it a caller could read another call's answer
+        tag = secrets.token_hex(8)
+        tagged = [{**command, "correlationData": f"{tag}-{i}"} for i, command in enumerate(commands)]
 
         client = mqtt.Client(
             CallbackAPIVersion.VERSION2,
@@ -88,10 +92,22 @@ class DynsecBroker:
 
         def on_subscribe(c: mqtt.Client, *_args: object) -> None:
             subscribed.set()
-            c.publish(DYNSEC_TOPIC, json.dumps({"commands": commands}), qos=1)
+            c.publish(DYNSEC_TOPIC, json.dumps({"commands": tagged}), qos=1)
 
         def on_message(_c: mqtt.Client, _u: object, message: mqtt.MQTTMessage) -> None:
-            answer.update(json.loads(message.payload))
+            try:
+                payload = json.loads(message.payload)
+            except ValueError:
+                return
+            replies = payload.get("responses") if isinstance(payload, dict) else None
+            if not isinstance(replies, list) or len(replies) != len(tagged):
+                return
+            if any(
+                not isinstance(r, dict) or r.get("correlationData") != f"{tag}-{i}"
+                for i, r in enumerate(replies)
+            ):
+                return
+            answer.update(payload)
             done.set()
 
         client.on_connect, client.on_subscribe, client.on_message = on_connect, on_subscribe, on_message
