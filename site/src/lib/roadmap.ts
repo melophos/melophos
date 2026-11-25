@@ -54,9 +54,9 @@ export function roadmap(): { versions: RoadmapVersion[]; notes: string[] } {
       // the end of an item says how far it has got. a ticked item with no note is built
       let text = item[2];
       let status: Status = item[1] === " " ? "planned" : "built";
-      const note = /\s*\((host-tested, awaits a board|in progress|not yet checked|designed, awaits manufacture)([^)]*)\)\s*$/.exec(text);
+      const note = /\s*\((host-tested, awaits a board|in progress|not yet checked|designed, not yet made)([^)]*)\)\s*$/.exec(text);
       if (note?.[1]) {
-        const byNote: Record<string, Status> = { "in progress": "progress", "not yet checked": "unchecked", "designed, awaits manufacture": "design" };
+        const byNote: Record<string, Status> = { "in progress": "progress", "not yet checked": "unchecked", "designed, not yet made": "design" };
         status = byNote[note[1]] ?? "host";
         const extra = (note[2] ?? "").replace(/^[:.]\s*/, "").trim();
         text = text.slice(0, note.index) + (extra ? `. ${extra.charAt(0).toUpperCase()}${extra.slice(1)}` : "");
