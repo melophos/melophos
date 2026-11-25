@@ -5,7 +5,7 @@ MELOPHOS is built in three versions. Each one is useful on its own, so no versio
 > [!NOTE]
 > Dates are targets, not promises. Progress is tracked in the issues and milestones on [melophos/melophos](https://github.com/melophos/melophos).
 
-How to read the boxes. A ticked item is built and its tests pass on a computer. An item that ends with "(host-tested, awaits a board)" is a hub feature that is built and tested on a development machine and has never run on a board. An item that ends with "(in progress)" is being worked on and is partly built. An unticked item that ends with "(not yet checked)" is waiting for a check by a person or a device. An unticked item that ends with "(designed, awaits manufacture)" is fully designed and checked and waits to be made. An unticked item with no note is planned. Nothing has run on real hardware and no board has been made.
+How to read the boxes. A ticked item is built and its tests pass on a computer. An item that ends with "(host-tested, awaits a board)" is a hub feature that is built and tested on a development machine and has never run on a board. An item that ends with "(in progress)" is being worked on and is partly built. An unticked item that ends with "(not yet checked)" is waiting for a check by a person or a device. An unticked item that ends with "(designed, not yet made)" is fully designed and checked and waits to be made. An unticked item with no note is planned. Nothing has run on real hardware and no board has been made.
 
 ## v0: scaffold (done)
 
@@ -22,10 +22,10 @@ How to read the boxes. A ticked item is built and its tests pass on a computer. 
 ### Hardware
 
 - [ ] Bring-up on an ESP32-S3 development board with a 144 LED/m strip
-- [ ] Hub board rev A in KiCad: ESP32-S3 module, 5 V inlet with input protection, current-limited USB host port, three level-shifted LED outputs, MIDI in and out on 3.5 mm TRS, audio input (designed, awaits manufacture: the schematic and the four-layer layout pass their rule checks and the power input was simulated in LTspice)
-- [ ] Octave LED bar rev A: 12 LEDs placed at real key spacing, daisy-chained, with four end bars for 61, 76 and 88 keys (designed, awaits manufacture)
+- [ ] Hub board rev A in KiCad: ESP32-S3 module, 5 V inlet with input protection, current-limited USB host port, three level-shifted LED outputs, MIDI in and out on 3.5 mm TRS, audio input (designed, not yet made: the schematic and the four-layer layout pass their rule checks and the power input was simulated in LTspice)
+- [ ] Octave LED bar rev A: 12 LEDs placed at real key spacing, daisy-chained, with four end bars for 61, 76 and 88 keys (designed, not yet made)
 - [ ] First boards manufactured and assembled
-- [ ] 3D-printed enclosure and a mounting rail for the bars (designed, awaits manufacture: the hub case, bar clips and diffusers are drawn and none is printed)
+- [ ] 3D-printed enclosure and a mounting rail for the bars (designed, not yet made: the hub case, bar clips and diffusers are drawn and none is printed)
 
 ### Firmware
 

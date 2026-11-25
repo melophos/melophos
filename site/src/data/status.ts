@@ -20,7 +20,7 @@ export const STATUS_WORD: Record<Status, string> = {
   host: "Host-tested, awaits a board",
   partly: "Partly built",
   progress: "In progress",
-  design: "Designed, awaits manufacture",
+  design: "Designed, not yet made",
   planned: "Planned",
   unchecked: "Not yet checked",
 };
