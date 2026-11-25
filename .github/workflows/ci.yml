@@ -52,8 +52,8 @@ jobs:
         id: bindgen
         with:
           path: ~/.cargo/bin/wasm-bindgen
-          key: wasm-bindgen-0.2.129-${{ runner.os }}
-      - run: cargo install wasm-bindgen-cli --version 0.2.129 --locked
+          key: wasm-bindgen-0.2.130-${{ runner.os }}
+      - run: cargo install wasm-bindgen-cli --version 0.2.130 --locked
         if: steps.bindgen.outputs.cache-hit != 'true'
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
@@ -258,8 +258,8 @@ jobs:
         id: bindgen
         with:
           path: ~/.cargo/bin/wasm-bindgen
-          key: wasm-bindgen-0.2.129-${{ runner.os }}
-      - run: cargo install wasm-bindgen-cli --version 0.2.129 --locked
+          key: wasm-bindgen-0.2.130-${{ runner.os }}
+      - run: cargo install wasm-bindgen-cli --version 0.2.130 --locked
         if: steps.bindgen.outputs.cache-hit != 'true'
       - run: npm ci
         working-directory: core/wasm/package
@@ -292,8 +292,8 @@ jobs:
         id: bindgen
         with:
           path: ~/.cargo/bin/wasm-bindgen
-          key: wasm-bindgen-0.2.129-${{ runner.os }}
-      - run: cargo install wasm-bindgen-cli --version 0.2.129 --locked
+          key: wasm-bindgen-0.2.130-${{ runner.os }}
+      - run: cargo install wasm-bindgen-cli --version 0.2.130 --locked
         if: steps.bindgen.outputs.cache-hit != 'true'
       - run: npm ci
         working-directory: core/wasm/package
@@ -324,8 +324,8 @@ jobs:
         id: bindgen
         with:
           path: ~/.cargo/bin/wasm-bindgen
-          key: wasm-bindgen-0.2.129-${{ runner.os }}
-      - run: cargo install wasm-bindgen-cli --version 0.2.129 --locked
+          key: wasm-bindgen-0.2.130-${{ runner.os }}
+      - run: cargo install wasm-bindgen-cli --version 0.2.130 --locked
         if: steps.bindgen.outputs.cache-hit != 'true'
       - run: npm ci
         working-directory: core/wasm/package
