@@ -11,7 +11,7 @@ The Studio uses the scoring engine from `core/`, built to WebAssembly. Build tha
 
 ```bash
 rustup target add wasm32-unknown-unknown
-cargo install wasm-bindgen-cli --version 0.2.129 --locked
+cargo install wasm-bindgen-cli --version 0.2.130 --locked
 (cd ../core/wasm/package && npm ci)
 (cd ../core && sh wasm/build.sh)
 npm install
