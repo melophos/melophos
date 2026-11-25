@@ -104,6 +104,9 @@ test("another tab is never reloaded in the middle of a piece", async ({ context 
 });
 
 test("the service worker never touches a request to another origin and never caches a signed-in answer", async ({ page }) => {
+  // the worker installs twice here (the first load and a new build) and each wait allows 15 s, so the test's own waits
+  // can pass 30 s on a slow runner while every step is fine
+  test.setTimeout(60_000);
   const site = await serveDist();
   const other = await serveOther();
   try {
