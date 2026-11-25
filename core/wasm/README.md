@@ -17,7 +17,7 @@ You need Rust 1.99.1 (the version `core/rust-toolchain.toml` pins, which rustup 
 
 ```bash
 rustup target add wasm32-unknown-unknown
-cargo install wasm-bindgen-cli --version 0.2.129 --locked
+cargo install wasm-bindgen-cli --version 0.2.130 --locked
 cd core/wasm/package && npm ci && cd ../..
 sh wasm/build.sh
 ```
