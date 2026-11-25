@@ -229,6 +229,10 @@ def test_the_tidy_up_removes_logins_the_database_does_not_want(broker_admin):
     keep, drop = "hub-" + secrets.token_hex(5), "hub-" + secrets.token_hex(5)
     broker_admin.create_device(keep, "mph_keep-" + secrets.token_urlsafe(24))
     broker_admin.create_device(drop, "mph_drop-" + secrets.token_urlsafe(24))
+    # the broker can list a new login a moment after it accepts it, so the wanted set is read once both are there
+    deadline = time.monotonic() + 5
+    while not {keep, drop} <= broker_admin.list_devices() and time.monotonic() < deadline:
+        time.sleep(0.05)
     removed = reconcile(broker_admin, due=broker_admin.list_devices() - {drop})
     assert drop in removed and keep not in removed
     assert drop not in broker_admin.list_devices()
