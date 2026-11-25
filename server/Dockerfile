@@ -24,7 +24,7 @@ RUN mkdir /out && if [ -f /src/python/Cargo.toml ]; then \
     fi
 
 # the Python that CI tests (3.12 and 3.14), pinned by digest
-FROM python:3.15.1-slim@sha256:533b0b2f9b5d46fd097091cf826f27902f1d6c3bca714b6dc74551356aa97a51
+FROM python:3.14.10-slim@sha256:22eafb370920ad8b429e0aec3fff433e0669968519f5d60469d83729c138b28b
 
 # the time this image was built from, as epoch seconds (CI passes the commit's time). The server refuses to start on a
 # clock that says it is earlier, see app/clock.py

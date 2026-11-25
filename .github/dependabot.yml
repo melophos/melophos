@@ -105,6 +105,10 @@ updates:
         update-types:
           - minor
           - patch
+    ignore:
+      # the image runs the Python its lock files are made for, so a new Python minor is moved by hand with new locks
+      - dependency-name: "python"
+        update-types: ["version-update:semver-minor"]
 
   - package-ecosystem: docker
     directory: /server/deploy/mosquitto
