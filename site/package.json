@@ -37,7 +37,7 @@
     "@types/react-dom": "19.3.0",
     "axe-core": "4.14.1",
     "license-checker-rseidelsohn": "5.0.1",
-    "typescript": "6.0.3",
+    "typescript": "7.0.2",
     "vitest": "5.1.1"
   },
   "dependencies": {
