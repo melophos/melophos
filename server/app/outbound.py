@@ -237,6 +237,10 @@ def post_json(
         if sock is not None:
             with suppress(OSError):
                 sock.close()
+    # the deadline timer shuts the socket, so the read above can end quietly with half a status line. That is a
+    # timeout and not a receiver that spoke something other than HTTP
+    if b"\r\n" not in reply and time.monotonic() >= deadline:
+        return SendResult(False, None, "timed out")
     match = re.match(rb"HTTP/1\.[01] (\d{3})", reply)
     if match is None:
         return SendResult(False, None, "the receiver did not answer with HTTP")
