@@ -386,6 +386,16 @@ void OutputGuard::showCombined(const Rgb *pixels, size_t count) {
         count = kGuardLeds;
     }
     uint32_t now = clock_.nowMs();
+    // the power-on hold: the clock counts from power-on, so this ends long before it could wrap. Once it has ended it
+    // never comes back
+    if (holding_) {
+        if (now < holdUntilMs_) {
+            memset(scratch_, 0, sizeof(Rgb) * count);
+            down_.show(scratch_, count);
+            return;
+        }
+        holding_ = false;
+    }
     count_ = count;
     reshow_ = false;
     // darkNow is honoured at most once a second, here, whatever calls it: a call inside the second is dropped and its

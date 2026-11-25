@@ -103,6 +103,9 @@ class OutputGuard : public LedSink {
     // the most often darkNow is honoured: once a second. The guard is the last step, so the limit is here and holds
     // whatever calls it (a hub, a lesson, a remote command)
     static const uint32_t kDarkNowMinGapMs = 1000;
+    // after power-on every output stays dark this long. The hub's 5 V switch can take up to 252 ms to turn fully on
+    // (simulated), and a load drawn before then makes it carry the LED current while only partly on. Twice that
+    static const uint32_t kPowerOnHoldMs = 500;
     // how long a light that was asked dark can be kept lit by the fall budget. The budget goes to the light that has
     // waited longest, so with `waiting` lights asked dark at once the last goes dark after waiting / 30 seconds
     // (rounded up), plus one second for a hold by the light's own rules or the strip's. Fewer than 30 waiting:
@@ -114,6 +117,13 @@ class OutputGuard : public LedSink {
         stripSwing_.cap = kMaxStripRises;
     }
     void show(const Rgb *pixels, size_t count) override;
+    // keeps every output dark until the clock reaches holdMs, counted from power-on. Set once at start-up. A frame
+    // shown during the hold is not kept: the first frame after it is the one that lights
+    void setPowerOnHold(uint32_t holdMs) {
+        holdUntilMs_ = holdMs;
+        holding_ = holdMs > 0;
+    }
+    bool holding() const { return holding_; }
     // the hub drives three outputs (keys, frets, aux). They are ONE frame to the guard, in that order: the
     // ceiling is a total over every light on every output. The flash limits count across all of them
     // together, since the lights are seen together. With a layout set, show() is the key output alone and the
@@ -177,6 +187,8 @@ class OutputGuard : public LedSink {
     uint16_t scale() const { return scale_; }
 
    private:
+    uint32_t holdUntilMs_ = 0;
+    bool holding_ = false;
     // a low/high phase tracker for one quantity (a light's luminance, the strip's total, the lit count)
     struct Swing {
         bool high = false;

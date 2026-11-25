@@ -296,6 +296,76 @@ void test_a_ceiling_that_flaps_to_zero_cannot_make_a_light_come_on_more_than_thr
     }
 }
 
+// the power-on hold: every output dark for the first half second, whatever is asked, then the asked frame
+class FrameSink : public LedSink {
+   public:
+    std::vector<Rgb> last;
+    uint32_t shows = 0;
+    void show(const Rgb *px, size_t n) override {
+        last.assign(px, px + n);
+        shows++;
+    }
+    size_t lit() const {
+        size_t n = 0;
+        for (const Rgb &p : last) n += (p.r | p.g | p.b) != 0;
+        return n;
+    }
+};
+
+void test_every_output_stays_dark_for_half_a_second_after_power_on() {
+    FakeClock clock;
+    FrameSink sink;
+    OutputGuard guard(clock, sink);
+    guard.setLayout(12, 6, 4);
+    guard.setPowerOnHold(OutputGuard::kPowerOnHoldMs);
+    TEST_ASSERT_EQUAL_UINT32(500, OutputGuard::kPowerOnHoldMs);
+    Rgb keys[12], frets[6], aux[4];
+    for (Rgb &p : keys) p = {40, 40, 40};
+    for (Rgb &p : frets) p = {40, 0, 0};
+    for (Rgb &p : aux) p = {0, 0, 40};
+    for (uint32_t t = 0; t < 500; t += 20) {
+        clock.now = t;
+        guard.showOutputs(keys, 12, frets, 6, aux, 4);
+        TEST_ASSERT_EQUAL_size_t(22, sink.last.size());
+        TEST_ASSERT_EQUAL_size_t(0, sink.lit());
+        TEST_ASSERT_TRUE(guard.holding());
+    }
+    TEST_ASSERT_EQUAL_UINT32(25, sink.shows);  // every frame still reaches the strip, as dark
+}
+
+void test_the_first_frame_after_the_hold_lights_normally_and_the_hold_never_returns() {
+    FakeClock clock;
+    FrameSink sink;
+    OutputGuard guard(clock, sink);
+    guard.setLayout(12, 0, 0);
+    guard.setPowerOnHold(OutputGuard::kPowerOnHoldMs);
+    Rgb keys[12];
+    for (Rgb &p : keys) p = {40, 40, 40};
+    clock.now = 480;
+    guard.showOutputs(keys, 12, nullptr, 0, nullptr, 0);
+    TEST_ASSERT_EQUAL_size_t(0, sink.lit());
+    clock.now = 500;
+    guard.showOutputs(keys, 12, nullptr, 0, nullptr, 0);
+    TEST_ASSERT_FALSE(guard.holding());
+    TEST_ASSERT_EQUAL_size_t(12, sink.lit());
+    // the clock wrapping round to a small value again does not bring the hold back
+    clock.now = 10;
+    guard.showOutputs(keys, 12, nullptr, 0, nullptr, 0);
+    TEST_ASSERT_EQUAL_size_t(12, sink.lit());
+}
+
+void test_without_a_hold_the_first_frame_lights_at_once() {
+    FakeClock clock;
+    FrameSink sink;
+    OutputGuard guard(clock, sink);
+    guard.setLayout(12, 0, 0);
+    Rgb keys[12];
+    for (Rgb &p : keys) p = {40, 40, 40};
+    guard.showOutputs(keys, 12, nullptr, 0, nullptr, 0);
+    TEST_ASSERT_FALSE(guard.holding());
+    TEST_ASSERT_EQUAL_size_t(12, sink.lit());
+}
+
 int main() {
     UNITY_BEGIN();
     RUN_TEST(test_random_frames_at_full_brightness_with_the_ceiling_changing_every_pass_and_going_to_zero);
@@ -303,5 +373,8 @@ int main() {
     RUN_TEST(test_a_ceiling_that_drops_while_lights_are_held_breaks_no_limit);
     RUN_TEST(test_a_ceiling_that_flaps_to_zero_cannot_make_a_light_come_on_more_than_three_times_a_second);
     RUN_TEST(test_with_no_supply_everything_goes_dark_at_once_and_that_is_not_limited);
+    RUN_TEST(test_every_output_stays_dark_for_half_a_second_after_power_on);
+    RUN_TEST(test_the_first_frame_after_the_hold_lights_normally_and_the_hold_never_returns);
+    RUN_TEST(test_without_a_hold_the_first_frame_lights_at_once);
     return UNITY_END();
 }

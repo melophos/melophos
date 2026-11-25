@@ -64,6 +64,8 @@ Without the inlet:
 
 ## Power
 
+Every LED output stays dark for the first 0.5 s after power-on (`OutputGuard::kPowerOnHoldMs`). The simulation of the hub's inlet shows its 5 V switch can take up to 252 ms to turn fully on, and a load drawn before then makes it carry the LED current while only partly on. The hold is twice that.
+
 The LED ceiling is 2700 mA on the board's 5 A supply, one constant, `kLedCurrentCeilingMa`. The budget: LED bars 2.70 A, the keyboard's USB port 1.184 A (the port switch's highest limit with R14 1 per cent low), the module and logic 0.55 A and audio 0.02 A, the buzzer 0.005 A and the encoder pull-ups 0.004 A make 4.463 A against a resettable fuse that holds 4.62 A at 50 C. `provision supply <mA>` lowers it for a smaller adapter (`rating x 0.91 - 1763`, so a 3 A adapter gives 967 mA). The rating takes effect at once: the hub gives the guard the new ceiling as soon as the command is accepted and no restart is needed. While audio runs a second ceiling applies, 1200 mA (the board's figure), with a coarse stepped backstop from SENSE_5V that can lower it to 900 or 600 mA. The reading is good to plus or minus 150 mV on the rail (the data sheet's 50 mV after calibration in the highest range, which is 100 mV on the rail and the 1 per cent divider), so the backstop acts only below 4.47 V and this is a quality measure and not a safety one. The lower always wins. See [practice-modes.md](practice-modes.md).
 
 ## The classic ESP32 bring-up board
