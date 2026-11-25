@@ -16,7 +16,7 @@ The MELOPHOS hub and its light bars, designed in KiCad, with 3D-printable parts 
 | [`keys-octave/`](keys-octave/) | Light bars: the octave bar and four end bars for 61, 76 and 88 keys | Rev A designed, waiting to be made |
 | [`enclosures/`](enclosures/) | 3D-printable hub case, bar clips and diffusers | Designed, not yet printed |
 | [`frets/`](frets/) | Fret bar: one LED per string per fret for guitars | Planned for v3 |
-| [`bom/`](bom/) | Bills of materials | Draft, the final one ships with the design files |
+| [`bom/`](bom/) | Bills of materials | Draft. The final one is published with the design files |
 
 ## Where the design stands
 
