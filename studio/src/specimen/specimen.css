@@ -29,10 +29,27 @@
   margin-block-start: var(--space-6);
 }
 
+/* each group keeps the width its buttons will need, never wider than the page, so the groups wrap the same way before
+   and after the script adds the buttons */
+.controls fieldset:nth-child(1) {
+  min-inline-size: min(23rem, 100%);
+}
+
+.controls fieldset:nth-child(2) {
+  min-inline-size: min(12.75rem, 100%);
+}
+
+.controls fieldset:nth-child(3) {
+  min-inline-size: min(15.25rem, 100%);
+}
+
+/* the script fills the controls and the status line after the first paint. Each keeps the height it will have, so the
+   page below it never moves when they arrive */
 .segmented {
   display: flex;
   flex-wrap: wrap;
   gap: var(--target-gap);
+  min-block-size: var(--target-app);
 }
 
 .segmented button {
@@ -41,6 +58,7 @@
 
 .state {
   margin-block: var(--space-4) 0;
+  min-block-size: 1lh;
   color: var(--text-muted);
 }
 
@@ -456,4 +474,15 @@ section {
   overflow-wrap: anywhere;
   line-height: var(--leading-display);
   font-weight: var(--weight-bold);
+}
+
+/* on a narrow screen the theme buttons take two rows and the status line two lines once they arrive */
+@media (max-width: 24.75rem) {
+  .controls fieldset:nth-child(1) .segmented {
+    min-block-size: calc(2 * var(--target-app) + var(--target-gap));
+  }
+
+  .state {
+    min-block-size: 2lh;
+  }
 }
