@@ -13,7 +13,7 @@ Song made visible. MELOPHOS is an open instrument learning platform: a small hub
 [![Licence: AGPL-3.0](https://img.shields.io/badge/licence-AGPL--3.0-green.svg)](LICENSE)
 
 > [!NOTE]
-> MELOPHOS is in early development. The code in this repository is the working scaffold each component grows from. The first hardware revision is in design. See [docs/roadmap.md](docs/roadmap.md) for what is planned and in which order.
+> MELOPHOS is in early development. The code in this repository is the working scaffold each component grows from. The first hardware revision is fully designed and waits to be made. See [docs/roadmap.md](docs/roadmap.md) for what is planned and in which order.
 
 ## Why
 

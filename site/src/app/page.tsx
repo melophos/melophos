@@ -12,7 +12,7 @@ import { REPO_URL, SITE_URL } from "../site.config.ts";
 
 export const metadata = pageMeta({
   title: "MELOPHOS: song made visible",
-  description: "MELOPHOS is an open source system for learning the piano with light. The Studio app works in your browser today. The hub with LED bars is in design and no board has been made.",
+  description: "MELOPHOS is an open source system for learning the piano with light. The Studio app works in your browser today. The hub with LED bars is fully designed and waits to be made.",
   path: "/",
 });
 

@@ -97,8 +97,8 @@ The reasoning behind each choice is recorded in [decisions.md](decisions.md).
 | Component | Status | Built so far | Still to come |
 | --- | --- | --- | --- |
 | Hub firmware | Host-tested, awaits a board | Three inputs (3.5 mm MIDI, USB-MIDI host and Bluetooth MIDI), the note bus, the practice modes, the LED renderer with its current cap, profiles in flash, session capture, MQTT publishing, pairing and signed updates | Audio input. A board to run it on |
-| Hub board | In design | The requirements, a draft bill of materials and the power budget | The board layout and a manufactured board |
-| LED bars | In design | The requirements for the octave bar | The design files and a made bar |
+| Hub board | Designed, awaits manufacture | The schematic, the four-layer layout, the power input simulation and renders | A manufactured board |
+| LED bars | Designed, awaits manufacture | The octave bar and four end bars, laid out, with renders | A made bar |
 | Server | Built | Accounts, hub pairing, sessions and note events in Postgres, the MQTT subscriber, the song library with a MIDI reader, signed webhooks and the worker | Audio and video import, a finished Spotify list, room lights and Home Assistant |
 | Scoring engine | In progress | `score` and `follow` in Rust with a WebAssembly build and a Python module. The follower treats each hand as its own line with one shared tempo and has a not judged verdict for a press it cannot place | Fixing the limits listed in [scoring.md](scoring.md). Real players: not yet checked |
 | Studio | Partly built | Practice, progress, a library, MIDI import, hand correction, settings, offline use, install and the optional link to a server | Screens for the hub. A check against a real server. A check by a person who uses a screen reader: not yet checked |
