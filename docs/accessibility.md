@@ -8,7 +8,7 @@ Each row says what is built and what is planned. **Built** means the code exists
 
 | Need | Design choice | Status |
 | --- | --- | --- |
-| Monocular vision or weak depth perception | Guidance lights sit on one flat line just above the keys, so finding a note never depends on judging depth. The light is on the key itself, not on a screen the eyes have to move between. The Studio draws the same rail above its keyboard | Studio: built. Hub: in design, no board |
+| Monocular vision or weak depth perception | Guidance lights sit on one flat line just above the keys, so finding a note never depends on judging depth. The light is on the key itself, not on a screen the eyes have to move between. The Studio draws the same rail above its keyboard | Studio: built. Hub: designed, not yet made |
 | Narrow field of view | Upcoming notes glow dimly before they are due, so the next position is visible before the hand moves | Studio: built. Hub: host-tested, awaits a board |
 | Low vision | The Studio has a distance setting that makes type, lights and targets larger together for a tablet on a music stand or a screen across the room | Studio: built |
 | Low vision, hub | Brightness set for each role (guide, played, upcoming, wrong). The firmware has one fixed brightness today | Planned |

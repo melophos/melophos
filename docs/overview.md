@@ -4,7 +4,7 @@
 
 MELOPHOS is an open platform for learning and practising an instrument with lights. It has three parts. Each is meant to work with the others or on its own:
 
-1. **The hub**, a small board that sits behind the instrument. It is designed to receive notes from the instrument or from a song and to light the matching keys or frets on LED bars above the keys. The firmware is written and tested on a computer. The board is in design and no board has been made.
+1. **The hub**, a small board that sits behind the instrument. It is designed to receive notes from the instrument or from a song and to light the matching keys or frets on LED bars above the keys. The firmware is written and tested on a computer. The board is fully designed and waits to be made. No board has been made yet.
 2. **The server**, self-hosted with Docker. It stores every practice session note by note and turns that into progress the player can review.
 3. **The Studio**, a browser app for practising with guidance and reviewing progress. It works with no hub and no server. It imports a MIDI file, has a rhythm game with personal bests, works offline and can link to a server you run. The screens for setting up a hub are not built yet.
 
@@ -12,7 +12,7 @@ Nothing here has run on real hardware.
 
 ## What it does
 
-Each row says how far it has got, in the words of the [roadmap](roadmap.md). **Built** means the code exists and its tests pass on a computer. **Host-tested, awaits a board** means the same for the hub firmware, which has never run on a board. **Partly built**, **In progress**, **In design**, **Planned** and **Not yet checked** are described on the roadmap.
+Each row says how far it has got, in the words of the [roadmap](roadmap.md). **Built** means the code exists and its tests pass on a computer. **Host-tested, awaits a board** means the same for the hub firmware, which has never run on a board. **Partly built**, **In progress**, **Designed, awaits manufacture**, **Planned** and **Not yet checked** are described on the roadmap.
 
 | Area | Capability | Status |
 | --- | --- | --- |
