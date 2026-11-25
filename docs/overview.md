@@ -12,7 +12,7 @@ Nothing here has run on real hardware.
 
 ## What it does
 
-Each row says how far it has got, in the words of the [roadmap](roadmap.md). **Built** means the code exists and its tests pass on a computer. **Host-tested, awaits a board** means the same for the hub firmware, which has never run on a board. **Partly built**, **In progress**, **Designed, awaits manufacture**, **Planned** and **Not yet checked** are described on the roadmap.
+Each row says how far it has got, in the words of the [roadmap](roadmap.md). **Built** means the code exists and its tests pass on a computer. **Host-tested, awaits a board** means the same for the hub firmware, which has never run on a board. **Partly built**, **In progress**, **Designed, not yet made**, **Planned** and **Not yet checked** are described on the roadmap.
 
 | Area | Capability | Status |
 | --- | --- | --- |
