@@ -14,7 +14,7 @@ crate-type = ["cdylib"]
 [dependencies]
 melophos-core = { path = ".." }
 # the build script installs the matching command line tool: the two versions must be equal
-wasm-bindgen = "=0.2.129"
+wasm-bindgen = "=0.2.130"
 
 [lints.rust]
 missing_docs = "warn"
