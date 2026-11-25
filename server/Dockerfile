@@ -6,7 +6,7 @@
 
 FROM scratch AS core
 
-FROM rust:1.85-slim-bookworm@sha256:9f841bbe9e7d8e37ceb96ed907265a3a0df7f44e3737d0b100e7907a679acb36 AS engine
+FROM rust:1.99-slim-bookworm@sha256:f2c004e3d2d8b547e8cf7ffbc29205385f4e71d23e53e4e383065db5e9f822cd AS engine
 # python is pinned to the exact versions of this base image's Debian release. When Debian replaces one the build stops
 # here on purpose (the old version is gone from the mirror) and the numbers are moved forward by hand. The packages
 # these depend on are not pinned, only the base image's digest holds them
@@ -24,7 +24,7 @@ RUN mkdir /out && if [ -f /src/python/Cargo.toml ]; then \
     fi
 
 # the Python that CI tests (3.12 and 3.14), pinned by digest
-FROM python:3.14.10-slim@sha256:9aaa474097d094040649f2162a627c0049b408f52138d980916788d80f04802f
+FROM python:3.14.10-slim@sha256:22eafb370920ad8b429e0aec3fff433e0669968519f5d60469d83729c138b28b
 
 # the time this image was built from, as epoch seconds (CI passes the commit's time). The server refuses to start on a
 # clock that says it is earlier, see app/clock.py
