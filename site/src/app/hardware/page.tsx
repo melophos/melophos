@@ -10,7 +10,7 @@ import { pageMeta } from "../../lib/meta.ts";
 
 export const metadata = pageMeta({
   title: "Hardware",
-  description: "The MELOPHOS hub and its octave LED bars are in design. No board has been made. The draft bill of materials, the power budget and the licence are here.",
+  description: "The MELOPHOS hub and its LED bars are fully designed and wait to be made. No board has been made yet. The draft bill of materials, the power budget and the licence are here.",
   path: "/hardware/",
 });
 
@@ -21,7 +21,7 @@ export default function Hardware() {
     <Page path="/hardware/" section="hardware">
       <h1 className="page-title">Hardware</h1>
       <p className="lead lead-wide">
-        The hub and its light bars are open hardware. <Status status="design" /> The boards are still in the works. Rev A is in design and <strong>no board has been made</strong>. This page shows what is written down so far.
+        The hub and its light bars are open hardware. <Status status="design" /> Rev A of every board is fully designed and checked and waits to be made. <strong>No board has been made yet.</strong> Renders of each board and printed part are in the <ExtLink href="https://github.com/melophos/melophos/tree/main/hardware">hardware folder</ExtLink>.
       </p>
 
       <Callout kind="important">
@@ -46,7 +46,7 @@ export default function Hardware() {
       <section className="section" aria-labelledby="bom">
         <h2 id="bom">Bill of materials, rev A, draft</h2>
         <p className="prose">
-          {rows.length} lines and {total} parts. Manufacturer part numbers are added once the layout is final. This is the file <ExtLink href="https://github.com/melophos/melophos/blob/main/hardware/bom/hub-rev-a.csv">hardware/bom/hub-rev-a.csv</ExtLink>, shown as a table.
+          {rows.length} lines and {total} parts. The final bill of materials, with part numbers for every row, is published with the design files once the boards are made. This early draft is the file <ExtLink href="https://github.com/melophos/melophos/blob/main/hardware/bom/hub-rev-a.csv">hardware/bom/hub-rev-a.csv</ExtLink>, shown as a table.
         </p>
         <div className="table-scroll" tabIndex={0} role="region" aria-label="Bill of materials, scrolls sideways">
           <table>
@@ -78,7 +78,7 @@ export default function Hardware() {
       <section className="section prose" aria-labelledby="power">
         <h2 id="power">Power budget</h2>
         <p>
-          The boards are still in the works and the power budget is being finalised with them. No board has been made, so nothing has been measured. The firmware limits the total LED current to {figure("ledCeilingMa")}. The figures behind that limit are in <ExtLink href="https://github.com/melophos/melophos/blob/main/firmware/docs/pins-and-power.md">firmware/docs/pins-and-power.md</ExtLink>.
+          No board has been made, so nothing has been measured. The power input of the hub was simulated before ordering. The firmware limits the total LED current to {figure("ledCeilingMa")}. The figures behind that limit are in <ExtLink href="https://github.com/melophos/melophos/blob/main/firmware/docs/pins-and-power.md">firmware/docs/pins-and-power.md</ExtLink>.
         </p>
       </section>
 

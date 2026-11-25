@@ -19,7 +19,7 @@ const card = (path: string, slug: string, title: string, lit: number): SocialCar
 export const SOCIAL_CARDS: SocialCard[] = [
   card("/", "home", "Song made visible: learn the piano with light", 9),
   card("/how-it-works/", "how-it-works", "How MELOPHOS works", 4),
-  card("/hardware/", "hardware", "The MELOPHOS hardware, in design", 12),
+  card("/hardware/", "hardware", "The MELOPHOS hardware, designed", 12),
   card("/accessibility/", "accessibility", "Accessibility in MELOPHOS", 7),
   card("/roadmap/", "roadmap", "The MELOPHOS roadmap", 15),
   card("/docs/", "docs", "The MELOPHOS documentation", 2),

@@ -25,7 +25,7 @@ export function GET() {
   const docs = allDocs();
   const text = `# MELOPHOS
 
-> An open source system for learning the piano with light. The Studio, a practice app in the browser, is built. The hub with LED bars above the keys is in design and no board has been made.
+> An open source system for learning the piano with light. The Studio, a practice app in the browser, is built. The hub with LED bars above the keys is fully designed and waits to be made. No board has been made yet.
 
 ## Pages
 
