@@ -50,7 +50,7 @@ describe("sentences that say hardware exists", () => {
 
 describe("status words", () => {
   it("the list is exactly these seven", () => {
-    expect(Object.values(STATUS_WORD)).toEqual(["Built", "Host-tested, awaits a board", "Partly built", "In progress", "In design", "Planned", "Not yet checked"]);
+    expect(Object.values(STATUS_WORD)).toEqual(["Built", "Host-tested, awaits a board", "Partly built", "In progress", "Designed, awaits manufacture", "Planned", "Not yet checked"]);
   });
   it("no roadmap item ends with a status of its own", () => {
     const text = readRoot("docs/roadmap.md");

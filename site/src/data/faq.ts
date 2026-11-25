@@ -15,7 +15,7 @@ export const FAQ: Question[] = [
   },
   {
     q: "Can I buy a MELOPHOS hub or light bar?",
-    a: ["Not yet. The hub and its light bars are in design and no board has been made. There is nothing to buy yet. The hardware page shows the draft design and the roadmap shows the order of the work."],
+    a: ["Not yet. The hub and its light bars are fully designed and wait to be made. No board has been made yet, so there is nothing to buy. The hardware page shows the design and the roadmap shows the order of the work."],
   },
   {
     q: "What does it cost?",
