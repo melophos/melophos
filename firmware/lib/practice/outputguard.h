@@ -104,7 +104,7 @@ class OutputGuard : public LedSink {
     // whatever calls it (a hub, a lesson, a remote command)
     static const uint32_t kDarkNowMinGapMs = 1000;
     // after power-on every output stays dark this long. The hub's 5 V switch can take up to 252 ms to turn fully on
-    // (simulated), and a load drawn before then makes it carry the LED current while only partly on. Twice that
+    // (simulated). A load drawn before then makes it carry the LED current while only partly on. Twice that
     static const uint32_t kPowerOnHoldMs = 500;
     // how long a light that was asked dark can be kept lit by the fall budget. The budget goes to the light that has
     // waited longest, so with `waiting` lights asked dark at once the last goes dark after waiting / 30 seconds

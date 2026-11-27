@@ -44,6 +44,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) 
 
 ### Changed
 
+- Monocypher is marked as vendored code in `.gitattributes`, so GitHub leaves it out of the language statistics. Routine tidy-up of two firmware comments.
 - Routine tidy-up of the docs: the bench inventory, the owner setup and publishing steps and internal references leave the repository. The test keyboard's USB facts move to `firmware/docs/usb-midi.md`.
 - The site's guards check private names by hash, so the lists no longer spell them out.
 - `CONTRIBUTING.md` has a Security section pointing at SECURITY.md and security@melophos.com.

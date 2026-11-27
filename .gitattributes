@@ -18,3 +18,6 @@
 *.kicad_pcb   linguist-generated=false -diff
 *.kicad_sch   -diff
 *.kicad_pro   -diff
+
+# Monocypher is upstream code kept as it is. GitHub leaves it out of the language statistics
+firmware/lib/monocypher/** linguist-vendored
