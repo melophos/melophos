@@ -4,7 +4,7 @@
 // built needs a check in code. a statement that a person has not yet checked something can only rest on the Studio's
 // own README, since no code can show that nobody has looked. a statement about behaviour also names a test that lives
 // in the Studio and the site checks that the test exists, is not skipped and asserts something. where the Studio has no
-// such test the statement is marked Not yet checked and listed in the report as a test the Studio needs.
+// such test the statement is marked Not yet checked as a test the Studio needs.
 // the files are read and never edited from here.
 
 import type { Check } from "../lib/checks.ts";

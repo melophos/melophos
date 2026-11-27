@@ -15,7 +15,7 @@ What the MELOPHOS community server on Discord and its bot hold about you, who ca
 | What | Where | How long | Who can see it |
 | --- | --- | --- | --- |
 | Automatic moderation alerts. Discord's AutoMod posts one when a message or a profile matches a rule. It names the member and shows the text that matched | The private `mod-log` channel | 12 months | Maintainers and moderators |
-| Reports from members. A report holds who reported, who it is about, where it happened, up to 500 characters of the reported message and the reporter's own words, up to 500 | The same `mod-log` channel | 12 months | Maintainers and moderators |
+| Reports from members. A report holds who reported, who it is about, where it happened, a link to the reported message and the reporter's own words, up to 500 characters. The text of the reported message is not copied | The same `mod-log` channel | 12 months | Maintainers and moderators |
 | Notes the moderators write in a thread on an entry | The same channel | 12 months | Maintainers and moderators |
 | The roles you choose in the welcome questions, such as Player or Hardware builder | Discord's role list, which every member can see | Until you remove the role or leave | Every member |
 

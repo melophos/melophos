@@ -26,5 +26,4 @@
 | [repositories.md](repositories.md) | The monorepo and the published component repositories |
 | [decisions.md](decisions.md) | Architecture decision records |
 | [community-privacy.md](community-privacy.md) | What the community server and its bot hold, for how long and how to ask for removal |
-| [inventory.md](inventory.md) | Parts on hand for the prototype and parts still to buy |
 | [assets/brand](../assets/brand/) | Logo files, colours and usage, in the monorepo |

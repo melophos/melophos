@@ -6,7 +6,6 @@
 export const WITHHELD: Record<string, string> = {
   "roadmap.md": "The Roadmap page shows this file with a status word on every item, so the document page would repeat it",
   "self-hosting.md": "Quotes memory needs that have not been measured",
-  "inventory.md": "A list of parts one person has on a bench. It is not part of the project's public record",
 };
 
 // a document that has a page of its own on the site, so links to it go there

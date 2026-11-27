@@ -13,7 +13,7 @@ A learner plays a keyboard and a practice view lights each press. Four things ma
 
 ## Why the earlier design did not converge
 
-The earlier follower was a minimum-cost alignment: one reading for each place in the piece, each with its own clock, the cheapest reported. Three reviews each found right notes called wrong in ordinary practice and two rounds of repair did not end that. The failures share one shape. The model had **one place and one tempo** for the whole performance. The same place had to explain two hands that drift apart, a pitch that comes again and a player who jumps. It also had to give every press a verdict.
+The earlier follower was a minimum-cost alignment: one reading for each place in the piece, each with its own clock, the cheapest reported. It called right notes wrong in ordinary practice and repairs to it did not end that. The failures share one shape. The model had **one place and one tempo** for the whole performance. The same place had to explain two hands that drift apart, a pitch that comes again and a player who jumps. It also had to give every press a verdict.
 
 - One hand 110 ms behind the other read as that hand's next note, because the hands shared a place and the tempo was measured across them.
 - A note held back until its pitch came again took the later note. The on-time note was then called wrong.

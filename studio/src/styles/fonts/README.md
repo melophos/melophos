@@ -3,7 +3,7 @@
 These files are self-hosted, so no page makes a request to a font service. Each font keeps its licence text beside it.
 Nothing is subset except the music signs file, described below.
 
-To change the typeface (D2 and D3 in the web specification), replace the files here, update this table and change the
+To change the typeface, replace the files here, update this table and change the
 names in [`fonts.css`](fonts.css) and in `--font-sans` and `--font-mono` in [`../tokens.css`](../tokens.css). Run
 `npm run fonts:metrics` for the fallback figures, then `npm run check:fonts`.
 

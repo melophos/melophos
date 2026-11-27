@@ -4,9 +4,9 @@ name: Publish images
 # key and attaches build provenance and a software bill of materials. Then it prepares the release files for the
 # one-command install. It runs only for a version tag in the real repository. It never runs for a branch, a fork or a
 # pull request. The release it creates is a DRAFT that a maintainer publishes by hand. It cannot run until the
-# repository is pushed, so nothing here has run yet. The settings a maintainer must make before the first tag are in
-# docs/self-hosting.md (maintainer section) and in the README beside this file: a workflow cannot defend itself
-# against an edit at the tagged commit.
+# repository is pushed, so nothing here has run yet. The tag ruleset and the protected release environment are
+# repository settings made before the first tag, because a workflow cannot defend itself against an edit at the tagged
+# commit.
 
 on:
   push:

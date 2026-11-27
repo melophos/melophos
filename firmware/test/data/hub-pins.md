@@ -1,7 +1,7 @@
 # MELOPHOS hub rev A: module pin table
 
-Copied on 22 November 2026 from `hardware/hub/module-pins.md` on the hardware machine, after the schematic gate
-passed. The hardware file is the source. If the two disagree, the hardware file wins.
+Generated on 22 November 2026 from the rev A schematic. The schematic is the source. If the two disagree, the
+schematic wins.
 
 Module: ESP32-S3-WROOM-1. Columns: module pin, GPIO, net, direction, state at reset, power-up glitch.
 

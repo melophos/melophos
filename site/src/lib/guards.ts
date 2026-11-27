@@ -1,18 +1,15 @@
 // phrases that no published page or document may contain. they are written in pieces so that this file and the tests that
 // use it do not contain them. a hit fails the build (scripts/verify-dist.ts) and the tests (tests/guards.test.ts).
 
+import { hashedHits, PRIVATE_NAME_HASHES } from "./hashed-names.ts";
+
 const join = (...parts: string[]): string => parts.join("");
 
-// private repositories, other organisations' names and anything personal: no page, document or feed may name one.
-// the founder's note is signed with a name and carries no link, so it needs no exception
+// the generic kinds of personal detail. these reveal nothing, so they stay readable. the names of private
+// repositories, other organisations, personal accounts and internal files are checked by hash in hashed-names.ts
 export const PRIVATE_NAMES: { why: string; pattern: RegExp }[] = [
-  { why: "a private repository", pattern: new RegExp(join("melophos", "-", "internal"), "i") },
-  { why: "another organisation's name", pattern: new RegExp(join("zac", "esshq|ENG", "NERDS"), "i") },
-  { why: "a personal domain", pattern: new RegExp(join("isaac", "adjei"), "i") },
-  { why: "a personal account", pattern: new RegExp(join("zacc", "esss"), "i") },
   { why: "a personal mail address", pattern: new RegExp(join("@gm", "ail\\.com"), "i") },
   { why: "a personal profile link", pattern: new RegExp(join("linkedin\\.com/", "in/"), "i") },
-  { why: "a journal or an internal planning file", pattern: new RegExp(join("docs/", "journal|PLAN", "\\.md|later-", "stages"), "i") },
 ];
 
 // sentences that would say hardware exists, ships or has been used. today no board has been made, so none is true.
@@ -98,11 +95,12 @@ export function hardwareProblems(where: string, text: string): string[] {
   return [...out, ...presentTenseProblems(rest)];
 }
 
-export function privateProblems(text: string): string[] {
+export function privateProblems(text: string, hashes: ReadonlySet<string> = PRIVATE_NAME_HASHES): string[] {
   const out: string[] = [];
   for (const { why, pattern } of PRIVATE_NAMES) {
     const m = pattern.exec(text);
     if (m) out.push(`${why}: "${text.slice(Math.max(0, m.index - 20), m.index + 30).trim()}"`);
   }
+  for (const hit of hashedHits(text, hashes)) out.push(`a private name: "${hit}"`);
   return out;
 }

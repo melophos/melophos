@@ -12,6 +12,15 @@ The ESP32-S3 acts as a USB host, powers the keyboard and pushes its notes onto t
 
 Recovery without a reset is a VBUS cycle. On any detach or failed enumeration the hub drops VBUS for 500 ms (doubling to 8 s after a failure) and waits for a new device. A 3 s enumeration time-out ends a silent device. Overcurrent cuts VBUS at once and waits 10 s. Three in a row latch it off until `clearFault()`.
 
+## The test keyboard
+
+The Gear4music VISIONKEY-100 is the keyboard the tests are built around. Connected to a computer by one USB-C cable, it takes its power from the cable and presents a standard USB MIDI device: audio class with a MIDI streaming interface, so no driver is needed and the hub's USB host can read it. It reports the product name "USB MIDI", the manufacturer "Kalezo", vendor 0x2485 and product 0x4330, at full speed (12 Mb/s).
+
+Its keys are velocity sensitive: a 90 second capture held 40 presses on channel 1 with velocities from 21 to 95. Releases arrive as note-on with velocity 0, the usual running form. The capture is in [`test/data/visionkey-100-capture.txt`](../test/data/visionkey-100-capture.txt) and the host tests replay it.
+
+> [!NOTE]
+> The first group of messages in the capture arrived in a single burst, including four releases whose presses never arrived. The first presses after the keyboard wakes may be held back or lost, which is worth checking on the hub.
+
 ## Pins
 
 The power switch is a TPS2553 with an enable pin and an open-drain fault pin. The GPIOs in [`melophos_config.h`](../include/melophos_config.h) (10 and 11) are provisional until the rev A schematic is final. Check them first.

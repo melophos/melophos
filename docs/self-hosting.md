@@ -73,7 +73,7 @@ The images install their Python packages from hashed lock files (`server/require
 | API and its documentation | `http://127.0.0.1:8000/docs` on the machine itself and through your reverse proxy for everyone else |
 | MQTT broker for hubs | `<host>:8883` with TLS (see below). Plain `127.0.0.1:1883` is for the server and development |
 
-To add Prometheus and Grafana pass `--profile monitoring up -d` to the same script. In an install folder pass it to `docker compose` instead. The monitoring files were not run in this round. The installer writes `monitoring/metrics_token` from `METRICS_TOKEN` readable by every user of the machine, because Prometheus runs as an unprivileged user inside its container. The token only opens the metrics page.
+To add Prometheus and Grafana pass `--profile monitoring up -d` to the same script. In an install folder pass it to `docker compose` instead. The monitoring files have not been tested yet. The installer writes `monitoring/metrics_token` from `METRICS_TOKEN` readable by every user of the machine, because Prometheus runs as an unprivileged user inside its container. The token only opens the metrics page.
 
 > [!CAUTION]
 > Stop the stack with `make down` (checkout) or `docker compose stop` (install folder), which keep data. Never run `docker compose down -v`: the `-v` flag deletes the database volume and every practice session with it.
@@ -210,14 +210,3 @@ The hub also needs a clock that is roughly right, because it checks the dates in
 
 The same rule applies to the API on port 8000: put it behind a reverse proxy with TLS as described above and give hubs the `https://` address for pairing. The pairing answer carries the device secret, so it must never travel in plain text outside your own network.
 
-## For maintainers: before the first release
-
-A workflow cannot defend itself against an edit at the tagged commit, so a maintainer must make these settings before the first version tag. The full list with the reasons is in [.github/workflows/README.md](../.github/workflows/README.md).
-
-1. **Tag ruleset on `v*`**: create, update and delete for named maintainers only.
-2. **Protected `release` environment**: required reviewers on the publishing jobs (the workflow's `approve` job uses it), deployment limited to protected `v*` tags and **Prevent self-review** on. A single maintainer cannot both tag and approve: the release then waits. Add a second trusted reviewer or knowingly leave Prevent self-review off. See the workflows README.
-3. **Ruleset for `main`**: pull request required, the CI checks required and review from code owners required for `.github/` and `server/deploy/`. `.github/CODEOWNERS` names the repository owner for those two folders until a team exists. Replace it with a real team of the organisation.
-4. **Container packages**: after the first publish set `melophos-server` and `melophos-mqtt` to public, so a household can pull them without signing in. Check that an anonymous `docker pull` works.
-5. A release is created as a draft. Read it, check `gh attestation verify` on `install.sh` and publish it by hand.
-
-Until these are made, do not push a version tag. The workflow has not run. A first run is also the first test of the workflow itself.

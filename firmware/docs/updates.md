@@ -46,7 +46,7 @@ Nobody turns this on until every line below is done and written down in the rele
 7. **The update trigger.** Today only the serial command `update` starts one. Decide who may start an update and when.
 8. **A release checklist run on a real board**, listed in the release notes with the result.
 
-The signature routine is checked at start against the RFC 8032 test vector and a key that is all zero or of small order is refused (a forged manifest verified against the all-zero placeholder key before this). `verifyRollbackLater` is declared `extern "C"` so it replaces the core's weak default, which would mark every image valid before `setup()`. That is checked in the linked image with `nm`, see the report.
+The signature routine is checked at start against the RFC 8032 test vector and a key that is all zero or of small order is refused (a forged manifest verified against the all-zero placeholder key before this). `verifyRollbackLater` is declared `extern "C"` so it replaces the core's weak default, which would mark every image valid before `setup()`. That is checked in the linked image with `nm`.
 
 ## What remains
 
