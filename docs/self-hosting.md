@@ -209,4 +209,3 @@ What each hub needs to trust the broker:
 The hub also needs a clock that is roughly right, because it checks the dates in the certificate and it must connect by the name in the certificate. The hub never needs the broker's key. Its own login is the device id and a password derived from the device secret (see the protocol document). A hub that cannot verify the certificate must not connect and must not fall back to port 1883.
 
 The same rule applies to the API on port 8000: put it behind a reverse proxy with TLS as described above and give hubs the `https://` address for pairing. The pairing answer carries the device secret, so it must never travel in plain text outside your own network.
-
