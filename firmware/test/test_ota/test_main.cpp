@@ -117,7 +117,7 @@ void test_manifest_length_and_nulls() {
     auto m = makeManifest(img, 2);
     for (size_t n : {(size_t)0, (size_t)1, (size_t)143, (size_t)145, (size_t)1000}) {
         std::vector<uint8_t> x(n, 0);
-        if (n > 0) {  // an empty vector has no data pointer, and memcpy with a null one is undefined even for zero bytes
+        if (n > 0) {  // an empty vector has no data pointer. memcpy with a null one is undefined even for zero bytes
             memcpy(x.data(), m.data(), std::min(n, m.size()));
         }
         TEST_ASSERT_EQUAL(UpdateError::BadManifest, r.updater.start(x.data(), x.size(), 1, 0, 0));
