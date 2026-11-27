@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { FOUNDER_NOTE, FOUNDER_SIGNATURE, PROJECT_VOICE } from "../src/data/story.ts";
 import { readRoot } from "./lib/files.ts";
 
-describe("the origin story is told the same way in three places (D1)", () => {
+describe("the origin story is told the same way in three places", () => {
   const readme = readRoot("README.md");
 
   it("keeps the fact in the README in the project's voice and links to the About page", () => {

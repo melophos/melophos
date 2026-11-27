@@ -109,7 +109,7 @@ Every moderator and every Maintainer can read the log channel, so a report names
 
 The entry holds exactly: who reported (a mention that does not ping), who it is about (`/report` only and only when the member option is used), where and the reporter's words.
 
-For the message command we promised the first 500 characters of the reported message. We do not send them. The form's id is handed back by the reporter's own app, so anything carried in it could be altered. The worker keeps nothing between the form opening and the form being sent. So the form id carries only the message id and the entry has a jump link and the words "The link is the evidence". The channel in the link comes from Discord's own signed request. Staff open the link to read the message. A forged message id can point only at another message in the same channel.
+The message command does not copy the reported message's text. The form's id is handed back by the reporter's own app, so anything carried in it could be altered. The worker keeps nothing between the form opening and the form being sent. So the form id carries only the message id and the entry has a jump link and the words "The link is the evidence". The channel in the link comes from Discord's own signed request. Staff open the link to read the message. A forged message id can point only at another message in the same channel.
 
 ## Lookups and the three second rule
 

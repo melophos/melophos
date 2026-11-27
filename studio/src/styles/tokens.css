@@ -13,12 +13,12 @@
   - src/styles/lights.json is the role map for the lights. It holds the LED drive values that
     firmware/lib/practice/render.cpp has to follow.
 
-  provisional decisions baked in here: D2 and D3 (typeface names), D4 (light colours and hands),
-  D10 (system theme with an override). each is one block below.
+  provisional choices made here: the typeface names, the light colours and hands and a system theme with an
+  override. each is one block below.
 */
 
 :root {
-  /* type: D2 and D3. the names must match src/styles/fonts/fonts.css */
+  /* type. the names must match src/styles/fonts/fonts.css */
   --font-sans: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible Next Fallback", Verdana, system-ui, sans-serif;
   --font-mono: "Atkinson Hyperlegible Mono", "Atkinson Hyperlegible Mono Fallback", "Courier New", ui-monospace, monospace;
 

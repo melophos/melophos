@@ -2,6 +2,7 @@
 // verify-dist.ts), every published document, the published part of the changelog and the site's own source.
 import { describe, expect, it } from "vitest";
 import { HARDWARE_ALLOWED, hardwareProblems, privateProblems } from "../src/lib/guards.ts";
+import { hashOf } from "../src/lib/hashed-names.ts";
 import { allDocs } from "../src/lib/docs.ts";
 import { intro, releases } from "../src/lib/changelog.ts";
 import { STATUS_WORD } from "../src/data/status.ts";
@@ -20,7 +21,10 @@ describe("private names and personal links", () => {
   });
   it("the guard itself catches each kind", () => {
     const p = (s: string): number => privateProblems(s).length;
-    expect(p(["melophos", "internal"].join("-"))).toBe(1);
+    // a stand-in name, hashed here, shows the hashed check works without writing a real name into the test
+    const stand = new Set([hashOf("wobblecart")]);
+    expect(privateProblems("see https://github.com/wobblecart/notes", stand)).toEqual(['a private name: "wobblecart"']);
+    expect(privateProblems("nothing to see here", stand)).toEqual([]);
     expect(p(["me", "@", "gm", "ail.com"].join(""))).toBe(1);
     expect(p(["linkedin.com/", "in/", "someone"].join(""))).toBe(1);
     expect(p("https://linkedin.com/company/melophos")).toBe(0);

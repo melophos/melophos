@@ -4,6 +4,19 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+Tidies the public docs and the site's guards.
+
+### Changed
+
+- Routine tidy-up of the docs: the bench inventory, the owner setup and publishing steps and internal references leave the repository. The test keyboard's USB facts move to `firmware/docs/usb-midi.md`.
+- The site's guards check private names by hash, so the lists no longer spell them out.
+
+### Fixed
+
+- The community privacy page said a report keeps up to 500 characters of the reported message. A report holds a link to the message and the reporter's own words.
+
 ## [0.1.0] - 2026-11-25
 
 ### Added

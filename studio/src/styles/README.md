@@ -34,7 +34,7 @@ and a word in `lights.json`.
 | Coming up, left hand | `--light-left-soon` | `#3f7fbf` | As above | The guide colour at a lower level |
 | Wrong note | `--light-wrong` | `#ff6fa3` | 255, 0, 160 | `Wrong` 255, 0, 160 at 100 per cent |
 
-The left hand is dimmer than the right on the bar as a second signal (70 per cent) and the Studio draws the left rail light and the left lane bars at 70 per cent too. A played note is amber at 55 per cent on the bar and an upcoming note is its hand's colour at 20 to 40 per cent. The names `kBlue`, `kAmber` and `kRed` in the firmware were kept and `kRed` now holds the rose-magenta, so `tests/lights.test.ts` maps the constants to roles in one place. The firmware now follows the same light language (decision D4): amber for the right hand, blue for the left and a rose-magenta wrong light. `tests/lights.test.ts` fails when
+The left hand is dimmer than the right on the bar as a second signal (70 per cent) and the Studio draws the left rail light and the left lane bars at 70 per cent too. A played note is amber at 55 per cent on the bar and an upcoming note is its hand's colour at 20 to 40 per cent. The names `kBlue`, `kAmber` and `kRed` in the firmware were kept and `kRed` now holds the rose-magenta, so `tests/lights.test.ts` maps the constants to roles in one place. The firmware now follows the same light language: amber for the right hand, blue for the left and a rose-magenta wrong light. `tests/lights.test.ts` fails when
 `firmware/lib/practice/render.cpp` changes without this table, so the change is seen. LED values are tuned by eye on the real
 diffuser and recorded with a photograph.
 

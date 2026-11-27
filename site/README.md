@@ -42,7 +42,7 @@ Mermaid diagrams in the documents are shown as tables and lists. No script draws
 
 ### How the tokens and fonts are shared without drifting
 
-The Studio and the site are two origins (D7) and the site keeps no copy of any design file. `src/app/layout.tsx`
+The Studio and the site are two origins and the site keeps no copy of any design file. `src/app/layout.tsx`
 imports `tokens.css`, `base.css` and `fonts.css` from `studio/src/styles/` and the build bundles them. A change to a
 token reaches both surfaces at the next build. `tests/tokens.test.ts` fails if a copy appears in `site/` and
 `tests/design-rules.test.ts` runs the Studio's own product rules (`studio/tests/lib/rules.ts`) over the site source,
@@ -83,16 +83,10 @@ The home page shows one still moment of the Studio drawn by the Studio's own cod
 
 ## Owner placeholders
 
-A fact the owner has to supply is a placeholder in `src/site.config.ts`. It shows as a marked, dashed sentence in a
+A fact only the people running the site can supply is a placeholder in `src/site.config.ts`. It shows as a marked, dashed sentence in a
 development build and `npm run build:production` fails until it is filled. Today three are listed: the legal person responsible, the host of the Studio and the law that governs
 the terms of use. Only the host of the Studio is still open. There is no postal address: the privacy page says email reaches us about everything. Each is listed on the privacy page and in `docs/community-privacy.md`, which uses the same marker text.
 `scripts/verify-dist.ts` fails the build when a listed page stops showing one, so a row cannot be removed unnoticed.
-
-## Deploying
-
-The owner deploys. Upload `out/` to Cloudflare Pages by direct upload (D15). `out/_headers` carries the content
-security policy and the other headers and `out/_redirects` sends `/try` to the app. Run `npm run build:production`
-first.
 
 ## Hosting settings that keep the privacy page true
 
@@ -117,16 +111,9 @@ npm run check:live -- https://melophos.com
 ```
 
 The build cannot see the host, so this check is the only proof. A run that passes is what makes the privacy page true on
-the day it goes live.
+the day it goes live, so do not announce the site until it passes.
 
-## Publishing steps
-
-1. Fill every owner placeholder in `src/site.config.ts` (the host of the Studio) and the matching text in `docs/community-privacy.md`.
-2. Run `npm run build:production`. It must pass.
-3. Switch off the host settings in the table above, then deploy `out/`.
-4. Run `npm run check:live -- https://melophos.com` and do not announce the site until it passes.
-
-## Before publishing
+## What the guards catch and what they miss
 
 A person reads every page against the status page (`/roadmap/#words`) and the repository. The guards are a net and not a
 proof and no test can judge free prose. `src/lib/guards.ts` flags a sentence when all three hold. Its subject is the hardware: the hub, an LED bar or octave bar or light

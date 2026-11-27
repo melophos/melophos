@@ -1,6 +1,6 @@
 /*
   self-hosted type. this file and the files beside it are the only place a font name or file is written.
-  the names must match --font-sans and --font-mono in ../tokens.css. to change the typeface (D2 and D3),
+  the names must match --font-sans and --font-mono in ../tokens.css. to change the typeface,
   replace the files, update README.md and change the names here and in tokens.css.
 
   text swaps in as soon as the font loads. the fallback faces below carry the metrics of Verdana and

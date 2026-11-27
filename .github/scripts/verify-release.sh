@@ -7,7 +7,7 @@
 #   - CI passed on that commit
 #   - the version in the tag is the version in the package file
 # The workflow file itself cannot be defended from inside: whoever can edit it at the tagged commit can remove this
-# job. That is what the tag ruleset and the release environment in docs/self-hosting.md (maintainer section) are for.
+# job. That is what the tag ruleset and the protected release environment in the repository settings are for.
 #
 # Needs: REPO (owner/name), TAG, SHA (the commit of the run) and GH_TOKEN. gh and jq.
 set -eu

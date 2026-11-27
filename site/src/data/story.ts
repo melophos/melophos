@@ -1,4 +1,4 @@
-// the origin story, told twice on purpose (D1). the project's voice is used wherever MELOPHOS speaks as an
+// the origin story, told twice on purpose. the project's voice is used wherever MELOPHOS speaks as an
 // organisation: the README and the home page. the founder's note is the first person original, kept in one
 // place on the About page and signed. tests/story.test.ts checks that the README says what PROJECT_VOICE says.
 

@@ -2,16 +2,8 @@
 // repository that is not public and the reader refuses a path that leaves the repository.
 import { describe, expect, it } from "vitest";
 import { readRepo } from "../src/lib/repo.ts";
+import { HERMETIC_NAME_HASHES, hashedHits } from "../src/lib/hashed-names.ts";
 import { readSite, walk } from "./lib/files.ts";
-
-// built from pieces so that this file does not contain the words it forbids
-const FORBIDDEN: { name: string; pattern: RegExp }[] = [
-  { name: "a private repository", pattern: new RegExp(["melophos", "internal"].join("-"), "i") },
-  { name: "a note about someone else working in the repository", pattern: new RegExp(["another", "builder"].join(" "), "i") },
-  { name: "a note about others at work", pattern: new RegExp(["other", "builders?"].join(" "), "i") },
-  { name: "a journal", pattern: /docs\/journal/ },
-  { name: "the owner's distance check", pattern: new RegExp(["owner's", "check"].join(" "), "i") },
-];
 
 const files = [...walk("src"), ...walk("tests"), ...walk("scripts"), ...walk("public"), "README.md", "package.json"].filter((f) => /\.(ts|tsx|js|css|json|md|txt)$/.test(f) && !f.startsWith("tests/lib/"));
 
@@ -19,7 +11,8 @@ describe("the site stands on this repository alone", () => {
   for (const f of files) {
     it(`${f} names no private repository and no one else at work`, () => {
       const text = readSite(f);
-      for (const { name, pattern } of FORBIDDEN) expect(pattern.test(text), `${f} mentions ${name}`).toBe(false);
+      // the names are held as hashes, so the test reports the words it found and never spells out the list
+      expect(hashedHits(text, HERMETIC_NAME_HASHES), `${f} mentions a private name`).toEqual([]);
     });
   }
 

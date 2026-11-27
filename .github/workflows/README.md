@@ -24,12 +24,6 @@ A release is a signed annotated tag on a commit of `main` that CI has passed, na
 5. **Release files**: the compose file gets the digests, `install.sh` gets the checksums, the checksums file is signed (a bundle) and every file is attested.
 6. **Draft release**: created as a draft. A maintainer reads it and publishes it by hand.
 
-A workflow cannot defend itself against being edited at the tagged commit, so these settings must be made by a maintainer **before the first tag**. They cannot be made from a file in the repository:
-
-- **Tag ruleset** on `v*`: only named maintainers may create, update or delete such a tag. A tag cannot be moved.
-- **Environment `release`** with required reviewers and deployment limited to protected `v*` tags. Switch on **Prevent self-review** for it, so the person who pushed the tag cannot approve their own release. With one maintainer that means nobody can both tag and approve: the release waits. Until a second trusted reviewer exists, either add one (another account you control is not a second person) or leave Prevent self-review off and accept that the tag is protected by the signed-tag gate and the tag ruleset only. Do not skip the setting by removing the approval job.
-- **Ruleset for `main`**: pull request required, the CI checks required and review from code owners required. `.github/CODEOWNERS` names the same owner as the rest of the repository for `.github/` and `server/deploy/` (GitHub uses the last matching line, so those lines must name an owner). Replace it with a real team once one exists.
-- **Package visibility**: after the first publish set `melophos-server` and `melophos-mqtt` on GitHub Packages to public so households can pull without signing in. Link each package to this repository.
-- Under Actions settings: default workflow permissions read-only. Require approval for workflows from forks.
+A workflow cannot defend itself against being edited at the tagged commit, so the tag ruleset, the protected `release` environment, the ruleset for `main` and the package visibility are repository settings rather than files.
 
 `publish-images.yml` has not run yet because the repository is not pushed. Its first run is a test of the workflow itself.

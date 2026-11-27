@@ -35,7 +35,7 @@ if [ -n "${FAIL_AT:-}" ]; then
     esac
 fi
 # this test has no server or worker image. The stand-in says they are running so that the restore stops them and has
-# to start them again and it records the start. The real thing is shown on a full stack by hand (see the journal)
+# to start them again and it records the start. The real thing is checked on a full stack by hand.
 if [ -n "${FAKE_RUNNING:-}" ]; then
     case "$args" in
         *"ps --status running --services"*) printf 'db\nserver\nworker\n'; exit 0 ;;
