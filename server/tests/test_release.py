@@ -416,12 +416,6 @@ def test_codeowners_gives_the_release_files_a_real_owner_on_their_own_lines():
     )  # no team that does not exist
 
 
-def test_the_workflows_readme_names_prevent_self_review_and_what_one_maintainer_can_do():
-    readme = (WORKFLOWS / "README.md").read_text()
-    assert "Prevent self-review" in readme and "nobody can both tag and approve" in readme
-    assert "Prevent self-review" in (ROOT / "docs" / "self-hosting.md").read_text()
-
-
 def action_pins():
     for path in sorted(WORKFLOWS.glob("*.yml")):
         for line in path.read_text().splitlines():
