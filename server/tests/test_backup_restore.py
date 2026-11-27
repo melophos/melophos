@@ -109,7 +109,7 @@ class Stack:
             "-U", self.env_value("POSTGRES_USER"), "-d", database or self.env_value("POSTGRES_DB"), "-c", query,
             cwd=self.dir, env={**os.environ, "COMPOSE_PROJECT_NAME": self.project},
         )  # fmt: skip
-        assert done.returncode == 0, done.stderr
+        assert done.returncode == 0, done.stdout + done.stderr
         return done.stdout.strip()
 
     def databases(self):
@@ -147,7 +147,7 @@ def make_stack(tmp_path_factory, project, small_volume_mb=None):
         str(DEPLOY / "pin-release.sh"), "--version", "v1.2.3", "--server-digest", "sha256:" + "a" * 64,
         "--mqtt-digest", "sha256:" + "b" * 64, "--registry", "127.0.0.1:26999/melophos", "--out", str(out),
     )  # fmt: skip
-    assert done.returncode == 0, done.stderr
+    assert done.returncode == 0, done.stdout + done.stderr
     folder = base / "install"
     folder.mkdir()
     for name, dest in (
@@ -491,7 +491,7 @@ def test_a_backup_from_an_older_version_is_restored_with_a_note(fresh):
     set_version(base, "v1.0.9")
     fresh.sql("DELETE FROM marker")
     done = fresh.script("restore.sh", str(base.relative_to(fresh.dir)), answer="yes\n")
-    assert done.returncode == 0, done.stderr
+    assert done.returncode == 0, done.stdout + done.stderr
     assert "Migrations bring the data forward" in done.stdout and fresh.state() == "original|50"
 
 
@@ -513,7 +513,7 @@ def test_the_secret_key_comes_from_the_saved_env_and_the_old_env_is_kept(fresh):
     )
     other_password = fresh.env_value("POSTGRES_PASSWORD")
     done = fresh.script("restore.sh", str(base.relative_to(fresh.dir)), answer="yes\n")
-    assert done.returncode == 0, done.stderr
+    assert done.returncode == 0, done.stdout + done.stderr
     assert fresh.env_value("SECRET_KEY") == saved and fresh.env_value("POSTGRES_PASSWORD") == other_password
     assert "another-key-from-another-install" in next(fresh.dir.glob(".env.before-restore-*")).read_text()
     assert env.stat().st_mode & 0o077 == 0
@@ -539,7 +539,7 @@ def test_the_env_file_is_read_as_text_and_never_run_as_code(fresh):
     )
     base = backup(fresh)
     done = fresh.script("restore.sh", str(base.relative_to(fresh.dir)), answer="yes\n")
-    assert done.returncode == 0, done.stderr
+    assert done.returncode == 0, done.stdout + done.stderr
     assert not any(p.name.startswith("pwned") for p in fresh.dir.iterdir())
     env.write_text(original)
 
@@ -556,7 +556,7 @@ needs_age = pytest.mark.skipif(
 def age_key(tmp_path):
     key = tmp_path / "key.txt"
     done = run("age-keygen", "-o", str(key))
-    assert done.returncode == 0, done.stderr
+    assert done.returncode == 0, done.stdout + done.stderr
     recipient = re.search(r"(age1\S+)", done.stderr + key.read_text()).group(1)
     other = tmp_path / "other.txt"
     run("age-keygen", "-o", str(other))
@@ -606,7 +606,7 @@ def test_restoring_an_encrypted_backup_encrypts_the_safety_backup_for_the_same_k
     done = fresh.script(
         "restore.sh", str(base.relative_to(fresh.dir)), "--identity", str(key), answer="yes\n"
     )
-    assert done.returncode == 0, done.stderr
+    assert done.returncode == 0, done.stdout + done.stderr
     safety = list((fresh.dir / "backups").glob("pre-restore-melophos-*"))
     assert safety and all(p.suffix == ".age" or p.name.endswith(".version") for p in safety), safety
 
@@ -624,7 +624,7 @@ def test_the_safety_backup_of_a_restore_can_be_encrypted_too(fresh, age_key):
         recipient,
         answer="yes\n",
     )
-    assert done.returncode == 0, done.stderr
+    assert done.returncode == 0, done.stdout + done.stderr
     assert list((fresh.dir / "backups").glob("pre-restore-melophos-*.dump.age")) and not list(
         (fresh.dir / "backups").glob("pre-restore-melophos-*.dump")
     )
@@ -643,7 +643,7 @@ def test_a_recipients_file_with_a_space_in_its_path_works(fresh, age_key, tmp_pa
     done = fresh.script(
         "restore.sh", str(base.relative_to(fresh.dir)), "--identity", str(key), answer="yes\n"
     )
-    assert done.returncode == 0, done.stderr
+    assert done.returncode == 0, done.stdout + done.stderr
     assert fresh.state() == "original|50"
 
 
