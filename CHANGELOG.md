@@ -4,20 +4,7 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-
-Tidies the public docs and the site's guards.
-
-### Changed
-
-- Routine tidy-up of the docs: the bench inventory, the owner setup and publishing steps and internal references leave the repository. The test keyboard's USB facts move to `firmware/docs/usb-midi.md`.
-- The site's guards check private names by hash, so the lists no longer spell them out.
-
-### Fixed
-
-- The community privacy page said a report keeps up to 500 characters of the reported message. A report holds a link to the message and the reporter's own words.
-
-## [0.1.0] - 2026-11-25
+## [0.1.0] - 2026-11-27
 
 ### Added
 
@@ -57,6 +44,8 @@ Tidies the public docs and the site's guards.
 
 ### Changed
 
+- Routine tidy-up of the docs: the bench inventory, the owner setup and publishing steps and internal references leave the repository. The test keyboard's USB facts move to `firmware/docs/usb-midi.md`.
+- The site's guards check private names by hash, so the lists no longer spell them out.
 - `CONTRIBUTING.md` has a Security section pointing at SECURITY.md and security@melophos.com.
 - Community files follow the [AI policy](https://github.com/melophos/.github/blob/main/AI_POLICY.md): pull requests declare AI use and issue forms ask whether AI helped. Security reports go to security@melophos.com.
 - Conduct reports, security reports and general enquiries go to contact@melophos.com.
@@ -68,6 +57,7 @@ Tidies the public docs and the site's guards.
 
 ### Fixed
 
+- The community privacy page said a report keeps up to 500 characters of the reported message. A report holds a link to the message and the reporter's own words.
 - The browser support notes in the root and Studio READMEs agree: WebMIDI works in Chrome, Edge and desktop Firefox 108 and later (behind a site permission add-on prompt), not in Safari or Firefox for Android. The architecture status table lists the note bus ring buffer as built.
 - Each publish run checks out the latest `main`, so a push event that arrives late can no longer publish stale history to the component repositories.
 - The pull request template's links and two support answers now match the project and current browser support.
